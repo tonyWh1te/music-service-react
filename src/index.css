@@ -2,9 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
+.animation-main {
+  @apply transition-all duration-300 hover:opacity-100;
+}
+
 @layer base {
   html,
   body {
-    @apply font-main h-full min-w-[320px] text-sm font-normal overflow-x-hidden leading-tight bg-gradient-main;
+    @apply text-white font-main h-full min-w-[320px] text-base font-normal overflow-x-hidden leading-snug bg-gradient-main;
+  }
+}
+
+@layer components {
+  .nav__list-item {
+    @apply mx-4 pt-5 pb-3 px-[10px]  md:pl-6 md:py-4 md:mx-0;
+  }
+
+  .nav__link {
+    @apply flex items-center gap-x-4 opacity-50 animation-main flex-col md:flex-row;
   }
 }
