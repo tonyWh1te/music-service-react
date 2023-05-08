@@ -1,0 +1,15 @@
+.genre-card__list {
+  @apply grid grid-cols-[repeat(6,_1fr)] gap-x-6 gap-y-[26px];
+}
+
+.genre-card {
+  @apply w-[233px] h-32 cursor-pointer drop-shadow-cover-pic relative;
+}
+
+.genre-card__img {
+  @apply w-full h-full object-cover;
+}
+
+.genre-card__title {
+  @apply uppercase opacity-90 absolute bottom-1 right-1;
+}

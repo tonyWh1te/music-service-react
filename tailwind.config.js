@@ -21,7 +21,7 @@ module.exports = {
     },
     fontFamily: {
       main: ['Inter', 'sans-serif'],
-      'text-landing': ['Hurricane', 'cursive'],
+      landing: ['Hurricane', 'cursive'],
     },
     extend: {
       height: {
@@ -53,5 +53,13 @@ module.exports = {
       }),
     },
   },
-  plugins: [plugin(function ({ addUtilities }) {})],
+  plugins: [
+    plugin(function ({ addUtilities }) {
+      addUtilities({
+        '.stroke-landing': {
+          '-webkit-text-stroke': '2px #1ab26b',
+        },
+      });
+    }),
+  ],
 };

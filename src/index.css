@@ -2,8 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
+.title-main {
+  @apply text-2xl font-bold tracking-tighter;
+}
+
 .animation-main {
   @apply transition-all duration-300 hover:opacity-100;
+}
+
+.page-title {
+  @apply font-bold text-[40px] tracking-wide mb-10 text-center md:text-left;
+}
+
+.section-title {
+  @apply title-main mb-5 md:pb-[3px] md:border-b-2 md:border-b-gray-line;
+}
+
+.card-title {
+  @apply pt-2 font-bold text-sm break-words;
 }
 
 @layer base {
