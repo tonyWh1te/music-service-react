@@ -1,0 +1,27 @@
+.nav {
+  @apply fixed bg-gray-sidebar bottom-0 w-full z-10 md:w-56 md:left-0 md:top-0 md:h-screen;
+}
+
+.nav__inner {
+  @apply h-full md:pr-2 md:py-5 md:h-auto;
+}
+
+.nav__list {
+  @apply h-full flex justify-center md:block md:justify-normal md:h-auto;
+}
+
+.nav__item--active {
+  @apply border-b-4 border-main-green pb-2 md:pb-4 md:pl-5 md:border-l-4 md:border-b-0;
+}
+
+.nav__link--active {
+  @apply opacity-100;
+}
+
+.nav__img {
+  @apply w-5 h-5 md:w-4 md:h-4;
+}
+
+.nav__name {
+  @apply block font-bold text-sm;
+}

@@ -1,0 +1,11 @@
+.dropdown-menu {
+  @apply absolute right-0 z-20 mt-2 w-56 origin-top-right rounded-md bg-gradient-dropdown focus:outline-none;
+}
+
+.dropdown-menu__link {
+  @apply block px-4 py-2 opacity-60;
+}
+
+.dropdown-menu__btn {
+  @apply block w-full px-4 py-2 text-left opacity-60;
+}
