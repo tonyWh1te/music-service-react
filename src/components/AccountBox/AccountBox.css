@@ -1,0 +1,35 @@
+.form__block {
+  @apply bg-transparent p-0 md:bg-gray-form md:py-8 md:px-14 md:rounded-lg;
+}
+
+.form__content {
+  @apply flex flex-col text-center;
+}
+
+.form__inputs {
+  @apply grid grid-cols-1 gap-x-[98px] gap-y-[80px] mb-9 md:grid-cols-2;
+}
+
+.form__inputs-item {
+  @apply h-[64px];
+}
+
+.form__select-block {
+  @apply w-[192px] mx-auto font-light mb-[72px];
+}
+
+.form__label {
+  @apply block text-left mb-1;
+}
+
+.form__select {
+  @apply w-full bg-transparent border-form-green rounded border-2 focus:border-main-green focus:ring-0;
+}
+
+.form__btn {
+  @apply w-full md:w-1/2 mx-auto mb-4 font-semibold text-3xl py-4 bg-form-green rounded-full hover:bg-[#1CC677];
+}
+
+.form_text {
+  @apply font-light text-lg;
+}

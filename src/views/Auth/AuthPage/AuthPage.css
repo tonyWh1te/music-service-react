@@ -1,0 +1,11 @@
+.main-form {
+  @apply min-h-screen;
+}
+
+.main-form__inner {
+  @apply py-10 flex justify-center flex-col items-center;
+}
+
+.main-form__logo {
+  @apply mb-8 mx-auto;
+}

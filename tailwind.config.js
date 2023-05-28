@@ -44,6 +44,7 @@ module.exports = {
         'gray-input': '#C4C4C4',
         'gray-sidebar': '#030303',
         'gray-icon': '#ABABAB',
+        'gray-form': '#171717',
         'gray-gradient-light': '#282828',
         'gray-gradient-dark': '#121212',
       },
@@ -54,6 +55,7 @@ module.exports = {
     },
   },
   plugins: [
+    require('@tailwindcss/forms'),
     plugin(function ({ addUtilities }) {
       addUtilities({
         '.stroke-landing': {

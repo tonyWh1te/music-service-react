@@ -27,6 +27,10 @@
   body {
     @apply text-white font-main h-full min-w-[320px] text-base font-normal overflow-x-hidden leading-snug bg-gradient-main;
   }
+
+  ::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+  }
 }
 
 @layer components {
