@@ -1,4 +1,4 @@
-import { AccountBox } from '../../../components/AccountBox';
+import { AuthForms } from '../AuthForms';
 import { logo } from '../../../assets';
 import './AuthPage.css';
 
@@ -8,8 +8,12 @@ const AuthPage = () => {
       <main className="main-form">
         <div className="container px-12 mx-auto">
           <div className="main-form__inner">
-            <img className="main-form__logo" src={logo} alt="logo" />
-            <AccountBox />
+            <img
+              className="main-form__logo"
+              src={logo}
+              alt="logo"
+            />
+            <AuthForms />
           </div>
         </div>
       </main>

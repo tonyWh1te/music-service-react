@@ -1,8 +1,8 @@
 import { createContext } from 'react';
 
-const AccountContext = createContext({
+const AuthBoxContext = createContext({
   switchToLogin: () => {},
   switchToSignUp: () => {},
 });
 
-export { AccountContext };
+export { AuthBoxContext };

@@ -1,11 +1,11 @@
 import { useContext } from 'react';
 import { Form } from 'formik';
-import { AccountContext } from './AccountBoxContext';
-import InputText from '../InputText/InputText';
-import './AccountBox.css';
+import { AuthBoxContext } from '../../../context/AuthBoxContext';
+import InputText from '../../../components/InputText/InputText';
+import './AuthForms.css';
 
 const LoginForm = () => {
-  const { switchToSignUp } = useContext(AccountContext);
+  const { switchToSignUp } = useContext(AuthBoxContext);
 
   return (
     <div className="form__block xl:w-1/2">

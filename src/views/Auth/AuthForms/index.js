@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import * as Yup from 'yup';
 import { Formik } from 'formik';
-import { AccountContext } from './AccountBoxContext';
+import { AuthBoxContext } from '../../../context/AuthBoxContext';
 import LoginForm from './LoginForm';
 import SignUpForm from './SignUpForm';
 
@@ -19,7 +19,7 @@ const signUpSchema = Yup.object({
   date: Yup.date().required('Required field!').max(new Date(), "You can't be born in the future!"),
 });
 
-const AccountBox = () => {
+const AuthForms = () => {
   const [active, setActive] = useState('login');
   const [signUpValues, setSignUpValues] = useState({ email: '', name: '', password: '', date: '', gender: 'Male' });
 
@@ -35,7 +35,7 @@ const AccountBox = () => {
   const contextValue = { switchToLogin, switchToSignUp };
 
   return (
-    <AccountContext.Provider value={contextValue}>
+    <AuthBoxContext.Provider value={contextValue}>
       {active === 'login' && (
         <Formik
           initialValues={{
@@ -60,8 +60,8 @@ const AccountBox = () => {
           <SignUpForm />
         </Formik>
       )}
-    </AccountContext.Provider>
+    </AuthBoxContext.Provider>
   );
 };
 
-export { AccountBox };
+export { AuthForms };
