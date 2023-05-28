@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { logo, telegram, youtube, vk } from '../../../assets';
 import './LandingPage.css';
 
@@ -10,14 +11,20 @@ const LandingPage = () => {
             <nav className="flex justify-end">
               <ul className="flex items-center">
                 <li className="pr-5">
-                  <a className="header-landing__link animation-main hover:opacity-80" href="#">
+                  <Link
+                    className="header-landing__link animation-main hover:opacity-80"
+                    to="/auth"
+                  >
                     Sign up
-                  </a>
+                  </Link>
                 </li>
                 <li className="pl-5 border-l-2">
-                  <a className="header-landing__link header-landing__button animation-main" href="#">
+                  <Link
+                    className="header-landing__link header-landing__button animation-main"
+                    to="/auth"
+                  >
                     Log in
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </nav>
@@ -28,7 +35,10 @@ const LandingPage = () => {
         <section>
           <div className="container px-12 mx-auto">
             <div className="top__inner">
-              <img src={logo} alt="logo" />
+              <img
+                src={logo}
+                alt="logo"
+              />
               <h1 className="top__title">
                 Music for <br />
                 <span>everyone</span>
@@ -43,17 +53,26 @@ const LandingPage = () => {
             <ul className="footer__social">
               <li>
                 <a href="#">
-                  <img src={telegram} alt="social" />
+                  <img
+                    src={telegram}
+                    alt="social"
+                  />
                 </a>
               </li>
               <li>
                 <a href="#">
-                  <img src={youtube} alt="social" />
+                  <img
+                    src={youtube}
+                    alt="social"
+                  />
                 </a>
               </li>
               <li>
                 <a href="#">
-                  <img src={vk} alt="social" />
+                  <img
+                    src={vk}
+                    alt="social"
+                  />
                 </a>
               </li>
             </ul>

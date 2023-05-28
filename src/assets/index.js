@@ -21,6 +21,7 @@ import youtube from './icons/youtube-icon.svg';
 import vk from './icons/vk-icon.svg';
 import home from './icons/home.svg';
 import library from './icons/library.svg';
+import search from './icons/search.svg';
 
 export {
   artistPic,
@@ -28,6 +29,7 @@ export {
   coverPic2,
   coverPic3,
   profilePic,
+  search,
   home,
   library,
   logo,
