@@ -1,30 +1,14 @@
 import { useState } from 'react';
-import * as Yup from 'yup';
-import { Formik } from 'formik';
 import { AuthBoxContext } from '../../../context/AuthBoxContext';
 import LoginForm from './LoginForm';
 import SignUpForm from './SignUpForm';
 
-const PWD_REGEX = /^[\w\dа-яА-Я]+$/;
-
-const loginSchema = Yup.object({
-  email: Yup.string().email('Incorrect email format').required('Required field!'),
-  password: Yup.string().required('Required field!'),
-});
-
-const signUpSchema = Yup.object({
-  email: Yup.string().email('Incorrect email format').required('Required field!'),
-  name: Yup.string().min(2, 'The minimum number of characters is 2!').matches(PWD_REGEX, 'Only letters and numbers!').required('Required field!!'),
-  password: Yup.string().min(8, 'The minimum number of characters is 8!').required('Required field!'),
-  date: Yup.date().required('Required field!').max(new Date(), "You can't be born in the future!"),
-});
-
 const AuthForms = () => {
   const [active, setActive] = useState('login');
-  const [signUpValues, setSignUpValues] = useState({ email: '', name: '', password: '', date: '', gender: 'Male' });
+  const [newInitValues, setNewInitValues] = useState(null);
 
   const switchToLogin = (enteredSignUpValues) => {
-    setSignUpValues(enteredSignUpValues);
+    setNewInitValues(enteredSignUpValues);
     setActive('login');
   };
 
@@ -32,34 +16,12 @@ const AuthForms = () => {
     setActive('signup');
   };
 
-  const contextValue = { switchToLogin, switchToSignUp };
+  const contextValue = { switchToLogin, switchToSignUp, newInitValues };
 
   return (
     <AuthBoxContext.Provider value={contextValue}>
-      {active === 'login' && (
-        <Formik
-          initialValues={{
-            email: '',
-            password: '',
-          }}
-          validationSchema={loginSchema}
-          onSubmit={(values, { resetForm }) => {
-            console.log(JSON.stringify(values, null, 2));
-            resetForm();
-          }}
-        >
-          <LoginForm />
-        </Formik>
-      )}
-      {active === 'signup' && (
-        <Formik
-          initialValues={{ ...signUpValues }}
-          validationSchema={signUpSchema}
-          onSubmit={(values) => console.log(JSON.stringify(values, null, 2))}
-        >
-          <SignUpForm />
-        </Formik>
-      )}
+      {active === 'login' && <LoginForm />}
+      {active === 'signup' && <SignUpForm />}
     </AuthBoxContext.Provider>
   );
 };

@@ -1,8 +1,8 @@
 import { useField } from 'formik';
 import './InputText.css';
 
-const InputText = ({ ...props }) => {
-  const [field, meta] = useField(props);
+const InputText = ({ name, ...props }) => {
+  const [field, meta] = useField(name);
 
   return (
     <>
