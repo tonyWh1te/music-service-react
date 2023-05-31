@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { AuthBoxContext } from '../../../context/AuthBoxContext';
+import AuthBoxContext from '../../../context/AuthBoxContext';
 import LoginForm from './LoginForm';
 import SignUpForm from './SignUpForm';
 

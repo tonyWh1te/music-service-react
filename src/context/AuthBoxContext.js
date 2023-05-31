@@ -5,4 +5,4 @@ const AuthBoxContext = createContext({
   switchToSignUp: () => {},
 });
 
-export { AuthBoxContext };
+export default AuthBoxContext;
