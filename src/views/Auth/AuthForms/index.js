@@ -7,7 +7,7 @@ const AuthForms = () => {
   const [active, setActive] = useState('login');
   const [newInitValues, setNewInitValues] = useState(null);
 
-  const switchToLogin = (enteredSignUpValues) => {
+  const switchToLogin = (enteredSignUpValues = null) => {
     setNewInitValues(enteredSignUpValues);
     setActive('login');
   };

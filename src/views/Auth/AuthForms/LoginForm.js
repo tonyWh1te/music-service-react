@@ -1,9 +1,10 @@
 import { useContext } from 'react';
+import useAuth from '../../../hooks/useAuth';
 import { Formik, Form } from 'formik';
 import { TailSpin } from 'react-loader-spinner';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import UserService from '../../../service/UserService.service';
 import AuthBoxContext from '../../../context/AuthBoxContext';
-import AuthContext from '../../../context/AuthProvider';
 import { loginSchema } from '../../../utils/helpers/validation.helpers';
 import InputText from '../../../components/InputText/InputText';
 import './AuthForms.css';
@@ -82,7 +83,12 @@ const InnerForm = ({ formikProps, switchToSignUp }) => {
 
 const LoginForm = () => {
   const { switchToSignUp } = useContext(AuthBoxContext);
-  const { setAuth } = useContext(AuthContext);
+
+  const { setAuth } = useAuth();
+
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from.pathname || '/home';
 
   const userService = new UserService();
 
@@ -96,9 +102,10 @@ const LoginForm = () => {
 
     try {
       const user = await userService.loginUser(values);
-      setAuth({ ...user.data });
-
       console.log(user.data);
+
+      setAuth({ user: { ...user.data } });
+      navigate(from, { replace: true });
     } catch (error) {
       statusMessage = { error: error.message };
     } finally {
