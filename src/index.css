@@ -19,7 +19,7 @@
 }
 
 .card-title {
-  @apply pt-2 font-bold text-sm break-words;
+  @apply pt-2 font-bold text-sm truncate;
 }
 
 @layer base {

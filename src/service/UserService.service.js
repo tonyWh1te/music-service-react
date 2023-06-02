@@ -1,8 +1,7 @@
 import axios from 'axios';
 
 class UserService {
-  #REGISTER_URL = 'http://127.0.0.1:8000/users/reg_user/';
-  #LOGIN_URL = 'http://127.0.0.1:8000/users/login/';
+  #BASE_URL = 'http://127.0.0.1:8000/users';
 
   #postData = async (data, url) => {
     try {
@@ -35,21 +34,21 @@ class UserService {
     last_name: 'none',
     email: user.email,
     password: user.password,
-    date_of_birth: user.date,
+    date_of_birth: new Date(user.date).toISOString(),
     sex: user.gender,
     type_of_subscription: 3,
   });
 
   registerUser = async (user) => {
-    const result = await this.#postData(this.#transformUser(user), this.#REGISTER_URL);
+    const result = await this.#postData(this.#transformUser(user), `${this.#BASE_URL}/reg_user/`);
 
     return result;
   };
 
   loginUser = async (user) => {
-    const result = await this.#postData(user, this.#LOGIN_URL);
+    const result = await this.#postData(user, `${this.#BASE_URL}/login/`);
 
-    return result;
+    return { data: result.data.data, message: result.message };
   };
 }
 

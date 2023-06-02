@@ -1,0 +1,17 @@
+.artists-list {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  @apply grid grid-cols-artists gap-x-8 overflow-x-scroll overflow-y-hidden;
+}
+
+.artists-list::-webkit-scrollbar {
+  display: none;
+}
+
+.card-artist {
+  @apply w-32 text-center cursor-pointer md:w-40;
+}
+
+.card-artist__img {
+  @apply w-full rounded-full object-cover h-4/5;
+}

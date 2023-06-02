@@ -29,7 +29,7 @@ module.exports = {
       },
       gridTemplateColumns: {
         songs: 'repeat(10, 1fr)',
-        artists: 'repeat(20, 1fr)',
+        artists: 'repeat(10, 1fr)',
       },
       dropShadow: {
         'cover-pic': '0px 0px 10px rgba(0, 0, 0, 0.6)',

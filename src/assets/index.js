@@ -2,6 +2,8 @@ import artistPic from './content/artist-pic.jpg';
 import coverPic1 from './content/cover-pic1.png';
 import coverPic2 from './content/cover-pic2.png';
 import coverPic3 from './content/cover-pic3.png';
+import girlProfilePic from './content/girl-profile-pic.jpg';
+import boyProfilePic from './content/boy-profile-pic.png';
 import profilePic from './content/profile-pic.jpg';
 import genrePic1 from './content/genre-pic1.jpg';
 import genrePic2 from './content/genre-pic2.jpg';
@@ -22,6 +24,7 @@ import vk from './icons/vk-icon.svg';
 import home from './icons/home.svg';
 import library from './icons/library.svg';
 import search from './icons/search.svg';
+import errorImg from './content/error.png';
 
 export {
   artistPic,
@@ -36,6 +39,9 @@ export {
   telegram,
   youtube,
   vk,
+  girlProfilePic,
+  boyProfilePic,
+  errorImg,
   genrePic1,
   genrePic2,
   genrePic3,
