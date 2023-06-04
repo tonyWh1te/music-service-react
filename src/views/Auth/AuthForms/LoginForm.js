@@ -84,7 +84,7 @@ const InnerForm = ({ formikProps, switchToSignUp }) => {
 const LoginForm = () => {
   const { switchToSignUp } = useContext(AuthBoxContext);
 
-  const { setAuth } = useAuth();
+  const { login } = useAuth();
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -101,11 +101,11 @@ const LoginForm = () => {
     let statusMessage = {};
 
     try {
-      const user = await userService.loginUser(values);
-      console.log(user.data);
+      const res = await userService.loginUser(values);
 
-      setAuth({ user: { ...user.data } });
-      navigate(from, { replace: true });
+      login({ user: res.data }, () => {
+        navigate(from, { replace: true });
+      });
     } catch (error) {
       statusMessage = { error: error.message };
     } finally {

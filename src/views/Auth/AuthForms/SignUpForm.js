@@ -143,6 +143,7 @@ const SignUpForm = () => {
     try {
       const result = await userService.registerUser(values);
 
+      console.log(result.message);
       switchToLogin();
     } catch (error) {
       statusMessage = { error: error.message };

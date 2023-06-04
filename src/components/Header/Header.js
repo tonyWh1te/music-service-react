@@ -1,12 +1,14 @@
-import DropdownMenu from '../DropdownMenu/DropdownMenu';
 import { useRef, useState, useEffect } from 'react';
-import { profilePic } from '../../assets';
+import useAuth from '../../hooks/useAuth';
+import DropdownMenu from '../DropdownMenu/DropdownMenu';
+import { boyProfilePic, girlProfilePic } from '../../assets';
 import './Header.css';
 
 const Header = () => {
   const [open, setOpen] = useState(false);
   const menuRef = useRef();
   const arrowRef = useRef();
+  const { auth } = useAuth();
 
   const toggleDropdown = (e) => {
     if (e.target !== menuRef.current && e.target !== arrowRef.current) {
@@ -27,8 +29,15 @@ const Header = () => {
         <div className="header__inner">
           <div className="flex justify-between items-center">
             <div className="relative">
-              <input className="search__input" type="text" placeholder="Search" />
-              <div className="search__img" data-search>
+              <input
+                className="search__input"
+                type="text"
+                placeholder="Search"
+              />
+              <div
+                className="search__img"
+                data-search
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 20 20"
@@ -42,18 +51,37 @@ const Header = () => {
                   />
                 </svg>
               </div>
-              <div className="search__close" data-close>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-6 h-6 text-black">
+              <div
+                className="search__close"
+                data-close
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                  className="w-6 h-6 text-black"
+                >
                   <path d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z" />
                 </svg>
               </div>
             </div>
             <div className="user__block">
-              <a className="user__right-side" href="#">
-                <img className="user__img" src={profilePic} alt="profile-pic" />
-                <p className="user__text">Tiffany Kim</p>
+              <a
+                className="user__right-side"
+                href="#"
+              >
+                <img
+                  className="user__img"
+                  src={auth.user.sex === 'Male' ? boyProfilePic : girlProfilePic}
+                  alt="profile-pic"
+                />
+                <p className="user__text">{auth.user.name}</p>
               </a>
-              <div className="cursor-pointer" onClick={() => setOpen(!open)} ref={arrowRef}>
+              <div
+                className="cursor-pointer"
+                onClick={() => setOpen(!open)}
+                ref={arrowRef}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 20 20"
