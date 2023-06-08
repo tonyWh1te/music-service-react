@@ -1,0 +1,51 @@
+.media-player {
+  @apply w-screen bg-gray-gradient-light flex items-center justify-between fixed bottom-20 z-30 pl-4 pr-4 pt-3 pb-[18px] lg:pr-[54px] lg:pl-6 md:bottom-0;
+}
+
+.media-player__button--active {
+  @apply fill-main-green;
+}
+
+.media-player__left {
+  @apply flex items-center gap-1 lg:gap-7;
+}
+
+.media-player__song-info {
+  @apply flex items-center gap-3;
+}
+
+.media-player__song-text {
+  @apply w-[90px] text-xs font-medium sm:w-[180px] lg:text-base lg:w-[240px] xl:w-96;
+}
+
+.media-player__song-cover {
+  @apply w-[70px] h-[70px] object-cover;
+}
+
+.media-player__center {
+  @apply flex flex-col md:w-2/6;
+}
+
+.media-player__buttons {
+  @apply flex items-center justify-center gap-4 mb-[6px] lg:gap-9;
+}
+
+.media-player__play {
+  @apply p-3 border rounded-full;
+}
+
+.media-player__progress {
+  @apply hidden items-center font-medium gap-[6px] lg:flex;
+}
+
+.media-player__time {
+  @apply opacity-70 basis-9;
+}
+
+.media-player__right {
+  @apply hidden items-center gap-4 lg:gap-6  lg:flex;
+}
+
+.media-player__volume {
+  @apply items-center gap-2 hidden lg:flex;
+}

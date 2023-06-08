@@ -13,7 +13,7 @@
 }
 
 .card-song__cover {
-  @apply w-full object-cover drop-shadow-cover-pic;
+  @apply w-full h-[162px] object-cover drop-shadow-cover-pic md:h-[233px];
 }
 
 .card-song__singer {

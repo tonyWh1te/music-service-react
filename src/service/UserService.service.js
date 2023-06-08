@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { boyProfilePic, girlProfilePic } from '../assets';
 
 class UserService {
   #BASE_URL = 'http://127.0.0.1:8000/users';
@@ -39,6 +40,15 @@ class UserService {
     type_of_subscription: 3,
   });
 
+  #transformData = (user) => ({
+    name: user.name,
+    dob: user.date_of_birth,
+    subscription: user.type_of_subscription,
+    sex: user.sex,
+    email: user.email,
+    pic: user.sex === 'Male' ? boyProfilePic : girlProfilePic,
+  });
+
   registerUser = async (user) => {
     const result = await this.#postData(this.#transformUser(user), `${this.#BASE_URL}/reg_user/`);
 
@@ -47,8 +57,9 @@ class UserService {
 
   loginUser = async (user) => {
     const result = await this.#postData(user, `${this.#BASE_URL}/login/`);
+    console.log({ data: this.#transformData(result.data.data), message: result.message });
 
-    return { data: result.data.data, message: result.message };
+    return { data: this.#transformData(result.data.data), message: result.message };
   };
 }
 

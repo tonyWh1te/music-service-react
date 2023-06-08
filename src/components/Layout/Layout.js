@@ -1,7 +1,13 @@
 import Sidebar from '../Sidebar/Sidebar';
 import Header from '../Header/Header';
+import BottomPlayer from '../BottomPlayer/BottomPlayer';
+import usePlayer from '../../hooks/usePlayer';
 
 const Layout = ({ children }) => {
+  const {
+    state: { show },
+  } = usePlayer();
+
   return (
     <div className="relative">
       <Sidebar />
@@ -9,6 +15,7 @@ const Layout = ({ children }) => {
         <Header />
         <main>{children}</main>
       </div>
+      {show && <BottomPlayer />}
     </div>
   );
 };

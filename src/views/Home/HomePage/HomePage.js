@@ -21,7 +21,7 @@ const HomePage = () => {
           <ListWithSongs />
         </div>
       </section>
-      <section className="pb-32 md:pb-14">
+      <section className="pb-14 md:pb-32">
         <div className="container px-12 mx-auto md:mx-0">
           <h2 className="section-title">Popular artists</h2>
           <ListWithArtists />

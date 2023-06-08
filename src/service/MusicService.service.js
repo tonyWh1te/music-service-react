@@ -28,17 +28,17 @@ class MusicService {
   });
 
   getAllSongs = async () => {
-    const result = await this.#getResourse(`${this.#API_BASE}songs/`);
+    const result = await this.#getResourse(`${this.#API_BASE}songs?limit=10`);
 
-    const songs = result.data.data.map(this.#transformSong);
+    const songs = result.data.data.results.map(this.#transformSong);
 
     return { data: songs, message: result.message };
   };
 
   getAllArtists = async () => {
-    const result = await this.#getResourse(`${this.#API_BASE}artists/`);
+    const result = await this.#getResourse(`${this.#API_BASE}artists?limit=10`);
 
-    return { data: result.data.data, message: result.message };
+    return { data: result.data.data.results, message: result.message };
   };
 }
 

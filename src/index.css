@@ -10,16 +10,16 @@
   @apply transition-all duration-300 hover:opacity-100;
 }
 
-.page-title {
-  @apply font-bold text-[40px] tracking-wide mb-10 text-center md:text-left;
-}
-
 .section-title {
   @apply title-main mb-5 md:pb-[3px] md:border-b-2 md:border-b-gray-line;
 }
 
 .card-title {
   @apply pt-2 font-bold text-sm truncate;
+}
+
+.button__primary {
+  @apply px-10 py-2 bg-main-green button-title rounded-full hover:bg-hover-green animation-main;
 }
 
 @layer base {
@@ -40,5 +40,17 @@
 
   .nav__link {
     @apply flex items-center gap-x-4 opacity-50 animation-main flex-col md:flex-row;
+  }
+
+  .media-player__button {
+    @apply h-7 w-7 opacity-70 hidden md:block;
+  }
+
+  .page-title {
+    @apply font-bold text-[40px] tracking-wide mb-10 text-center md:text-left;
+  }
+
+  .button-title {
+    @apply font-medium text-xs uppercase tracking-widest;
   }
 }

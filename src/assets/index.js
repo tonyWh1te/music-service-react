@@ -25,6 +25,7 @@ import home from './icons/home.svg';
 import library from './icons/library.svg';
 import search from './icons/search.svg';
 import errorImg from './content/error.png';
+import coverMini from './content/MiniCover.jpg';
 
 export {
   artistPic,
@@ -42,6 +43,7 @@ export {
   girlProfilePic,
   boyProfilePic,
   errorImg,
+  coverMini,
   genrePic1,
   genrePic2,
   genrePic3,
