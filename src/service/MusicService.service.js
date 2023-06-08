@@ -40,6 +40,12 @@ class MusicService {
 
     return { data: result.data.data.results, message: result.message };
   };
+
+  getAllGenres = async () => {
+    const result = await this.#getResourse(`${this.#API_BASE}genres`);
+
+    return { data: result.data.data.results, message: result.message };
+  };
 }
 
 export default MusicService;
