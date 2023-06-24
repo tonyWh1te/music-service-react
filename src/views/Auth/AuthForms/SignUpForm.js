@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { Formik, Form, Field } from 'formik';
 import { TailSpin } from 'react-loader-spinner';
 import UserService from '../../../service/UserService.service';
-import AuthBoxContext from '../../../context/AuthBoxContext';
+import AuthBoxContext from '../../../context/AuthBoxProvider';
 import { signUpSchema } from '../../../utils/helpers/validation.helpers';
 import InputText from '../../../components/InputText/InputText';
 import './AuthForms.css';

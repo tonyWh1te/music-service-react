@@ -1,0 +1,7 @@
+.footer__inner {
+  @apply h-[82px] flex items-center justify-center md:before:h-[2px] md:before:w-40 md:before:bg-white md:after:h-[2px] md:after:w-40 md:after:bg-white;
+}
+
+.footer__social {
+  @apply flex gap-x-9 md:px-10;
+}

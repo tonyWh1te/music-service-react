@@ -1,28 +1,16 @@
-import { useState } from 'react';
-import AuthBoxContext from '../../../context/AuthBoxContext';
+import { useContext } from 'react';
+import AuthBoxContext from '../../../context/AuthBoxProvider';
 import LoginForm from './LoginForm';
 import SignUpForm from './SignUpForm';
 
 const AuthForms = () => {
-  const [active, setActive] = useState('login');
-  const [newInitValues, setNewInitValues] = useState(null);
-
-  const switchToLogin = (enteredSignUpValues = null) => {
-    setNewInitValues(enteredSignUpValues);
-    setActive('login');
-  };
-
-  const switchToSignUp = () => {
-    setActive('signup');
-  };
-
-  const contextValue = { switchToLogin, switchToSignUp, newInitValues };
+  const { active } = useContext(AuthBoxContext);
 
   return (
-    <AuthBoxContext.Provider value={contextValue}>
+    <>
       {active === 'login' && <LoginForm />}
       {active === 'signup' && <SignUpForm />}
-    </AuthBoxContext.Provider>
+    </>
   );
 };
 

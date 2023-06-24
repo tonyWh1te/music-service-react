@@ -1,33 +1,33 @@
-import { createContext } from 'react';
-import { useReducer } from 'react';
+import { createContext, useReducer } from 'react';
+import { SET_SONGS_ARRAY, SET_CURRENT_SONG, TOGGLE_REPEAT, CLOSE_PLAYER, TOGGLE_PLAYING } from '../utils/constants';
 
 const PlayerContext = createContext();
 
 const playerReducer = (state, action) => {
   switch (action.type) {
-    case 'SET_SONGS_ARRAY':
+    case SET_SONGS_ARRAY:
       return {
         ...state,
         songList: action.payload,
       };
-    case 'SET_CURRENT_SONG':
+    case SET_CURRENT_SONG:
       return {
         ...state,
         currentSong: action.payload,
         playing: true,
         show: true,
       };
-    case 'TOGGLE_REPEAT':
+    case TOGGLE_REPEAT:
       return {
         ...state,
         repeat: action.payload,
       };
-    case 'TOGGLE_PLAYING':
+    case TOGGLE_PLAYING:
       return {
         ...state,
         playing: action.payload,
       };
-    case 'CLOSE_PLAYER':
+    case CLOSE_PLAYER:
       return {
         ...state,
         ...action.payload,

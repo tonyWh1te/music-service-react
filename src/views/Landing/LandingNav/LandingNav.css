@@ -1,0 +1,35 @@
+.header-landing__nav {
+  @apply h-full w-full fixed left-0 top-[-100vh] flex items-center justify-center bg-gray-form transition-all lg:transition-none lg:static lg:justify-end lg:bg-inherit;
+}
+
+.header-landing__inner {
+  @apply flex justify-end pt-7 lg:pt-8;
+}
+
+.header-landing__nav--responsive {
+  @apply translate-y-[100vh];
+}
+
+.header-landing__list {
+  @apply flex items-center flex-col gap-y-3 lg:flex-row;
+}
+
+.header-landing__list-item {
+  @apply cursor-pointer even:border-l-2 even:pl-5 odd:pr-5;
+}
+
+.header-landing__link {
+  @apply font-medium text-3xl;
+}
+
+.header-landing__button {
+  @apply lg:text-black lg:px-8 lg:py-[18px] lg:bg-white lg:rounded-full lg:inline-block lg:hover:bg-gray-200;
+}
+
+.header-landing__btn-close {
+  @apply absolute top-8 right-8;
+}
+
+.header-landing__responsive-btns {
+  @apply w-8 h-8 lg:hidden;
+}

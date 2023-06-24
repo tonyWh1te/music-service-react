@@ -14,10 +14,6 @@
   @apply h-[64px];
 }
 
-.form__select-block {
-  @apply w-[192px] mx-auto font-light mb-[72px];
-}
-
 .form__label {
   @apply block text-left mb-1;
 }
@@ -27,7 +23,7 @@
 }
 
 .form__btn {
-  @apply w-full md:w-1/2 mx-auto mb-4 font-semibold text-3xl py-4 bg-form-green rounded-full hover:bg-[#1CC677];
+  @apply w-full md:w-1/2 mx-auto mb-4 font-semibold text-3xl py-4 bg-form-green rounded-full hover:bg-hover-green;
 }
 
 .form_text {

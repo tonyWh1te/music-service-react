@@ -1,41 +1,29 @@
-import { Link } from 'react-router-dom';
-import { logo, telegram, youtube, vk } from '../../../assets';
+import LandingNav from '../LandingNav/LandingNav';
+import LandingFooter from '../LandingFooter/LandingFooter';
+import { logo } from '../../../assets';
 import './LandingPage.css';
 
 const LandingPage = () => {
+  const items = [
+    {
+      value: 'Log in',
+      classes: 'header-landing__link animation-main hover:opacity-80',
+    },
+    {
+      value: 'Sign up',
+      classes: 'header-landing__link header-landing__button animation-main',
+    },
+  ];
+
   return (
     <div className="wrapper">
-      <header>
-        <div className="container px-12 mx-auto">
-          <div className="pt-8">
-            <nav className="flex justify-end">
-              <ul className="flex items-center">
-                <li className="pr-5">
-                  <Link
-                    className="header-landing__link animation-main hover:opacity-80"
-                    to="/auth"
-                  >
-                    Sign up
-                  </Link>
-                </li>
-                <li className="pl-5 border-l-2">
-                  <Link
-                    className="header-landing__link header-landing__button animation-main"
-                    to="/auth"
-                  >
-                    Log in
-                  </Link>
-                </li>
-              </ul>
-            </nav>
-          </div>
-        </div>
-      </header>
+      <LandingNav items={items} />
       <main>
         <section>
           <div className="container px-12 mx-auto">
             <div className="top__inner">
               <img
+                className="w-44 h-20 md:w-56 md:h-32 lg:w-fit lg:h-fit"
                 src={logo}
                 alt="logo"
               />
@@ -47,38 +35,7 @@ const LandingPage = () => {
           </div>
         </section>
       </main>
-      <footer>
-        <div className="container px-12 mx-auto">
-          <div className="footer__inner">
-            <ul className="footer__social">
-              <li>
-                <a href="#">
-                  <img
-                    src={telegram}
-                    alt="social"
-                  />
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <img
-                    src={youtube}
-                    alt="social"
-                  />
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <img
-                    src={vk}
-                    alt="social"
-                  />
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </footer>
+      <LandingFooter />
     </div>
   );
 };

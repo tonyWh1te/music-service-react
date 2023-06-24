@@ -1,27 +1,14 @@
 import { useRef, useEffect, useState } from 'react';
 import usePlayer from '../../hooks/usePlayer';
-import {
-  XMarkIcon,
-  PlayCircleIcon,
-  PauseCircleIcon,
-  ForwardIcon,
-  BackwardIcon,
-  ArrowPathIcon,
-  ShareIcon,
-  SpeakerWaveIcon,
-  HeartIcon,
-} from '@heroicons/react/20/solid';
+import { XMarkIcon, ShareIcon, SpeakerWaveIcon } from '@heroicons/react/20/solid';
+import Control from './Control';
 import { fmtMSS } from '../../utils/helpers/time.helpers';
 import './styles/BottomPlayer.css';
 import './styles/inputs.css';
 
 const BottomPlayer = () => {
   const {
-    state: { currentSong, songList, repeat, playing },
-    togglePlaying,
-    toggleRepeat,
-    prevSong,
-    nextSong,
+    state: { currentSong, songList, playing },
     onEndSong,
     closePlayer,
   } = usePlayer();
@@ -103,38 +90,7 @@ const BottomPlayer = () => {
         </div>
       </div>
       <div className="media-player__center">
-        <div className="media-player__buttons">
-          <button className="media-player__button animation-main block">
-            <HeartIcon className="" />
-          </button>
-          <button
-            className="media-player__button animation-main"
-            onClick={prevSong}
-          >
-            <BackwardIcon />
-          </button>
-          <button
-            className="media-player__button animation-main block w-8 h-8"
-            onClick={() => {
-              togglePlaying();
-              toggleAudio();
-            }}
-          >
-            {playing ? <PauseCircleIcon /> : <PlayCircleIcon />}
-          </button>
-          <button
-            className="media-player__button animation-main"
-            onClick={nextSong}
-          >
-            <ForwardIcon />
-          </button>
-          <button
-            className="media-player__button animation-main"
-            onClick={toggleRepeat}
-          >
-            <ArrowPathIcon className={` ${repeat ? 'media-player__button--active' : ''}`} />
-          </button>
-        </div>
+        <Control toggleAudio={toggleAudio} />
         <div className="media-player__progress">
           <span className="media-player__time">{fmtMSS(currentTime)}</span>
           <input

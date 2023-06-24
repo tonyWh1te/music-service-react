@@ -22,6 +22,10 @@
   @apply px-10 py-2 bg-main-green button-title rounded-full hover:bg-hover-green animation-main;
 }
 
+.button__secondary {
+  @apply px-10 py-2 bg-transparent animation-main button-title border rounded-full hover:bg-white hover:text-black md:w-3/5 md:m-auto;
+}
+
 @layer base {
   html,
   body {
@@ -52,5 +56,9 @@
 
   .button-title {
     @apply font-medium text-xs uppercase tracking-widest;
+  }
+
+  .form__select-block {
+    @apply w-[192px] mx-auto font-light mb-[72px];
   }
 }
