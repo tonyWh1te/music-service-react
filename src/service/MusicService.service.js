@@ -1,13 +1,19 @@
 import axios from 'axios';
 
 class MusicService {
-  #API_BASE = 'http://127.0.0.1:8000/';
+  #proxy = 'https://api.allorigins.win/raw?url=';
+  #API_BASE = `https://api.deezer.com/`;
 
   #getResourse = async (url) => {
     try {
-      const response = await axios.get(url, { headers: { 'Content-Type': 'application/json' } });
+      const response = await axios.get(url, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept-Language': 'en',
+        },
+      });
 
-      return { data: response, message: 'Success!' };
+      return { data: { ...response.data }, message: response.statusText };
     } catch (error) {
       if (error.response) {
         throw new Error(error.response.data, error.response.status, error.response.headers);
@@ -21,30 +27,46 @@ class MusicService {
 
   #transformSong = (song) => ({
     id: song.id,
-    title: song.name,
+    title: song.title,
     artistName: song.artist.name,
-    coverImg: song.image,
-    link: song.link,
+    coverImg: song.album.cover_big,
+    songFile: song.preview,
+  });
+
+  #transformArtist = (artist) => ({
+    id: artist.id,
+    name: artist.name,
+    artistPic: artist.picture_big,
+  });
+
+  #transformGenre = (genre) => ({
+    id: genre.id,
+    name: genre.name,
+    genrePic: genre.picture_big,
   });
 
   getAllSongs = async () => {
-    const result = await this.#getResourse(`${this.#API_BASE}songs?limit=10`);
+    const result = await this.#getResourse(`${this.#proxy}${encodeURIComponent(`${this.#API_BASE}chart/0/tracks&limit=10`)}`);
 
-    const songs = result.data.data.results.map(this.#transformSong);
+    const songs = result.data.data.map(this.#transformSong);
 
     return { data: songs, message: result.message };
   };
 
   getAllArtists = async () => {
-    const result = await this.#getResourse(`${this.#API_BASE}artists?limit=10`);
+    const result = await this.#getResourse(`${this.#proxy}${encodeURIComponent(`${this.#API_BASE}chart/0/artists&limit=10`)}`);
 
-    return { data: result.data.data.results, message: result.message };
+    const artists = result.data.data.map(this.#transformArtist);
+
+    return { data: artists, message: result.message };
   };
 
   getAllGenres = async () => {
-    const result = await this.#getResourse(`${this.#API_BASE}genres`);
+    const result = await this.#getResourse(`${this.#proxy}${encodeURIComponent(`${this.#API_BASE}genre`)}`);
 
-    return { data: result.data.data.results, message: result.message };
+    const genres = result.data.data.map(this.#transformGenre);
+
+    return { data: genres, message: result.message };
   };
 }
 

@@ -4,10 +4,10 @@ const ArtistList = (props) => {
   const { errorMessage, loading, list } = props;
 
   const renderItems = (arr) => {
-    const items = arr.map(({ id, image, name }) => (
+    const items = arr.map(({ id, artistPic, name }) => (
       <ArtistCard
         key={id}
-        artistInfo={{ image, name }}
+        artistInfo={{ artistPic, name }}
       />
     ));
 
@@ -28,13 +28,13 @@ const ArtistList = (props) => {
 };
 
 const ArtistCard = ({ artistInfo }) => {
-  const { image, name } = artistInfo;
+  const { artistPic, name } = artistInfo;
 
   return (
     <li className="card-artist">
       <img
         className="card-artist__img"
-        src={image}
+        src={artistPic}
         alt={name}
       />
       <h4 className="card-title">{name}</h4>

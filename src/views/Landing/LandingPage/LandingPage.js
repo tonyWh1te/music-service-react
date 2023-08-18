@@ -1,6 +1,6 @@
 import LandingNav from '../LandingNav/LandingNav';
 import LandingFooter from '../LandingFooter/LandingFooter';
-import { logo } from '../../../assets';
+import { logo, telegram, vk, youtube } from '../../../assets';
 import './LandingPage.css';
 
 const LandingPage = () => {
@@ -12,6 +12,21 @@ const LandingPage = () => {
     {
       value: 'Sign up',
       classes: 'header-landing__link header-landing__button animation-main',
+    },
+  ];
+
+  const social = [
+    {
+      value: 'telegram',
+      img: telegram,
+    },
+    {
+      value: 'youtube',
+      img: youtube,
+    },
+    {
+      value: 'vk',
+      img: vk,
     },
   ];
 
@@ -35,7 +50,7 @@ const LandingPage = () => {
           </div>
         </section>
       </main>
-      <LandingFooter />
+      <LandingFooter social={social} />
     </div>
   );
 };

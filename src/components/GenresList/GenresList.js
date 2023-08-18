@@ -4,12 +4,16 @@ const GenresList = (props) => {
   const { errorMessage, loading, list } = props;
 
   const renderItems = (arr) => {
-    const items = arr.map(({ image, genre }, i) => (
-      <GenreCard
-        key={i}
-        genreInfo={{ image, genre }}
-      />
-    ));
+    const items = arr.map(({ genrePic, name }, i) => {
+      if (name === 'All') return null;
+
+      return (
+        <GenreCard
+          key={i}
+          genreInfo={{ genrePic, name }}
+        />
+      );
+    });
 
     return <ul className="genre-card__list">{items}</ul>;
   };
@@ -28,16 +32,16 @@ const GenresList = (props) => {
 };
 
 const GenreCard = ({ genreInfo }) => {
-  const { image, genre } = genreInfo;
+  const { genrePic, name } = genreInfo;
 
   return (
     <li className="genre-card">
       <img
         className="genre-card__img"
-        src={image}
-        alt={genre}
+        src={genrePic}
+        alt={name}
       />
-      <h4 className="title-main genre-card__title">{genre}</h4>
+      <h4 className="title-main genre-card__title">{name}</h4>
     </li>
   );
 };

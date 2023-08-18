@@ -6,15 +6,17 @@ const SongList = (props) => {
   const { setSongList, setCurrentSong } = usePlayer();
   const { errorMessage, loading, list } = props;
 
-  useEffect(() => setSongList(list), [list]);
+  useEffect(() => {
+    setSongList(list);
+  }, [list]);
 
   const renderItems = (arr) => {
-    const items = arr.map(({ id, coverImg, title, artistName }) => (
+    const items = arr.map(({ id, coverImg, title, artistName }, i) => (
       <SongCard
         key={id}
         songInfo={{ coverImg, title, artistName }}
         onClick={() => {
-          setCurrentSong(id - 1);
+          setCurrentSong(i);
         }}
       />
     ));

@@ -13,7 +13,9 @@ const GenresPage = () => {
       </div>
       <section className="pb-14">
         <div className="container px-12 mx-auto md:mx-0">
-          <h2 className="section-title">Genres</h2>
+          <div className="section-top">
+            <h2 className="section-title">Genres</h2>
+          </div>
           {<ListWithGenres />}
         </div>
       </section>

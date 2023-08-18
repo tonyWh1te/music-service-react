@@ -68,7 +68,7 @@ const BottomPlayer = () => {
         onEnded={onEnded}
         preload="metadata"
         itemType="audio/mp3"
-        src={songList[currentSong].link}
+        src={songList[currentSong].songFile}
       />
       <div className="media-player__left">
         <button

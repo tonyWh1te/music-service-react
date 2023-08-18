@@ -1,11 +1,5 @@
 .artists-list {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-  @apply grid grid-cols-artists gap-x-8 overflow-x-scroll overflow-y-hidden;
-}
-
-.artists-list::-webkit-scrollbar {
-  display: none;
+  @apply grid grid-cols-artists gap-x-[1.734rem];
 }
 
 .card-artist {

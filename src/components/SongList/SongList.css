@@ -1,11 +1,5 @@
 .songs-list {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-  @apply overflow-x-scroll overflow-y-hidden grid gap-x-10 grid-cols-songs w-full;
-}
-
-.songs-list::-webkit-scrollbar {
-  display: none;
+  @apply grid gap-x-[1.3rem] grid-cols-songs;
 }
 
 .card-song {
@@ -13,7 +7,7 @@
 }
 
 .card-song__cover {
-  @apply w-full h-[162px] object-cover drop-shadow-cover-pic md:h-[233px];
+  @apply w-full h-[162px] object-cover md:h-[233px];
 }
 
 .card-song__singer {

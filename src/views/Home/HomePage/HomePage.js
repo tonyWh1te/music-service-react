@@ -1,6 +1,7 @@
 import Layout from '../../../components/Layout/Layout';
 import ArtistList from '../../../components/ArtistList/ArtistList';
 import SongList from '../../../components/SongList/SongList';
+import Carousel from '../../../components/Carousel/Carousel';
 import withList from '../../../hoc/withList';
 import MusicService from '../../../service/MusicService.service';
 
@@ -16,16 +17,14 @@ const HomePage = () => {
         <h1 className="page-title">Home</h1>
       </div>
       <section className="pb-14">
-        <div className="container px-12 mx-auto md:mx-0">
-          <h2 className="section-title">Popular songs</h2>
+        <Carousel title={'Popular songs'}>
           <ListWithSongs />
-        </div>
+        </Carousel>
       </section>
-      <section className="pb-14 md:pb-32">
-        <div className="container px-12 mx-auto md:mx-0">
-          <h2 className="section-title">Popular artists</h2>
+      <section className="pb-14">
+        <Carousel title={'Popular artists'}>
           <ListWithArtists />
-        </div>
+        </Carousel>
       </section>
     </Layout>
   );

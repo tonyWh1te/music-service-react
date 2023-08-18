@@ -15,7 +15,7 @@
 }
 
 .header-landing__list-item {
-  @apply cursor-pointer even:border-l-2 even:pl-5 odd:pr-5;
+  @apply cursor-pointer lg:even:border-l-2 lg:even:pl-5 odd:pr-5;
 }
 
 .header-landing__link {

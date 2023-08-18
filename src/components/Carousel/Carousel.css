@@ -1,0 +1,14 @@
+.carousel-container {
+  /* -ms-overflow-style: none;
+  scrollbar-width: none; */
+  @apply w-full overflow-x-hidden;
+}
+/* .carousel-container {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  @apply w-full overflow-x-scroll scroll-smooth;
+} */
+
+/* .carousel-container::-webkit-scrollbar {
+  display: none;
+} */

@@ -10,8 +10,12 @@
   @apply transition-all duration-300 hover:opacity-100;
 }
 
+.section-top {
+  @apply flex justify-between items-center mb-5 md:pb-[3px] md:border-b-2 md:border-b-gray-line;
+}
+
 .section-title {
-  @apply title-main mb-5 md:pb-[3px] md:border-b-2 md:border-b-gray-line;
+  @apply title-main;
 }
 
 .card-title {
@@ -60,5 +64,9 @@
 
   .form__select-block {
     @apply w-[192px] mx-auto font-light mb-[72px];
+  }
+
+  .icon-main {
+    @apply h-7 w-7 opacity-70 cursor-pointer animation-main;
   }
 }
