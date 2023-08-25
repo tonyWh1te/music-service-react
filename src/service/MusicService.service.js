@@ -25,48 +25,80 @@ class MusicService {
     }
   };
 
-  #transformSong = (song) => ({
-    id: song.id,
-    title: song.title,
-    artistName: song.artist.name,
-    coverImg: song.album.cover_big,
-    songFile: song.preview,
-  });
+  #transformEntity = (entity, transformationProps = {}) => {
+    const transformedEntity = {
+      id: entity?.id,
+      name: entity?.name,
+      image: entity?.picture_big,
+    };
 
-  #transformArtist = (artist) => ({
-    id: artist.id,
-    name: artist.name,
-    artistPic: artist.picture_big,
-  });
+    for (const prop in transformationProps) {
+      const propValue = transformationProps[prop].split('.').reduce((obj, key) => obj[key], entity);
 
-  #transformGenre = (genre) => ({
-    id: genre.id,
-    name: genre.name,
-    genrePic: genre.picture_big,
-  });
+      transformedEntity[prop] = propValue;
+    }
 
-  getAllSongs = async () => {
-    const result = await this.#getResourse(`${this.#proxy}${encodeURIComponent(`${this.#API_BASE}chart/0/tracks&limit=10`)}`);
+    return transformedEntity;
+  };
 
-    const songs = result.data.data.map(this.#transformSong);
+  getTopSongs = async (genreId = 0) => {
+    const endpoint = `${this.#API_BASE}chart/${genreId}/tracks&limit=11`;
+    const result = await this.#getResourse(`${this.#proxy}${encodeURIComponent(endpoint)}`);
+
+    const transformationProps = {
+      title: 'title',
+      artistName: 'artist.name',
+      coverImg: 'album.cover_big',
+      songFile: 'preview',
+      link: 'link',
+    };
+
+    const songs = result.data.data.map((song) => this.#transformEntity(song, transformationProps));
 
     return { data: songs, message: result.message };
   };
 
-  getAllArtists = async () => {
-    const result = await this.#getResourse(`${this.#proxy}${encodeURIComponent(`${this.#API_BASE}chart/0/artists&limit=10`)}`);
+  getTopArtists = async (genreId = 0) => {
+    const endpoint = `${this.#API_BASE}chart/${genreId}/artists&limit=10`;
+    const result = await this.#getResourse(`${this.#proxy}${encodeURIComponent(endpoint)}`);
 
-    const artists = result.data.data.map(this.#transformArtist);
+    const artists = result.data.data.map(this.#transformEntity);
 
     return { data: artists, message: result.message };
   };
 
   getAllGenres = async () => {
-    const result = await this.#getResourse(`${this.#proxy}${encodeURIComponent(`${this.#API_BASE}genre`)}`);
+    const endpoint = `${this.#API_BASE}genre/`;
+    const result = await this.#getResourse(`${this.#proxy}${encodeURIComponent(endpoint)}`);
 
-    const genres = result.data.data.map(this.#transformGenre);
+    const genres = result.data.data.map(this.#transformEntity);
 
     return { data: genres, message: result.message };
+  };
+
+  getGenre = async (id) => {
+    const endpoint = `${this.#API_BASE}genre/${id}`;
+    const result = await this.#getResourse(`${this.#proxy}${encodeURIComponent(endpoint)}`);
+
+    const genre = this.#transformEntity(result.data);
+
+    return { data: genre, message: result.message };
+  };
+
+  getNewReleases = async (genreId) => {
+    const endpoint = `${this.#API_BASE}editorial/${genreId}/releases&limit=10`;
+    const result = await this.#getResourse(`${this.#proxy}${encodeURIComponent(endpoint)}`);
+
+    const transformationProps = {
+      title: 'title',
+      artistName: 'artist.name',
+      coverImg: 'cover_big',
+      link: 'link',
+    };
+
+    const releases = result.data.data.map((release) => this.#transformEntity(release, transformationProps));
+
+    return { data: releases, message: result.message };
   };
 }
 

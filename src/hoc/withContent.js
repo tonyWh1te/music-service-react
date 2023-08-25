@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { TailSpin } from 'react-loader-spinner';
 import ErrorMessage from '../components/ErrorMessage/ErrorMessage';
 
-const withList = (Component, getData) => {
+const withContent = (Component, getData) => {
   return (props) => {
     const [list, setList] = useState([]);
     const [error, setError] = useState(false);
@@ -31,8 +31,7 @@ const withList = (Component, getData) => {
           ariaLabel="tail-spin-loading"
           radius="1"
           color="#1AB26B"
-          wrapperStyle={{ justifyContent: 'center' }}
-          wrapperClass=""
+          wrapperClass="justify-center items-center h-full"
           visible={true}
         />
       ) : null;
@@ -48,4 +47,4 @@ const withList = (Component, getData) => {
   };
 };
 
-export default withList;
+export default withContent;

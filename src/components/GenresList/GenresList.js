@@ -1,16 +1,17 @@
+import { Link } from 'react-router-dom';
 import './GenresList.css';
 
 const GenresList = (props) => {
   const { errorMessage, loading, list } = props;
 
   const renderItems = (arr) => {
-    const items = arr.map(({ genrePic, name }, i) => {
+    const items = arr.map(({ image, name, id }) => {
       if (name === 'All') return null;
 
       return (
         <GenreCard
-          key={i}
-          genreInfo={{ genrePic, name }}
+          key={id}
+          genreInfo={{ image, name, id }}
         />
       );
     });
@@ -32,17 +33,20 @@ const GenresList = (props) => {
 };
 
 const GenreCard = ({ genreInfo }) => {
-  const { genrePic, name } = genreInfo;
+  const { image, name, id } = genreInfo;
 
   return (
-    <li className="genre-card">
+    <Link
+      to={`/genres/${id}`}
+      className="genre-card"
+    >
       <img
         className="genre-card__img"
-        src={genrePic}
+        src={image}
         alt={name}
       />
       <h4 className="title-main genre-card__title">{name}</h4>
-    </li>
+    </Link>
   );
 };
 

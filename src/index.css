@@ -30,6 +30,10 @@
   @apply px-10 py-2 bg-transparent animation-main button-title border rounded-full hover:bg-white hover:text-black md:w-3/5 md:m-auto;
 }
 
+#root {
+  @apply h-screen;
+}
+
 @layer base {
   html,
   body {

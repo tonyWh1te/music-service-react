@@ -1,10 +1,10 @@
 import MusicService from '../../../service/MusicService.service';
 import Layout from '../../../components/Layout/Layout';
 import GenresList from '../../../components/GenresList/GenresList';
-import withList from '../../../hoc/withList';
+import withContent from '../../../hoc/withContent';
 
 const GenresPage = () => {
-  const ListWithGenres = withList(GenresList, new MusicService().getAllGenres);
+  const ContentWithGenres = withContent(GenresList, new MusicService().getAllGenres);
 
   return (
     <Layout>
@@ -16,7 +16,7 @@ const GenresPage = () => {
           <div className="section-top">
             <h2 className="section-title">Genres</h2>
           </div>
-          {<ListWithGenres />}
+          {<ContentWithGenres />}
         </div>
       </section>
     </Layout>

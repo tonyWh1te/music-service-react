@@ -1,0 +1,7 @@
+.page-content-wrapper {
+  @apply flex flex-col min-h-full absolute left-0 right-0 md:left-56;
+}
+
+.main {
+  @apply flex flex-col justify-center flex-grow;
+}

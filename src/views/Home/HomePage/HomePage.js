@@ -2,14 +2,14 @@ import Layout from '../../../components/Layout/Layout';
 import ArtistList from '../../../components/ArtistList/ArtistList';
 import SongList from '../../../components/SongList/SongList';
 import Carousel from '../../../components/Carousel/Carousel';
-import withList from '../../../hoc/withList';
+import withContent from '../../../hoc/withContent';
 import MusicService from '../../../service/MusicService.service';
 
 const HomePage = () => {
   const musicService = new MusicService();
 
-  const ListWithSongs = withList(SongList, musicService.getAllSongs);
-  const ListWithArtists = withList(ArtistList, musicService.getAllArtists);
+  const ContentWithSongs = withContent(SongList, musicService.getTopSongs);
+  const ContentWithArtists = withContent(ArtistList, musicService.getTopArtists);
 
   return (
     <Layout>
@@ -18,12 +18,12 @@ const HomePage = () => {
       </div>
       <section className="pb-14">
         <Carousel title={'Popular songs'}>
-          <ListWithSongs />
+          <ContentWithSongs />
         </Carousel>
       </section>
       <section className="pb-14">
         <Carousel title={'Popular artists'}>
-          <ListWithArtists />
+          <ContentWithArtists />
         </Carousel>
       </section>
     </Layout>

@@ -8,7 +8,7 @@ const playerReducer = (state, action) => {
     case SET_SONGS_ARRAY:
       return {
         ...state,
-        songList: [...state.songList, ...action.payload],
+        songList: [...action.payload],
       };
     case SET_CURRENT_SONG:
       return {

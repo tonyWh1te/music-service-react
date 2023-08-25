@@ -2,6 +2,7 @@ import Sidebar from '../Sidebar/Sidebar';
 import Header from '../Header/Header';
 import BottomPlayer from '../BottomPlayer/BottomPlayer';
 import usePlayer from '../../hooks/usePlayer';
+import './Layout.css';
 
 const Layout = ({ children }) => {
   const {
@@ -9,11 +10,11 @@ const Layout = ({ children }) => {
   } = usePlayer();
 
   return (
-    <div className="relative">
+    <div className="relative h-full">
       <Sidebar />
-      <div className="absolute left-0 right-0 md:left-56">
+      <div className="page-content-wrapper">
         <Header />
-        <main>{children}</main>
+        <main className="main">{children}</main>
       </div>
       {show && <BottomPlayer />}
     </div>

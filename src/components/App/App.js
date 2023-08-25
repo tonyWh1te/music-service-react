@@ -5,6 +5,7 @@ import LandingPage from '../../views/Landing/LandingPage/LandingPage';
 import AuthPage from '../../views/Auth/AuthPage/AuthPage';
 import ProfilePage from '../../views/Profile/ProfilePage/ProfilePage';
 import LibraryPage from '../../views/Library/LibraryPage/LibraryPage';
+import GenrePage from '../../views/Genre/GenrePage/GenrePage';
 import { AuthBoxProvider } from '../../context/AuthBoxProvider';
 import RequireAuth from '../RequireAuth/RequireAuth';
 import { AuthProvider } from '../../context/AuthProvider';
@@ -35,6 +36,10 @@ function App() {
                 <Route
                   path="/genres"
                   element={<GenresPage />}
+                />
+                <Route
+                  path="/genres/:genreId"
+                  element={<GenrePage />}
                 />
                 <Route
                   path="/profile"

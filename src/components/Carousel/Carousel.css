@@ -1,7 +1,7 @@
 .carousel-container {
   /* -ms-overflow-style: none;
   scrollbar-width: none; */
-  @apply w-full overflow-x-hidden;
+  @apply w-full overflow-x-hidden overflow-y-hidden;
 }
 /* .carousel-container {
   -ms-overflow-style: none;
