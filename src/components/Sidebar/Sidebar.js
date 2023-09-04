@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { memo, useEffect } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { home, library, search } from '../../assets';
 import './Sidebar.css';
@@ -59,4 +59,4 @@ const Sidebar = () => {
   );
 };
 
-export default Sidebar;
+export default memo(Sidebar);

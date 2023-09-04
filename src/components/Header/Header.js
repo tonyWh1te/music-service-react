@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useState, useEffect, memo } from 'react';
 import { XMarkIcon, MagnifyingGlassIcon } from '@heroicons/react/20/solid';
 import useAuth from '../../hooks/useAuth';
 import DropdownMenu from '../DropdownMenu/DropdownMenu';
@@ -23,7 +23,7 @@ const Header = () => {
     return () => {
       window.removeEventListener('click', toggleDropdown);
     };
-  });
+  }, []);
   return (
     <header>
       <div className="container px-12 mx-auto md:mx-0">
@@ -84,4 +84,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default memo(Header);

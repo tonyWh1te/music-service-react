@@ -1,0 +1,3 @@
+.card-album {
+  @apply w-full cursor-pointer;
+}

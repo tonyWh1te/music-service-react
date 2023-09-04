@@ -16,7 +16,7 @@ const GenresList = (props) => {
       );
     });
 
-    return <ul className="genre-card__list">{items}</ul>;
+    return <ul className="genre-card__list mt-5">{items}</ul>;
   };
 
   const items = renderItems(list);
@@ -36,17 +36,16 @@ const GenreCard = ({ genreInfo }) => {
   const { image, name, id } = genreInfo;
 
   return (
-    <Link
-      to={`/genres/${id}`}
-      className="genre-card"
-    >
-      <img
-        className="genre-card__img"
-        src={image}
-        alt={name}
-      />
-      <h4 className="title-main genre-card__title">{name}</h4>
-    </Link>
+    <li className="genre-card">
+      <Link to={`/genres/${id}`}>
+        <img
+          className="genre-card__img"
+          src={image}
+          alt={name}
+        />
+        <h4 className="title-main genre-card__title">{name}</h4>
+      </Link>
+    </li>
   );
 };
 

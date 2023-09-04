@@ -3,5 +3,5 @@
 }
 
 .main {
-  @apply flex flex-col justify-center flex-grow;
+  @apply flex flex-col flex-grow h-[1px];
 }

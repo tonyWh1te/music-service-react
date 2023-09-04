@@ -27,10 +27,6 @@ module.exports = {
       height: {
         'nav-height': '80px',
       },
-      gridTemplateColumns: {
-        songs: 'repeat(11, 1fr)',
-        artists: 'repeat(10, 1fr)',
-      },
       dropShadow: {
         'cover-pic': '0px 0px 10px rgba(0, 0, 0, 0.6)',
       },

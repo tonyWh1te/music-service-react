@@ -10,12 +10,20 @@
   @apply transition-all duration-300 hover:opacity-100;
 }
 
+.animation-card {
+  @apply transition-transform duration-200 hover:translate-x-1 hover:translate-y-[-10px];
+}
+
 .section-top {
-  @apply flex justify-between items-center mb-5 md:pb-[3px] md:border-b-2 md:border-b-gray-line;
+  @apply flex justify-between items-center md:pb-[3px] md:border-b-2 md:border-b-gray-line;
 }
 
 .section-title {
   @apply title-main;
+}
+
+.section-link {
+  @apply font-bold text-sm opacity-80 uppercase cursor-pointer;
 }
 
 .card-title {
@@ -59,7 +67,7 @@
   }
 
   .page-title {
-    @apply font-bold text-[40px] tracking-wide mb-10 text-center md:text-left;
+    @apply font-bold text-[40px] tracking-wide text-center md:text-left;
   }
 
   .button-title {

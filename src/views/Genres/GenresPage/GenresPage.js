@@ -9,7 +9,7 @@ const GenresPage = () => {
   return (
     <Layout>
       <div className="container px-12 mx-auto md:mx-0">
-        <h1 className="page-title">Browse</h1>
+        <h1 className="page-title mb-10">Browse</h1>
       </div>
       <section className="pb-14">
         <div className="container px-12 mx-auto md:mx-0">

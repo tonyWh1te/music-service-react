@@ -1,10 +1,9 @@
-import { useParams } from 'react-router-dom';
+import { useParams, useSearchParams } from 'react-router-dom';
 import withContent from '../../../hoc/withContent';
-import Carousel from '../../../components/Carousel/Carousel';
-import ArtistList from '../../../components/ArtistList/ArtistList';
-import AlbumList from '../../../components/AlbumList/AlbumList';
-import SongList from '../../../components/SongList/SongList';
+import { PARAM_NAME, PARAM_VALUE_DEFAULT } from '../../../utils/constants';
+import { GenreArtists, GenreNewReleases, GenreOverwiew } from '../GenreTabs/index';
 import Layout from '../../../components/Layout/Layout';
+import Tabs from '../../../components/Tabs/Tabs';
 import MusicService from '../../../service/MusicService.service';
 import './GenrePage.css';
 
@@ -25,32 +24,49 @@ const InnerPage = (props) => {
 const View = ({ genre }) => {
   const { id, name } = genre;
 
-  const musicService = new MusicService();
+  const [searchParam, setSearchParam] = useSearchParams();
 
-  const ContentWithArtists = withContent(ArtistList, () => musicService.getTopArtists(id));
-  const ContentWithSongs = withContent(SongList, () => musicService.getTopSongs(id));
-  const ContentWithReleases = withContent(AlbumList, () => musicService.getNewReleases(id));
+  const tabQuery = searchParam.get(PARAM_NAME) || PARAM_VALUE_DEFAULT;
+
+  const tabs = [
+    {
+      id: 'overview',
+      label: 'Overview',
+      content: <GenreOverwiew genreId={id} />,
+    },
+    {
+      id: 'new releases',
+      label: 'New Releases',
+      content: <GenreNewReleases genreId={id} />,
+    },
+    {
+      id: 'artists',
+      label: 'Artists',
+      content: <GenreArtists genreId={id} />,
+    },
+  ];
+
+  const onChangeTab = (id) => {
+    if (tabQuery !== id) {
+      setSearchParam({ tab: id });
+    }
+  };
+
+  const selectedTab = tabs.find(({ id }) => id === tabQuery);
 
   return (
     <>
       <div className="container px-12 mx-auto md:mx-0">
         <h1 className="page-title">{name}</h1>
       </div>
-      <section className="pb-14">
-        <Carousel title={'Popular songs'}>
-          <ContentWithSongs />
-        </Carousel>
-      </section>
-      <section className="pb-14">
-        <Carousel title={'New releases'}>
-          <ContentWithReleases />
-        </Carousel>
-      </section>
-      <section className="pb-14">
-        <Carousel title={'Artists'}>
-          <ContentWithArtists />
-        </Carousel>
-      </section>
+      <div className="genre-tabs">
+        <Tabs
+          tabs={tabs}
+          value={tabQuery}
+          onChangeTab={onChangeTab}
+        />
+      </div>
+      {selectedTab.content}
     </>
   );
 };

@@ -42,7 +42,7 @@ const SongCard = ({ songInfo, onClick }) => {
 
   return (
     <li
-      className="card-song"
+      className="card-song animation-card"
       onClick={onClick}
     >
       <img

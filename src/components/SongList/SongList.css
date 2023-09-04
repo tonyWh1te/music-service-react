@@ -1,15 +1,21 @@
 .songs-list {
-  @apply grid gap-x-[1.3rem] grid-cols-songs;
+  @apply grid gap-[1.3rem] grid-cols-[repeat(11,_162px)] md:grid-cols-[repeat(11,_233px)];
+}
+
+.album-list {
+  @apply grid gap-[1.3rem] grid-cols-1  md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4  2xl:grid-cols-6;
 }
 
 .card-song {
-  @apply w-[162px] cursor-pointer md:w-[233px];
+  @apply w-full cursor-pointer;
 }
 
-.card-song__cover {
+.card-song__cover,
+.card-album__cover {
   @apply w-full h-[162px] object-cover md:h-[233px];
 }
 
-.card-song__singer {
+.card-song__singer,
+.card-album__singer {
   @apply pt-[6px] text-xs opacity-60;
 }

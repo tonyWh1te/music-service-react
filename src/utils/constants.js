@@ -1,6 +1,10 @@
 // Validation
 const PWD_REGEX = /^[\w\dа-яА-Я]+$/;
 
+//search param
+const PARAM_NAME = 'tab';
+const PARAM_VALUE_DEFAULT = 'overview';
+
 const validationMessages = {
   name: {
     minLength: 'The minimum number of characters is 2!',
@@ -34,4 +38,15 @@ const sizes = {
   '2xl': '1696px',
 };
 
-export { PWD_REGEX, validationMessages, SET_SONGS_ARRAY, SET_CURRENT_SONG, TOGGLE_REPEAT, TOGGLE_PLAYING, CLOSE_PLAYER, sizes };
+export {
+  PWD_REGEX,
+  validationMessages,
+  SET_SONGS_ARRAY,
+  SET_CURRENT_SONG,
+  TOGGLE_REPEAT,
+  TOGGLE_PLAYING,
+  CLOSE_PLAYER,
+  sizes,
+  PARAM_NAME,
+  PARAM_VALUE_DEFAULT,
+};

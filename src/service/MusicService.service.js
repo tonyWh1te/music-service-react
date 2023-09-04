@@ -59,7 +59,7 @@ class MusicService {
   };
 
   getTopArtists = async (genreId = 0) => {
-    const endpoint = `${this.#API_BASE}chart/${genreId}/artists&limit=10`;
+    const endpoint = `${this.#API_BASE}chart/${genreId}/artists`;
     const result = await this.#getResourse(`${this.#proxy}${encodeURIComponent(endpoint)}`);
 
     const artists = result.data.data.map(this.#transformEntity);
@@ -85,8 +85,9 @@ class MusicService {
     return { data: genre, message: result.message };
   };
 
-  getNewReleases = async (genreId) => {
-    const endpoint = `${this.#API_BASE}editorial/${genreId}/releases&limit=10`;
+  getNewReleases = async (genreId, withLimit = true) => {
+    const limitOfData = withLimit ? `?limit=11` : '';
+    const endpoint = `${this.#API_BASE}editorial/${genreId}/releases${limitOfData}`;
     const result = await this.#getResourse(`${this.#proxy}${encodeURIComponent(endpoint)}`);
 
     const transformationProps = {
@@ -99,6 +100,15 @@ class MusicService {
     const releases = result.data.data.map((release) => this.#transformEntity(release, transformationProps));
 
     return { data: releases, message: result.message };
+  };
+
+  getArtistsByGenre = async (genreId) => {
+    const endpoint = `${this.#API_BASE}genre/${genreId}/artists`;
+    const result = await this.#getResourse(`${this.#proxy}${encodeURIComponent(endpoint)}`);
+
+    const artists = result.data.data.map(this.#transformEntity);
+
+    return { data: artists, message: result.message };
   };
 }
 

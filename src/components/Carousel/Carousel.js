@@ -1,38 +1,53 @@
-import { useState, useRef, useCallback } from 'react';
+import { Link, createSearchParams, useNavigate } from 'react-router-dom';
+import { useState, useRef } from 'react';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/20/solid';
 import './Carousel.css';
 
-const Carousel = ({ children, title }) => {
+const Carousel = ({ children, title, linkProps = null }) => {
+  const navigate = useNavigate();
+
   const [offset, setOffset] = useState(0);
   const carouselRef = useRef(null);
 
-  const changeOffset = useCallback(
-    (newOffset) => {
-      const carouselNode = carouselRef.current;
-      const offsetWidth = carouselNode.offsetWidth;
-      const scrollWidth = carouselNode.scrollWidth;
+  const onChangeOffset = (newOffset) => {
+    const carouselNode = carouselRef.current;
+    const offsetWidth = carouselNode.offsetWidth;
+    const scrollWidth = carouselNode.scrollWidth;
 
-      setOffset((currentOffset) => {
-        const proposedOffset = Math.max(Math.min(currentOffset + newOffset, 0), -(scrollWidth - offsetWidth));
+    setOffset((currentOffset) => {
+      const proposedOffset = Math.max(Math.min(currentOffset + newOffset, 0), -(scrollWidth - offsetWidth));
 
-        return proposedOffset;
-      });
-    },
-    [offset]
-  );
+      return proposedOffset;
+    });
+  };
+
+  const onLinkClick = ({ path, params }) => {
+    navigate({
+      pathname: `${path}`,
+      search: `?${createSearchParams(params)}`,
+    });
+  };
 
   return (
     <div className="container px-12 mx-auto md:mx-0">
-      <div className="section-top">
+      <div className="section-top mb-5">
         <h2 className="section-title">{title}</h2>
-        <div className="flex">
+        <div className="flex items-center">
           <ChevronIcon
             direction={'left'}
-            onClick={() => changeOffset(carouselRef.current.offsetWidth)}
+            onClick={() => onChangeOffset(carouselRef.current.offsetWidth)}
           />
+          {linkProps && (
+            <a
+              className="section-link animation-main"
+              onClick={() => onLinkClick(linkProps)}
+            >
+              view all
+            </a>
+          )}
           <ChevronIcon
             direction={'right'}
-            onClick={() => changeOffset(-carouselRef.current.offsetWidth)}
+            onClick={() => onChangeOffset(-carouselRef.current.offsetWidth)}
           />
         </div>
       </div>

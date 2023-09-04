@@ -1,7 +1,7 @@
 import './ArtistList.css';
 
 const ArtistList = (props) => {
-  const { errorMessage, loading, list } = props;
+  const { errorMessage, loading, list, gridComposition } = props;
 
   const renderItems = (arr) => {
     const items = arr.map(({ id, image, name }) => (
@@ -11,7 +11,7 @@ const ArtistList = (props) => {
       />
     ));
 
-    return <ul className="artists-list">{items}</ul>;
+    return <ul className={`${gridComposition === 'table' ? 'artists-table' : 'artists-list'}`}>{items}</ul>;
   };
 
   const items = renderItems(list);
@@ -31,7 +31,7 @@ const ArtistCard = ({ artistInfo }) => {
   const { image, name } = artistInfo;
 
   return (
-    <li className="card-artist">
+    <li className="card-artist animation-card">
       <img
         className="card-artist__img"
         src={image}
