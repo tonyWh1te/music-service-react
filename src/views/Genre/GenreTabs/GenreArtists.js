@@ -1,5 +1,5 @@
 import withContent from '../../../hoc/withContent';
-import ArtistList from '../../../components/ArtistList/ArtistList';
+import { ArtistList } from '../../../components/Lists';
 import MusicService from '../../../service/MusicService.service';
 
 const GenreArtists = ({ genreId }) => {

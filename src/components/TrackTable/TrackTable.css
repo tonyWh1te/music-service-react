@@ -1,0 +1,31 @@
+.table-songs__head {
+  @apply hidden pb-[10px] px-2 text-center first:text-left md:table-cell md:w-1/5 md:last:w-1/12 lg:first:w-2/5;
+}
+
+.table-songs__text {
+  @apply font-normal break-words text-xs text-center first:text-left md:truncate lg:text-sm xl:font-bold;
+}
+
+.table-songs__data {
+  @apply pb-[14px] pt-6 pr-3 pl-2 last:flex last:justify-center;
+}
+
+.table-songs__data > span {
+  @apply hover:underline hover:cursor-pointer;
+}
+
+.table-songs-title {
+  @apply hover:underline;
+}
+
+.table-songs__row {
+  @apply border-b border-gray-line pl-2 hover:bg-gray-line;
+}
+
+.table-songs__row--active {
+  @apply bg-gray-line;
+}
+
+.table-songs__row--active > .table-songs__text {
+  @apply text-main-green;
+}

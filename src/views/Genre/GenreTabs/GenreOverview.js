@@ -1,7 +1,5 @@
 import withContent from '../../../hoc/withContent';
-import ArtistList from '../../../components/ArtistList/ArtistList';
-import AlbumList from '../../../components/AlbumList/AlbumList';
-import SongList from '../../../components/SongList/SongList';
+import { ArtistList, AlbumList, SongList } from '../../../components/Lists';
 import Carousel from '../../../components/Carousel/Carousel';
 import MusicService from '../../../service/MusicService.service';
 

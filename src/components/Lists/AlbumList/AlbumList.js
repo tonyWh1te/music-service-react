@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import './AlbumList.css';
 
 const AlbumList = (props) => {
@@ -32,13 +33,15 @@ const AlbumCard = ({ albumInfo }) => {
 
   return (
     <li className="card-album animation-card">
-      <img
-        className="card-album__cover"
-        src={coverImg}
-        alt={title}
-      />
-      <h4 className="card-title">{title}</h4>
-      <p className="card-album__singer">{artistName}</p>
+      <Link to={`/album/${id}`}>
+        <img
+          className="card-album__cover"
+          src={coverImg}
+          alt={title}
+        />
+        <h4 className="card-title">{title}</h4>
+        <p className="card-album__singer">{artistName}</p>
+      </Link>
     </li>
   );
 };

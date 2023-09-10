@@ -1,5 +1,11 @@
-import { createContext, useReducer } from 'react';
-import { SET_SONGS_ARRAY, SET_CURRENT_SONG, TOGGLE_REPEAT, CLOSE_PLAYER, TOGGLE_PLAYING } from '../utils/constants';
+import { createContext, useReducer, useCallback } from 'react';
+import {
+  SET_SONGS_ARRAY,
+  SET_CURRENT_SONG,
+  TOGGLE_REPEAT,
+  CLOSE_PLAYER,
+  TOGGLE_PLAYING,
+} from '../utils/constants';
 
 const PlayerContext = createContext();
 
@@ -51,21 +57,30 @@ const PlayerProvider = ({ children }) => {
 
   const setSongList = (list) => dispath({ type: 'SET_SONGS_ARRAY', payload: list });
 
-  const setCurrentSong = (id) => {
-    if (state.currentSong !== id) {
-      dispath({ type: 'SET_CURRENT_SONG', payload: id });
-    }
-  };
+  const setCurrentSong = useCallback(
+    (id) => {
+      if (state.currentSong !== id) {
+        dispath({ type: 'SET_CURRENT_SONG', payload: id });
+      }
+    },
+    [state.currentSong]
+  );
 
   const togglePlaying = () => dispath({ type: 'TOGGLE_PLAYING', payload: !state.playing });
 
   const toggleRepeat = () => dispath({ type: 'TOGGLE_REPEAT', payload: !state.repeat });
 
-  const closePlayer = () => dispath({ type: 'CLOSE_PLAYER', payload: { currentSong: null, repeat: false, playing: false, show: false } });
+  const closePlayer = () =>
+    dispath({
+      type: 'CLOSE_PLAYER',
+      payload: { currentSong: null, repeat: false, playing: false, show: false },
+    });
 
-  const prevSong = () => setCurrentSong(state.currentSong === 0 ? state.songList.length - 1 : state.currentSong - 1);
+  const prevSong = () =>
+    setCurrentSong(state.currentSong === 0 ? state.songList.length - 1 : state.currentSong - 1);
 
-  const nextSong = () => setCurrentSong(state.currentSong === state.songList.length - 1 ? 0 : state.currentSong + 1);
+  const nextSong = () =>
+    setCurrentSong(state.currentSong === state.songList.length - 1 ? 0 : state.currentSong + 1);
 
   const onEndSong = () => {
     if (state.repeat) {
@@ -78,7 +93,19 @@ const PlayerProvider = ({ children }) => {
   };
 
   return (
-    <PlayerContext.Provider value={{ state, setSongList, setCurrentSong, togglePlaying, toggleRepeat, prevSong, nextSong, onEndSong, closePlayer }}>
+    <PlayerContext.Provider
+      value={{
+        state,
+        setSongList,
+        setCurrentSong,
+        togglePlaying,
+        toggleRepeat,
+        prevSong,
+        nextSong,
+        onEndSong,
+        closePlayer,
+      }}
+    >
       {children}
     </PlayerContext.Provider>
   );

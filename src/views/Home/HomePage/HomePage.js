@@ -1,6 +1,5 @@
 import Layout from '../../../components/Layout/Layout';
-import ArtistList from '../../../components/ArtistList/ArtistList';
-import SongList from '../../../components/SongList/SongList';
+import { SongList, ArtistList } from '../../../components/Lists';
 import Carousel from '../../../components/Carousel/Carousel';
 import withContent from '../../../hoc/withContent';
 import MusicService from '../../../service/MusicService.service';

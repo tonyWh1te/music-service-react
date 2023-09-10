@@ -110,6 +110,26 @@ class MusicService {
 
     return { data: artists, message: result.message };
   };
+
+  getAlbum = async (albumId) => {
+    const endpoint = `${this.#API_BASE}album/${albumId}`;
+    const result = await this.#getResourse(`${this.#proxy}${encodeURIComponent(endpoint)}`);
+
+    const transformationProps = {
+      title: 'title',
+      link: 'share',
+      coverImg: 'cover_big',
+      date: 'release_date',
+      duration: 'duration',
+      artistName: 'artist.name',
+      total: 'nb_tracks',
+      tracksData: 'tracks.data',
+    };
+
+    const album = this.#transformEntity(result.data, transformationProps);
+
+    return { data: album, message: result.message };
+  };
 }
 
 export default MusicService;

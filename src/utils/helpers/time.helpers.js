@@ -1,6 +1,14 @@
 // 59:59 format
 const fmtMSS = (s) => (s - (s %= 60)) / 60 + (9 < s ? ':' : ':0') + ~~s;
 
+// {} hours {} min format
+function formatSeconds(seconds) {
+  const hours = Math.floor(seconds / 3600);
+  const minutes = Math.floor((seconds % 3600) / 60);
+
+  return hours > 0 ? `${hours} hours ${minutes} min` : `${minutes} min`;
+}
+
 const dateFormatting = (dateString) => {
   const date = new Date(dateString);
 
@@ -11,4 +19,4 @@ const dateFormatting = (dateString) => {
   return `${year}-${month}-${day}`;
 };
 
-export { fmtMSS, dateFormatting };
+export { fmtMSS, dateFormatting, formatSeconds };

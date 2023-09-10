@@ -35,7 +35,7 @@ module.exports = {
       },
       colors: {
         'main-green': '#1ED760',
-        'hover-green': '#1CC677',
+        'hover-green': '#169E5F',
         'form-green': '#1AB26B',
         'gray-line': '#4F4F4F',
         'gray-input': '#C4C4C4',
@@ -46,7 +46,9 @@ module.exports = {
         'gray-gradient-dark': '#121212',
       },
       backgroundImage: (theme) => ({
-        'gradient-main': `linear-gradient(176.13deg, ${theme('colors.gray-gradient-light')} 2.6%, ${theme('colors.gray-gradient-dark')} 104.99%)`,
+        'gradient-main': `linear-gradient(176.13deg, ${theme('colors.gray-gradient-light')} 2.6%, ${theme(
+          'colors.gray-gradient-dark'
+        )} 104.99%)`,
         'gradient-dropdown': 'linear-gradient(180deg, rgba(23, 23, 23, 0) 0%, #000000 100%);',
       }),
     },

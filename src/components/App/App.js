@@ -6,6 +6,7 @@ import AuthPage from '../../views/Auth/AuthPage/AuthPage';
 import ProfilePage from '../../views/Profile/ProfilePage/ProfilePage';
 import LibraryPage from '../../views/Library/LibraryPage/LibraryPage';
 import GenrePage from '../../views/Genre/GenrePage/GenrePage';
+import AlbumPage from '../../views/Album/AlbumPage/AlbumPage';
 import { AuthBoxProvider } from '../../context/AuthBoxProvider';
 import RequireAuth from '../RequireAuth/RequireAuth';
 import { AuthProvider } from '../../context/AuthProvider';
@@ -48,6 +49,10 @@ function App() {
                 <Route
                   path="/library"
                   element={<LibraryPage />}
+                />
+                <Route
+                  path="/album/:albumId"
+                  element={<AlbumPage />}
                 />
               </Route>
             </Routes>

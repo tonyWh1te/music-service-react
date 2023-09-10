@@ -1,6 +1,6 @@
 import MusicService from '../../../service/MusicService.service';
 import Layout from '../../../components/Layout/Layout';
-import GenresList from '../../../components/GenresList/GenresList';
+import { GenresList } from '../../../components/Lists';
 import withContent from '../../../hoc/withContent';
 
 const GenresPage = () => {
