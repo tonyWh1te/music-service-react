@@ -1,5 +1,12 @@
-import usePlayer from '../../hooks/usePlayer';
-import { PlayCircleIcon, PauseCircleIcon, ForwardIcon, BackwardIcon, ArrowPathIcon, HeartIcon } from '@heroicons/react/20/solid';
+import { usePlayer } from '../../hooks';
+import {
+  PlayCircleIcon,
+  PauseCircleIcon,
+  ForwardIcon,
+  BackwardIcon,
+  ArrowPathIcon,
+  HeartIcon,
+} from '@heroicons/react/20/solid';
 
 const Control = ({ toggleAudio }) => {
   const {

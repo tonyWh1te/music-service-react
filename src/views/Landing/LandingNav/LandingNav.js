@@ -1,6 +1,6 @@
 import { useRef, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import useMediaQuery from '../../../hooks/useMediaQuery';
+import { useMediaQuery } from '../../../hooks';
 import AuthBoxContext from '../../../context/AuthBoxProvider';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/20/solid';
 import './LandingNav.css';
@@ -35,7 +35,7 @@ const LandingNav = ({ items }) => {
 
   return (
     <header className="h-[104px]">
-      <div className="container px-12 mx-auto">
+      <div className="container-wrapper">
         <div className="header-landing__inner">
           <nav
             ref={navRef}

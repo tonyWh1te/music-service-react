@@ -1,5 +1,9 @@
 .media-player {
-  @apply w-screen bg-gray-gradient-light flex items-center justify-between fixed bottom-20 z-30 pl-4 pr-4 pt-3 pb-[18px] lg:pr-[54px] lg:pl-6 md:bottom-0;
+  @apply w-full bg-gray-gradient-light fixed bottom-20 z-30 md:bottom-0;
+}
+
+.media-player__inner {
+  @apply flex items-center justify-between  pt-3 pb-[18px] pl-4 pr-4 lg:pr-[54px] lg:pl-6;
 }
 
 .media-player__button--active {

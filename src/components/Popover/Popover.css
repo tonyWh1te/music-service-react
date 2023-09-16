@@ -1,0 +1,3 @@
+.popover {
+  @apply rounded-md bg-gray-gradient-light shadow-dropdown;
+}

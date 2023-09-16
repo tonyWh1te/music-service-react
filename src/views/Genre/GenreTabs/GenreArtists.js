@@ -7,7 +7,7 @@ const GenreArtists = ({ genreId }) => {
 
   return (
     <section className="pb-14">
-      <div className="container px-12 mx-auto md:mx-0">
+      <div className="container-wrapper md:mx-0">
         <div className="section-top mb-5">
           <h2 className="section-title">Artists</h2>
         </div>

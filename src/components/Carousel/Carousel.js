@@ -29,7 +29,7 @@ const Carousel = ({ children, title, linkProps = null }) => {
   };
 
   return (
-    <div className="container px-12 mx-auto md:mx-0">
+    <div className="container-wrapper md:mx-0">
       <div className="section-top mb-5">
         <h2 className="section-title">{title}</h2>
         <div className="flex items-center">
@@ -66,7 +66,12 @@ const Carousel = ({ children, title, linkProps = null }) => {
 
 const ChevronIcon = ({ direction, onClick }) => {
   const iconClass = 'icon-main';
-  const icon = direction === 'right' ? <ChevronRightIcon className={iconClass} /> : <ChevronLeftIcon className={iconClass} />;
+  const icon =
+    direction === 'right' ? (
+      <ChevronRightIcon className={iconClass} />
+    ) : (
+      <ChevronLeftIcon className={iconClass} />
+    );
 
   return <div onClick={onClick}>{icon}</div>;
 };

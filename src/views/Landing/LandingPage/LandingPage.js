@@ -35,7 +35,7 @@ const LandingPage = () => {
       <LandingNav items={items} />
       <main>
         <section>
-          <div className="container px-12 mx-auto">
+          <div className="container-wrapper">
             <div className="top__inner">
               <img
                 className="w-44 h-20 md:w-56 md:h-32 lg:w-fit lg:h-fit"

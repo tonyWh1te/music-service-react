@@ -38,6 +38,13 @@ const sizes = {
   '2xl': '1696px',
 };
 
+// button assignment
+const BUTTON_IDS = {
+  ADD: 'add',
+  PLAY: 'play',
+  SHARE: 'share',
+};
+
 export {
   PWD_REGEX,
   validationMessages,
@@ -49,4 +56,5 @@ export {
   sizes,
   PARAM_NAME,
   PARAM_VALUE_DEFAULT,
+  BUTTON_IDS,
 };

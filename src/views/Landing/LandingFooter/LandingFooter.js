@@ -3,7 +3,7 @@ import './LandingFooter.css';
 const LandingFooter = ({ social }) => {
   return (
     <footer>
-      <div className="container px-12 mx-auto">
+      <div className="container-wrapper">
         <div className="footer__inner">
           <ul className="footer__social">
             {social.map(({ value, img }, i) => (

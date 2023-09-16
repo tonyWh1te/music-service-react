@@ -11,12 +11,21 @@ const AuthProvider = ({ children }) => {
     callback();
   };
 
-  const logout = (callback) => {
-    removeAuth();
-    callback();
+  const updateUserData = (data) => {
+    setAuth({ user: { ...data } });
   };
 
-  return <AuthContext.Provider value={{ auth, login, logout }}>{children}</AuthContext.Provider>;
+  const logout = (callback) => {
+    removeAuth();
+
+    if (callback) {
+      callback();
+    }
+  };
+
+  return (
+    <AuthContext.Provider value={{ auth, login, logout, updateUserData }}>{children}</AuthContext.Provider>
+  );
 };
 
 export default AuthContext;

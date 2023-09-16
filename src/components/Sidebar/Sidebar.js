@@ -1,8 +1,7 @@
-import { memo, useEffect } from 'react';
+import { memo, useEffect, useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { home, library, search } from '../../assets';
 import './Sidebar.css';
-import { useState } from 'react';
 
 const setActive = ({ isActive }) => (isActive ? 'nav__link nav__link--active' : 'nav__link');
 

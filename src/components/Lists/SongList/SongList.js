@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import usePlayer from '../../../hooks/usePlayer';
+import { usePlayer } from '../../../hooks';
 import './SongList.css';
 
 const SongList = (props) => {

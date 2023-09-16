@@ -7,7 +7,7 @@ const AuthPage = () => {
   return (
     <div className="wrapper">
       <main className="main-form">
-        <div className="container px-12 mx-auto">
+        <div className="container-wrapper">
           <div className="main-form__inner">
             <Link to={'/'}>
               <img

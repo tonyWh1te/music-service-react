@@ -10,10 +10,6 @@
   @apply transition-all duration-300 hover:opacity-100;
 }
 
-.animation-card {
-  @apply transition-transform duration-200 hover:translate-x-1 hover:translate-y-[-10px];
-}
-
 .section-top {
   @apply flex justify-between items-center md:pb-[3px] md:border-b-2 md:border-b-gray-line;
 }
@@ -28,6 +24,10 @@
 
 .card-title {
   @apply pt-2 font-bold text-sm truncate;
+}
+
+.container-wrapper {
+  @apply container px-12 mx-auto 2xl:max-w-full;
 }
 
 #root {
@@ -80,5 +80,9 @@
 
   .button__secondary {
     @apply px-10 py-2 bg-transparent animation-main button-title border rounded-full hover:bg-white hover:text-black;
+  }
+
+  .animation-card {
+    @apply transition-transform duration-200 hover:translate-x-1 hover:translate-y-[-10px];
   }
 }

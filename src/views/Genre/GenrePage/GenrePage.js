@@ -56,7 +56,7 @@ const View = ({ genre }) => {
 
   return (
     <>
-      <div className="container px-12 mx-auto md:mx-0">
+      <div className="container-wrapper md:mx-0">
         <h1 className="page-title">{name}</h1>
       </div>
       <div className="genre-tabs">

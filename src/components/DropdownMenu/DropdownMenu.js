@@ -1,54 +1,45 @@
-import useAuth from '../../hooks/useAuth';
-import { useNavigate } from 'react-router-dom';
+import { memo } from 'react';
+import { useClickOutside } from '../../hooks';
+import { Link } from 'react-router-dom';
 import './DropdownMenu.css';
-import { replace } from 'formik';
+import { useRef } from 'react';
 
-const DropdownMenu = ({ menuRef }) => {
-  const { logout } = useAuth();
+const DropdownMenu = ({ menuItems, opened, triggerRef, onClose }) => {
+  const menuRef = useRef(null);
 
-  const navigate = useNavigate();
+  useClickOutside({ elementRef: menuRef, onClickOutside: onClose, triggerRef, enabled: opened });
 
   return (
-    <div
-      className="dropdown-menu"
-      ref={menuRef}
-      role="menu"
-      aria-orientation="vertical"
-      aria-labelledby="menu-button"
-      tabIndex="-1"
-    >
-      <div className="bg-gray-gradient-dark shadow-dropdown rounded-md">
-        <div
-          className="py-1"
-          role="none"
-        >
-          <a
-            href="#"
-            className="dropdown-menu__link animation-main"
-            role="menuitem"
-            tabIndex="-1"
-            id="menu-item-0"
+    opened && (
+      <div
+        className="dropdown-menu"
+        ref={menuRef}
+        role="menu"
+        aria-orientation="vertical"
+        aria-labelledby="menu-button"
+        tabIndex="-1"
+      >
+        <div className="bg-gray-gradient-dark shadow-dropdown rounded-md">
+          <div
+            className="py-1"
+            role="none"
           >
-            Account settings
-          </a>
-          <button
-            type="button"
-            className="dropdown-menu__btn animation-main"
-            role="menuitem"
-            tabIndex="-1"
-            id="menu-item-1"
-            onClick={() =>
-              logout(() => {
-                navigate('/', { replace: true });
-              })
-            }
-          >
-            Sign out
-          </button>
+            {menuItems.map(({ name, href, onClick, additionalProps }, i) => (
+              <Link
+                key={i}
+                to={href}
+                className="dropdown-menu__link animation-main"
+                onClick={onClick}
+                {...additionalProps}
+              >
+                {name}
+              </Link>
+            ))}
+          </div>
         </div>
       </div>
-    </div>
+    )
   );
 };
 
-export default DropdownMenu;
+export default memo(DropdownMenu);

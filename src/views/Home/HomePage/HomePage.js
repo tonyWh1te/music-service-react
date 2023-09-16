@@ -12,7 +12,7 @@ const HomePage = () => {
 
   return (
     <Layout>
-      <div className="container px-12 mx-auto md:mx-0">
+      <div className="container-wrapper md:mx-0">
         <h1 className="page-title mb-10">Home</h1>
       </div>
       <section className="pb-14">
