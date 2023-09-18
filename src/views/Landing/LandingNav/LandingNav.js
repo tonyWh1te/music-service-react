@@ -19,7 +19,7 @@ const LandingNav = ({ items }) => {
     responsiveNav.classList.remove('header-landing__nav--responsive');
   }
 
-  const showNavbar = () => {
+  const toggleNavbar = () => {
     responsiveNav.classList.toggle('header-landing__nav--responsive');
   };
 
@@ -58,14 +58,14 @@ const LandingNav = ({ items }) => {
             </ul>
             <button
               className="header-landing__responsive-btns opacity-70 animation-main header-landing__btn-close"
-              onClick={showNavbar}
+              onClick={toggleNavbar}
             >
               <XMarkIcon />
             </button>
           </nav>
           <button
             className="header-landing__responsive-btns"
-            onClick={showNavbar}
+            onClick={toggleNavbar}
           >
             <Bars3Icon />
           </button>

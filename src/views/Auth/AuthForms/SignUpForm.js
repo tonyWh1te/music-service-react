@@ -5,6 +5,7 @@ import UserService from '../../../service/UserService.service';
 import AuthBoxContext from '../../../context/AuthBoxProvider';
 import { signUpSchema } from '../../../utils/helpers/validation.helpers';
 import InputText from '../../../components/InputText/InputText';
+import Button from '../../../components/Button/Button';
 import './AuthForms.css';
 
 const InnerForm = ({ formikProps, switchToLogin }) => {
@@ -92,11 +93,11 @@ const InnerForm = ({ formikProps, switchToLogin }) => {
               </option>
             </Field>
           </div>
-          <button
-            className="form__btn animation-main"
+          <Button
+            className="form__btn button__primary"
+            onClick={handleSubmit}
             type="submit"
             disabled={isSubmitting}
-            onSubmit={handleSubmit}
           >
             {isSubmitting ? (
               <TailSpin
@@ -112,7 +113,7 @@ const InnerForm = ({ formikProps, switchToLogin }) => {
             ) : (
               'Sign up'
             )}
-          </button>
+          </Button>
           <p className="form_text">
             Already have an account?{' '}
             <button

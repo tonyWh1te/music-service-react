@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { ShareIcon, PlusSmallIcon, PlayIcon } from '@heroicons/react/20/solid';
 import Popover from '../../../components/Popover/Popover';
 import SocialShareWidget from '../../../components/SocialShareWidget/SocialShareWidget';
+import Button from '../../../components/Button/Button';
 import { formatSeconds } from '../../../utils/helpers/time.helpers';
 import { BUTTON_IDS } from '../../../utils/constants';
 import './AlbumInfo.css';
@@ -40,7 +41,7 @@ const AlbumInfo = ({ album, setCurrentSong }) => {
         <React.Fragment key={id}>
           <Popover preferredPosition="top-center">
             <Popover.Trigger>
-              <button className={`${classes}`}>{label}</button>
+              <Button className={classes}>{label}</Button>
             </Popover.Trigger>
             <Popover.Content>
               <SocialShareWidget
@@ -51,13 +52,13 @@ const AlbumInfo = ({ album, setCurrentSong }) => {
           </Popover>
         </React.Fragment>
       ) : (
-        <button
+        <Button
           key={id}
-          className={`${classes}`}
+          className={classes}
           onClick={onClick}
         >
           {label}
-        </button>
+        </Button>
       );
     });
 
@@ -75,7 +76,7 @@ const AlbumInfo = ({ album, setCurrentSong }) => {
 };
 
 const View = ({ album, items }) => {
-  const { coverImg, title, artistName, total, duration, date } = album;
+  const { coverImg, title, artistName, artistId, total, duration, date } = album;
 
   return (
     <div className="album__info mb-7 md:mb-14">
@@ -91,7 +92,7 @@ const View = ({ album, items }) => {
           <p className="album__info-text mb-2">Album</p>
           <h2 className="album__info-title">{title}</h2>
           <Link
-            to={'/artist'}
+            to={`/artist/${artistId}`}
             className="album__artist-link"
           >
             {artistName}

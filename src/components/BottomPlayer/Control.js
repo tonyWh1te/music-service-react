@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import { usePlayer } from '../../hooks';
 import {
   PlayCircleIcon,
@@ -16,6 +17,8 @@ const Control = ({ toggleAudio }) => {
     prevSong,
     nextSong,
   } = usePlayer();
+
+  const arrowClasses = clsx({ 'media-player__button--active': repeat });
 
   return (
     <div className="media-player__buttons">
@@ -47,7 +50,7 @@ const Control = ({ toggleAudio }) => {
         className="media-player__button animation-main"
         onClick={toggleRepeat}
       >
-        <ArrowPathIcon className={` ${repeat ? 'media-player__button--active' : ''}`} />
+        <ArrowPathIcon className={arrowClasses} />
       </button>
     </div>
   );

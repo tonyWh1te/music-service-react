@@ -1,4 +1,4 @@
-import { Link, createSearchParams, useNavigate } from 'react-router-dom';
+import { createSearchParams, useNavigate } from 'react-router-dom';
 import { useState, useRef } from 'react';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/20/solid';
 import './Carousel.css';
@@ -30,7 +30,7 @@ const Carousel = ({ children, title, linkProps = null }) => {
 
   return (
     <div className="container-wrapper md:mx-0">
-      <div className="section-top mb-5">
+      <div className="section-top mb-2">
         <h2 className="section-title">{title}</h2>
         <div className="flex items-center">
           <ChevronIcon

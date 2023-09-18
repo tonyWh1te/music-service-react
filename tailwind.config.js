@@ -36,6 +36,7 @@ module.exports = {
       colors: {
         'main-green': '#1ED760',
         'hover-green': '#169E5F',
+        'active-green': '#0d613a',
         'form-green': '#1AB26B',
         'gray-line': '#4F4F4F',
         'gray-input': '#C4C4C4',

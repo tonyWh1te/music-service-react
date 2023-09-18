@@ -5,6 +5,8 @@ const AlbumList = (props) => {
   const { errorMessage, loading, list, gridComposition } = props;
 
   const renderItems = (array) => {
+    const classes = gridComposition === 'table' ? 'album-list' : 'songs-list';
+
     const items = array.map(({ id, coverImg, title, artistName }) => (
       <AlbumCard
         key={id}
@@ -12,7 +14,7 @@ const AlbumList = (props) => {
       />
     ));
 
-    return <ul className={`${gridComposition === 'table' ? 'album-list' : 'songs-list'}`}>{items}</ul>;
+    return <ul className={classes}>{items}</ul>;
   };
 
   const items = renderItems(list);

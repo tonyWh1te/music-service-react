@@ -7,7 +7,7 @@
 }
 
 .animation-main {
-  @apply transition-all duration-300 hover:opacity-100;
+  @apply transition-all duration-300 hover:enabled:opacity-100;
 }
 
 .section-top {
@@ -28,6 +28,14 @@
 
 .container-wrapper {
   @apply container px-12 mx-auto 2xl:max-w-full;
+}
+
+.button__secondary {
+  @apply bg-transparent border border-solid hover:enabled:bg-white hover:enabled:text-black active:enabled:bg-zinc-600 active:enabled:border-zinc-600;
+}
+
+.button__primary {
+  @apply bg-main-green hover:enabled:bg-hover-green active:enabled:bg-active-green;
 }
 
 #root {
@@ -74,12 +82,8 @@
     @apply h-7 w-7 opacity-70 cursor-pointer animation-main;
   }
 
-  .button__primary {
-    @apply px-10 py-2 bg-main-green button-title rounded-full hover:bg-hover-green animation-main;
-  }
-
-  .button__secondary {
-    @apply px-10 py-2 bg-transparent animation-main button-title border rounded-full hover:bg-white hover:text-black;
+  .btn {
+    @apply relative px-10 py-2 border-none rounded-full text-white button-title no-underline inline-block disabled:opacity-50 disabled:cursor-not-allowed;
   }
 
   .animation-card {
