@@ -1,0 +1,3 @@
+.btn-group.goup-vertical {
+  @apply flex flex-col;
+}

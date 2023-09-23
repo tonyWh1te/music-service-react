@@ -1,5 +1,5 @@
 import { cloneElement, useCallback, useLayoutEffect, useRef, useState } from 'react';
-import { usePopover, useClickOutside } from '../../hooks';
+import { usePopover, useClickOutside } from '../../hooks/hooks';
 import { PopoverProvider } from '../../context/PopoverProvider';
 import './Popover.css';
 

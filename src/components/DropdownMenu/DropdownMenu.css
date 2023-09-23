@@ -1,5 +1,9 @@
 .dropdown-menu {
-  @apply absolute right-0 z-20 mt-2 w-56 origin-top-right rounded-md bg-gradient-dropdown focus:outline-none;
+  @apply absolute pt-2 w-56 origin-top-right rounded-md bg-gradient-dropdown focus:outline-none;
+}
+
+.dropdown-block {
+  @apply right-0 top-[30px] z-20;
 }
 
 .dropdown-menu__link {

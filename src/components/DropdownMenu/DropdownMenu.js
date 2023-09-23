@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import { useClickOutside } from '../../hooks';
+import { useClickOutside } from '../../hooks/hooks';
 import { Link } from 'react-router-dom';
 import './DropdownMenu.css';
 import { useRef } from 'react';
@@ -12,7 +12,7 @@ const DropdownMenu = ({ menuItems, opened, triggerRef, onClose }) => {
   return (
     opened && (
       <div
-        className="dropdown-menu"
+        className="dropdown-menu dropdown-block"
         ref={menuRef}
         role="menu"
         aria-orientation="vertical"

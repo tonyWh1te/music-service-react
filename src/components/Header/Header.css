@@ -1,5 +1,13 @@
+.header {
+  @apply pt-8;
+}
+
+.header-block {
+  @apply mb-4 md:mb-20;
+}
+
 .header__inner {
-  @apply relative pt-8 pb-4 md:pb-[89px];
+  @apply relative flex justify-between items-center;
 }
 
 .search__input {

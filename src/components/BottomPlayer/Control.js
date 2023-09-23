@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { usePlayer } from '../../hooks';
+import { usePlayer } from '../../hooks/hooks';
 import {
   PlayCircleIcon,
   PauseCircleIcon,

@@ -1,5 +1,5 @@
 import { useRef, useState, memo, useCallback, useMemo } from 'react';
-import { useAuth } from '../../hooks';
+import { useAuth } from '../../hooks/hooks';
 import { Link } from 'react-router-dom';
 import { XMarkIcon, MagnifyingGlassIcon, ChevronDownIcon } from '@heroicons/react/20/solid';
 import DropdownMenu from '../DropdownMenu/DropdownMenu';
@@ -40,48 +40,46 @@ const Header = () => {
   );
 
   return (
-    <header>
+    <header className="header header-block">
       <div className="container-wrapper md:mx-0">
         <div className="header__inner">
-          <div className="flex justify-between items-center">
-            <div className="relative">
-              <input
-                className="search__input"
-                type="text"
-                placeholder="Search"
-                value={value}
-                onChange={onChange}
+          <div className="relative">
+            <input
+              className="search__input"
+              type="text"
+              placeholder="Search"
+              value={value}
+              onChange={onChange}
+            />
+            <div
+              className="search__img"
+              data-search
+            >
+              <MagnifyingGlassIcon className="fill-gray-icon md:fill-black" />
+            </div>
+            <button className="search__close">
+              <XMarkIcon className="fill-black" />
+            </button>
+          </div>
+          <div className="user__block">
+            <Link
+              className="user__right-side"
+              to="/profile"
+            >
+              <img
+                className="user__img"
+                src={auth.user.pic}
+                alt="profile-pic"
               />
-              <div
-                className="search__img"
-                data-search
-              >
-                <MagnifyingGlassIcon className="fill-gray-icon md:fill-black" />
-              </div>
-              <button className="search__close">
-                <XMarkIcon className="fill-black" />
-              </button>
-            </div>
-            <div className="user__block">
-              <Link
-                className="user__right-side"
-                to="/profile"
-              >
-                <img
-                  className="user__img"
-                  src={auth.user.pic}
-                  alt="profile-pic"
-                />
-                <p className="user__text">{auth.user?.name}</p>
-              </Link>
-              <button
-                className="w-7 h-7 opacity-70 animation-main"
-                onClick={() => setOpened(!opened)}
-                ref={arrowRef}
-              >
-                <ChevronDownIcon />
-              </button>
-            </div>
+              <p className="user__text">{auth.user?.name}</p>
+            </Link>
+            <button
+              className="w-7 h-7 opacity-70 animation-main"
+              onClick={() => setOpened(!opened)}
+              ref={arrowRef}
+            >
+              <ChevronDownIcon />
+            </button>
           </div>
           <DropdownMenu
             menuItems={menuItems}

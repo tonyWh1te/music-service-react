@@ -1,6 +1,6 @@
 import { useRef, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useMediaQuery } from '../../../hooks';
+import { useMediaQuery } from '../../../hooks/hooks';
 import AuthBoxContext from '../../../context/AuthBoxProvider';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/20/solid';
 import './LandingNav.css';
