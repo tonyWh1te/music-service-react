@@ -1,0 +1,7 @@
+.artist-albums__content {
+  @apply mb-6;
+}
+
+.artist-albums__btn {
+  @apply block m-auto;
+}

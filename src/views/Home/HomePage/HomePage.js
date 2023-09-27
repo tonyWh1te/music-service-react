@@ -2,13 +2,13 @@ import Layout from '../../../components/Layout/Layout';
 import { SongList, ArtistList } from '../../../components/Lists';
 import Carousel from '../../../components/Carousel/Carousel';
 import withContent from '../../../hoc/withContent';
-import MusicService from '../../../service/MusicService.service';
+
+const GET_TOP_SONGS = 'getTopSongs';
+const GET_TOP_ARTISTS = 'getTopArtists';
 
 const HomePage = () => {
-  const musicService = new MusicService();
-
-  const ContentWithSongs = withContent(SongList, musicService.getTopSongs);
-  const ContentWithArtists = withContent(ArtistList, musicService.getTopArtists);
+  const ContentWithSongs = withContent(SongList, { methodName: GET_TOP_SONGS });
+  const ContentWithArtists = withContent(ArtistList, { methodName: GET_TOP_ARTISTS });
 
   return (
     <Layout>

@@ -11,7 +11,7 @@ const TrackTable = (props) => {
   };
 
   return (
-    <table className="table-fixed w-full">
+    <table className="table-songs">
       <thead>
         <tr>
           {tableHeaders.map(({ content, classes }, i) => (
@@ -25,7 +25,7 @@ const TrackTable = (props) => {
         </tr>
       </thead>
       <tbody>
-        {tracksData.map(({ id, title, artist, album, duration }, i) => {
+        {tracksData.map(({ id, title, artistName, albumTitle, duration }, i) => {
           const rowClasses = clsx({
             'table-songs__row': true,
             'table-songs__row--active': currentSong === i,
@@ -39,8 +39,8 @@ const TrackTable = (props) => {
               <td className="table-songs__data table-songs__text">
                 <span onClick={() => onClickSong(i)}>{title}</span>
               </td>
-              <td className="table-songs__data table-songs__text">{artist.name}</td>
-              <td className="table-songs__data table-songs__text hidden md:table-cell">{album.title}</td>
+              <td className="table-songs__data table-songs__text">{artistName}</td>
+              <td className="table-songs__data table-songs__text hidden md:table-cell">{albumTitle}</td>
               <td className="table-songs__data table-songs__text">{fmtMSS(duration)}</td>
               <td className="table-songs__data">
                 <button>

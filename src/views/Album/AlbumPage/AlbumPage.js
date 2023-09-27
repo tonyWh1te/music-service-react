@@ -1,17 +1,19 @@
 import { useEffect, memo } from 'react';
 import { useParams } from 'react-router-dom';
-import { usePlayer } from '../../../hooks';
+import { usePlayer } from '../../../hooks/hooks';
 import withContent from '../../../hoc/withContent';
 import { ClockIcon } from '@heroicons/react/20/solid';
 import Layout from '../../../components/Layout/Layout';
 import TrackTable from '../../../components/TrackTable/TrackTable';
 import AlbumInfo from '../AlbumInfo/AlbumInfo';
-import MusicService from '../../../service/MusicService.service';
+import './AlbumPage.css';
+
+const GET_ALBUM = 'getAlbum';
 
 const AlbumPage = () => {
   const { albumId } = useParams();
 
-  const ContentWithAlbum = withContent(InnerPage, () => new MusicService().getAlbum(albumId));
+  const ContentWithAlbum = withContent(InnerPage, { methodName: GET_ALBUM, methodParams: [albumId] });
 
   return (
     <Layout>
@@ -20,9 +22,7 @@ const AlbumPage = () => {
   );
 };
 
-const InnerPage = (props) => {
-  const { loading, errorMessage, list: album } = props;
-
+const InnerPage = ({ spinner, errorMessage, list: album }) => {
   const {
     setSongList,
     setCurrentSong,
@@ -30,32 +30,23 @@ const InnerPage = (props) => {
   } = usePlayer();
 
   useEffect(() => {
-    if (album.tracksData) {
-      const tracksData = album.tracksData.map((track) => ({
-        id: track.id,
-        title: track.title,
-        artistName: track.artist.name,
-        coverImg: track.album.cover_big,
-        songFile: track.preview,
-        link: track.link,
-      }));
-
-      setSongList(tracksData);
+    if (album?.tracksData) {
+      setSongList(album.tracksData);
     }
   }, [album]);
 
-  const content = !errorMessage && !loading && (
+  const content = !(errorMessage || spinner || !album) ? (
     <View
       album={album}
       setCurrentSong={setCurrentSong}
       currentSong={currentSong}
     />
-  );
+  ) : null;
 
   return (
     <>
       {errorMessage}
-      {loading}
+      {spinner}
       {content}
     </>
   );
@@ -80,20 +71,22 @@ const View = memo(({ album, setCurrentSong, currentSong }) => {
   ];
 
   return (
-    <div className="pb-14">
-      <div className="container-wrapper md:mx-0">
-        <AlbumInfo
-          album={album}
-          setCurrentSong={setCurrentSong}
-        />
-        <TrackTable
-          tableHeaders={tableHeaders}
-          tracksData={tracksData}
-          currentSong={currentSong}
-          setCurrentSong={setCurrentSong}
-        />
+    <>
+      <AlbumInfo
+        album={album}
+        setCurrentSong={setCurrentSong}
+      />
+      <div className="album-songs album-song__block">
+        <div className="container-wrapper md:mx-0">
+          <TrackTable
+            tableHeaders={tableHeaders}
+            tracksData={tracksData}
+            currentSong={currentSong}
+            setCurrentSong={setCurrentSong}
+          />
+        </div>
       </div>
-    </div>
+    </>
   );
 });
 

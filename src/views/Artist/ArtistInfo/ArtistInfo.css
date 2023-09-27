@@ -1,0 +1,43 @@
+.artist__block {
+  @apply mb-12;
+}
+
+.artist__info-inner {
+  @apply flex flex-col justify-between items-center xl:flex-row;
+}
+
+.artist__info-content {
+  @apply flex flex-col items-center w-full lg:flex-row lg:gap-x-14;
+}
+
+.artist-pic__wrap {
+  @apply shrink-0 mb-4 lg:mb-0;
+}
+
+.artist__info-block {
+  @apply w-full flex flex-col items-center lg:items-start;
+}
+
+.artist__info-text {
+  @apply hidden font-bold mb-2 lg:block;
+}
+
+.artist__info-title {
+  @apply w-full text-center mb-2 md:text-3xl lg:text-start lg:w-10/12 xl:w-2/3 xl:text-[40px] xl:leading-[46px];
+}
+
+.artist__btn-group {
+  @apply gap-x-5 md:gap-x-7;
+}
+
+.artist__btn {
+  @apply p-1 lg:px-10 lg:py-2;
+}
+
+.artist__info-followers {
+  @apply mb-3 xl:mb-0 xl:self-end;
+}
+
+#followers-num {
+  @apply text-main-green;
+}

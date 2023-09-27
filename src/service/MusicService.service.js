@@ -1,29 +1,7 @@
-import axios from 'axios';
+import useRequest from '../hooks/useRequest';
 
 class MusicService {
-  #proxy = 'https://api.allorigins.win/raw?url=';
-  #API_BASE = `https://api.deezer.com/`;
-
-  #getResourse = async (url) => {
-    try {
-      const response = await axios.get(url, {
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept-Language': 'en',
-        },
-      });
-
-      return { data: { ...response.data }, message: response.statusText };
-    } catch (error) {
-      if (error.response) {
-        throw new Error(error.response.data, error.response.status, error.response.headers);
-      } else if (error.request) {
-        throw new Error(error.request);
-      } else {
-        throw new Error(`Error: ${error.message}`);
-      }
-    }
-  };
+  http = useRequest();
 
   #transformEntity = (entity, transformationProps = {}) => {
     const transformedEntity = {
@@ -42,8 +20,8 @@ class MusicService {
   };
 
   getTopSongs = async (genreId = 0) => {
-    const endpoint = `${this.#API_BASE}chart/${genreId}/tracks&limit=11`;
-    const result = await this.#getResourse(`${this.#proxy}${encodeURIComponent(endpoint)}`);
+    const endpoint = `/chart/${genreId}/tracks&limit=11`;
+    const result = await this.http.request(endpoint);
 
     const transformationProps = {
       title: 'title',
@@ -59,8 +37,8 @@ class MusicService {
   };
 
   getTopArtists = async (genreId = 0) => {
-    const endpoint = `${this.#API_BASE}chart/${genreId}/artists`;
-    const result = await this.#getResourse(`${this.#proxy}${encodeURIComponent(endpoint)}`);
+    const endpoint = `/chart/${genreId}/artists`;
+    const result = await this.http.request(endpoint);
 
     const artists = result.data.data.map(this.#transformEntity);
 
@@ -68,8 +46,8 @@ class MusicService {
   };
 
   getAllGenres = async () => {
-    const endpoint = `${this.#API_BASE}genre/`;
-    const result = await this.#getResourse(`${this.#proxy}${encodeURIComponent(endpoint)}`);
+    const endpoint = `/genre/`;
+    const result = await this.http.request(endpoint);
 
     const genres = result.data.data.map(this.#transformEntity);
 
@@ -77,8 +55,8 @@ class MusicService {
   };
 
   getGenre = async (id) => {
-    const endpoint = `${this.#API_BASE}genre/${id}`;
-    const result = await this.#getResourse(`${this.#proxy}${encodeURIComponent(endpoint)}`);
+    const endpoint = `/genre/${id}`;
+    const result = await this.http.request(endpoint);
 
     const genre = this.#transformEntity(result.data);
 
@@ -87,14 +65,15 @@ class MusicService {
 
   getNewReleases = async (genreId, withLimit = true) => {
     const limitOfData = withLimit ? `?limit=11` : '';
-    const endpoint = `${this.#API_BASE}editorial/${genreId}/releases${limitOfData}`;
-    const result = await this.#getResourse(`${this.#proxy}${encodeURIComponent(endpoint)}`);
+    const endpoint = `/editorial/${genreId}/releases${limitOfData}`;
+
+    const result = await this.http.request(endpoint);
 
     const transformationProps = {
       title: 'title',
       artistName: 'artist.name',
       coverImg: 'cover_big',
-      link: 'link',
+      releaseDate: 'release_date',
     };
 
     const releases = result.data.data.map((release) => this.#transformEntity(release, transformationProps));
@@ -103,8 +82,8 @@ class MusicService {
   };
 
   getArtistsByGenre = async (genreId) => {
-    const endpoint = `${this.#API_BASE}genre/${genreId}/artists`;
-    const result = await this.#getResourse(`${this.#proxy}${encodeURIComponent(endpoint)}`);
+    const endpoint = `/genre/${genreId}/artists`;
+    const result = await this.http.request(endpoint);
 
     const artists = result.data.data.map(this.#transformEntity);
 
@@ -112,23 +91,86 @@ class MusicService {
   };
 
   getAlbum = async (albumId) => {
-    const endpoint = `${this.#API_BASE}album/${albumId}`;
-    const result = await this.#getResourse(`${this.#proxy}${encodeURIComponent(endpoint)}`);
+    const endpoint = `/album/${albumId}`;
+    const result = await this.http.request(endpoint);
 
-    const transformationProps = {
+    const transformationPropsAlbum = {
       title: 'title',
       link: 'share',
       coverImg: 'cover_big',
       date: 'release_date',
       duration: 'duration',
       artistName: 'artist.name',
+      artistId: 'artist.id',
       total: 'nb_tracks',
       tracksData: 'tracks.data',
     };
 
-    const album = this.#transformEntity(result.data, transformationProps);
+    const transformationPropsTrack = {
+      title: 'title',
+      artistName: 'artist.name',
+      albumTitle: 'album.title',
+      coverImg: 'album.cover_big',
+      songFile: 'preview',
+      duration: 'duration',
+      link: 'link',
+    };
 
-    return { data: album, message: result.message };
+    const album = this.#transformEntity(result.data, transformationPropsAlbum);
+    const tracksData = album.tracksData.map((track) =>
+      this.#transformEntity(track, transformationPropsTrack)
+    );
+
+    return { data: { ...album, tracksData }, message: result.message };
+  };
+
+  getArtist = async (id) => {
+    const endpoint = `/artist/${id}`;
+    const result = await this.http.request(endpoint);
+
+    const transformationProps = {
+      shareLink: 'share',
+      fanBase: 'nb_fan',
+      nbAlbums: 'nb_album',
+    };
+
+    const artist = this.#transformEntity(result.data, transformationProps);
+
+    return { data: artist, message: result.message };
+  };
+
+  getTopSongsArtist = async (id) => {
+    const endpoint = `/artist/${id}/top`;
+    const result = await this.http.request(endpoint);
+
+    const transformationProps = {
+      title: 'title',
+      albumTitle: 'album.title',
+      artistName: 'artist.name',
+      coverImg: 'album.cover_big',
+      songFile: 'preview',
+      duration: 'duration',
+      link: 'link',
+    };
+
+    const songs = result.data.data.map((song) => this.#transformEntity(song, transformationProps));
+
+    return { data: songs, message: result.message };
+  };
+
+  getArtistAlbums = async (id, offset = 0) => {
+    const endpoint = `/artist/${id}/albums?limit=5&index=${offset}`;
+    const result = await this.http.request(endpoint);
+
+    const transformationProps = {
+      title: 'title',
+      coverImg: 'cover_big',
+      releaseDate: 'release_date',
+    };
+
+    const albums = result.data.data.map((album) => this.#transformEntity(album, transformationProps));
+
+    return { data: albums, message: result.message };
   };
 }
 

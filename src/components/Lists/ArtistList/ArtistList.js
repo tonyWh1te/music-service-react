@@ -1,31 +1,25 @@
 import { Link } from 'react-router-dom';
 import './ArtistList.css';
 
-const ArtistList = (props) => {
-  const { errorMessage, loading, list, gridComposition } = props;
+const ArtistList = ({ errorMessage, spinner, list, gridComposition }) => {
+  const classes = gridComposition === 'table' ? 'artists-table' : 'artists-list';
 
-  const renderItems = (arr) => {
-    const classes = gridComposition === 'table' ? 'artists-table' : 'artists-list';
-
-    const items = arr.map(({ id, image, name }) => (
+  const renderItems = (artistList) => {
+    return (artistList ?? []).map(({ id, image, name }) => (
       <ArtistCard
         key={id}
         artistInfo={{ image, name, id }}
       />
     ));
-
-    return <ul className={classes}>{items}</ul>;
   };
 
   const items = renderItems(list);
 
-  const content = !errorMessage && !loading ? items : null;
-
   return (
     <>
       {errorMessage}
-      {loading}
-      {content}
+      {spinner}
+      <ul className={classes}>{items}</ul>
     </>
   );
 };

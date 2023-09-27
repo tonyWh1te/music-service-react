@@ -1,11 +1,9 @@
 import { Link } from 'react-router-dom';
 import './GenresList.css';
 
-const GenresList = (props) => {
-  const { errorMessage, loading, list } = props;
-
-  const renderItems = (arr) => {
-    const items = arr.map(({ image, name, id }) => {
+const GenresList = ({ errorMessage, spinner, list }) => {
+  const renderItems = (genresList) => {
+    return (genresList ?? []).map(({ image, name, id }) => {
       if (name === 'All') return null;
 
       return (
@@ -15,19 +13,15 @@ const GenresList = (props) => {
         />
       );
     });
-
-    return <ul className="genre-card__list mt-5">{items}</ul>;
   };
 
   const items = renderItems(list);
 
-  const content = !errorMessage && !loading ? items : null;
-
   return (
     <>
       {errorMessage}
-      {loading}
-      {content}
+      {spinner}
+      <ul className="genre-card__list mt-5">{items}</ul>
     </>
   );
 };

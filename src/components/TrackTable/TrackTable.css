@@ -1,3 +1,7 @@
+.table-songs {
+  @apply table-fixed w-full;
+}
+
 .table-songs__head {
   @apply hidden pb-[10px] px-2 text-center first:text-left md:table-cell md:w-1/5 md:last:w-1/12 lg:first:w-2/5;
 }

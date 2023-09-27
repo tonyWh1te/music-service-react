@@ -4,18 +4,17 @@ import { PARAM_NAME, PARAM_VALUE_DEFAULT } from '../../../utils/constants';
 import { GenreArtists, GenreNewReleases, GenreOverwiew } from '../GenreTabs/index';
 import Layout from '../../../components/Layout/Layout';
 import Tabs from '../../../components/Tabs/Tabs';
-import MusicService from '../../../service/MusicService.service';
 import './GenrePage.css';
 
-const InnerPage = (props) => {
-  const { errorMessage, loading, list: genre } = props;
+const GET_GENRE = 'getGenre';
 
-  const content = !errorMessage && !loading ? <View genre={genre} /> : null;
+const InnerPage = ({ errorMessage, spinner, list: genre }) => {
+  const content = !(errorMessage || spinner || !genre) ? <View genre={genre} /> : null;
 
   return (
     <>
       {errorMessage}
-      {loading}
+      {spinner}
       {content}
     </>
   );
@@ -74,7 +73,7 @@ const View = ({ genre }) => {
 const GenrePage = () => {
   const { genreId } = useParams();
 
-  const ContentWithGenre = withContent(InnerPage, () => new MusicService().getGenre(genreId));
+  const ContentWithGenre = withContent(InnerPage, { methodName: GET_GENRE, methodParams: [genreId] });
 
   return (
     <Layout>

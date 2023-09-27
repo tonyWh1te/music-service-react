@@ -43,7 +43,12 @@ const BUTTON_IDS = {
   ADD: 'add',
   PLAY: 'play',
   SHARE: 'share',
+  FOLLOW: 'follow',
 };
+
+// http config
+const API_BASE = `https://api.deezer.com`;
+const PROXY = 'https://api.allorigins.win/raw?url=';
 
 export {
   PWD_REGEX,
@@ -57,4 +62,6 @@ export {
   PARAM_NAME,
   PARAM_VALUE_DEFAULT,
   BUTTON_IDS,
+  API_BASE,
+  PROXY,
 };

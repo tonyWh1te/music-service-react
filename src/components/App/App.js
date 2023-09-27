@@ -7,6 +7,7 @@ import ProfilePage from '../../views/Profile/ProfilePage/ProfilePage';
 import LibraryPage from '../../views/Library/LibraryPage/LibraryPage';
 import GenrePage from '../../views/Genre/GenrePage/GenrePage';
 import AlbumPage from '../../views/Album/AlbumPage/AlbumPage';
+import ArtistPage from '../../views/Artist/ArtistPage/ArtistPage';
 import { AuthBoxProvider } from '../../context/AuthBoxProvider';
 import RequireAuth from '../RequireAuth/RequireAuth';
 import { AuthProvider } from '../../context/AuthProvider';
@@ -53,6 +54,10 @@ function App() {
                 <Route
                   path="/album/:albumId"
                   element={<AlbumPage />}
+                />
+                <Route
+                  path="/artist/:artistId"
+                  element={<ArtistPage />}
                 />
               </Route>
             </Routes>

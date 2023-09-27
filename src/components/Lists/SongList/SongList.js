@@ -1,17 +1,18 @@
 import { useEffect } from 'react';
-import { usePlayer } from '../../../hooks';
+import { usePlayer } from '../../../hooks/hooks';
 import './SongList.css';
 
-const SongList = (props) => {
+const SongList = ({ errorMessage, spinner, list }) => {
   const { setSongList, setCurrentSong } = usePlayer();
-  const { errorMessage, loading, list } = props;
 
   useEffect(() => {
-    setSongList(list);
+    if (list !== null) {
+      setSongList(list);
+    }
   }, [list]);
 
-  const renderItems = (arr) => {
-    const items = arr.map(({ id, coverImg, title, artistName }, i) => (
+  const renderItems = (songList) => {
+    return (songList ?? []).map(({ id, coverImg, title, artistName }, i) => (
       <SongCard
         key={id}
         songInfo={{ coverImg, title, artistName }}
@@ -20,19 +21,15 @@ const SongList = (props) => {
         }}
       />
     ));
-
-    return <ul className="songs-list">{items}</ul>;
   };
 
   const items = renderItems(list);
 
-  const content = !errorMessage && !loading ? items : null;
-
   return (
     <>
       {errorMessage}
-      {loading}
-      {content}
+      {spinner}
+      <ul className="songs-list">{items}</ul>
     </>
   );
 };
@@ -51,7 +48,7 @@ const SongCard = ({ songInfo, onClick }) => {
         alt={title}
       />
       <h4 className="card-title">{title}</h4>
-      <p className="card-song__singer">{artistName}</p>
+      <p className="card-info">{artistName}</p>
     </li>
   );
 };

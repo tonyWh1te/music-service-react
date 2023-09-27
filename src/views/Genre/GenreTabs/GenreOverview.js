@@ -1,14 +1,26 @@
 import withContent from '../../../hoc/withContent';
 import { ArtistList, AlbumList, SongList } from '../../../components/Lists';
 import Carousel from '../../../components/Carousel/Carousel';
-import MusicService from '../../../service/MusicService.service';
+
+const GET_TOP_ARTISTS = 'getTopArtists';
+const GET_TOP_SONGS = 'getTopSongs';
+const GET_NEW_RELEASES = 'getNewReleases';
 
 const GenreOverwiew = ({ genreId }) => {
-  const musicService = new MusicService();
+  const ContentWithSongs = withContent(SongList, {
+    methodName: GET_TOP_SONGS,
+    methodParams: [genreId],
+  });
 
-  const ContentWithArtists = withContent(ArtistList, () => musicService.getTopArtists(genreId));
-  const ContentWithSongs = withContent(SongList, () => musicService.getTopSongs(genreId));
-  const ContentWithReleases = withContent(AlbumList, () => musicService.getNewReleases(genreId));
+  const ContentWithReleases = withContent(AlbumList, {
+    methodName: GET_NEW_RELEASES,
+    methodParams: [genreId],
+  });
+
+  const ContentWithArtists = withContent(ArtistList, {
+    methodName: GET_TOP_ARTISTS,
+    methodParams: [genreId],
+  });
 
   return (
     <>

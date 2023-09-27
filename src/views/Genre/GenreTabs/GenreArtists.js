@@ -1,9 +1,13 @@
 import withContent from '../../../hoc/withContent';
 import { ArtistList } from '../../../components/Lists';
-import MusicService from '../../../service/MusicService.service';
+
+const GET_ARTIST_BY_GENRE = 'getArtistsByGenre';
 
 const GenreArtists = ({ genreId }) => {
-  const ContentWithArtists = withContent(ArtistList, () => new MusicService().getArtistsByGenre(genreId));
+  const ContentWithArtists = withContent(ArtistList, {
+    methodName: GET_ARTIST_BY_GENRE,
+    methodParams: [genreId],
+  });
 
   return (
     <section className="pb-14">

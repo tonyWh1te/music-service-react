@@ -1,9 +1,13 @@
 import withContent from '../../../hoc/withContent';
 import { AlbumList } from '../../../components/Lists';
-import MusicService from '../../../service/MusicService.service';
+
+const GET_NEW_RELEASES = 'getNewReleases';
 
 const GenreNewReleases = ({ genreId }) => {
-  const ContentWithReleases = withContent(AlbumList, () => new MusicService().getNewReleases(genreId, false));
+  const ContentWithReleases = withContent(AlbumList, {
+    methodName: GET_NEW_RELEASES,
+    methodParams: [genreId, false],
+  });
 
   return (
     <section className="pb-14">

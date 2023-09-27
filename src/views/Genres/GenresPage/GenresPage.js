@@ -1,10 +1,11 @@
-import MusicService from '../../../service/MusicService.service';
 import Layout from '../../../components/Layout/Layout';
 import { GenresList } from '../../../components/Lists';
 import withContent from '../../../hoc/withContent';
 
+const GET_ALL_GENRES = 'getAllGenres';
+
 const GenresPage = () => {
-  const ContentWithGenres = withContent(GenresList, new MusicService().getAllGenres);
+  const ContentWithGenres = withContent(GenresList, { methodName: GET_ALL_GENRES });
 
   return (
     <Layout>

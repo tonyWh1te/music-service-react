@@ -1,0 +1,7 @@
+.top-songs__title {
+  @apply inline-block mb-7 font-bold;
+}
+
+.top-songs__block {
+  @apply mb-8;
+}
