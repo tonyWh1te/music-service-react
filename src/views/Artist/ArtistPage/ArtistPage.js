@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom';
 import withContent from '../../../hoc/withContent';
 import Layout from '../../../components/Layout/Layout';
 import ArtistInfo from '../ArtistInfo/ArtistInfo';
+import ArtistAlbums from '../ArtistAlbums/ArtistAlbums';
 import TrackTableImpl from '../TrackTableImpl/TrackTableImpl';
 import './ArtistPage.css';
 
@@ -41,6 +42,7 @@ const View = ({ artist }) => {
           <TrackTableImpl artist={artist} />
         </div>
       </div>
+      <ArtistAlbums artist={artist} />
     </>
   );
 };
