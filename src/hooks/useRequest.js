@@ -21,7 +21,9 @@ const useRequest = () => {
 
     try {
       console.log(url);
-      const response = await axios({ url: encodeURIComponent(url), ...config });
+      const response = await axios({ url, ...config });
+
+      console.log(response);
 
       if ('error' in response.data) {
         throw new Error(response.data.error.message);
@@ -38,7 +40,7 @@ const useRequest = () => {
 
         throw new Error(error.response.data, error.response.status, error.response.headers);
       } else if (error.request) {
-        setError(error.request);
+        setError(error.response.data);
 
         throw new Error(error.request);
       } else {
@@ -49,9 +51,7 @@ const useRequest = () => {
     }
   }, []);
 
-  const clearError = useCallback(() => setError(null), []);
-
-  return { loading, error, request, clearError };
+  return { loading, error, request };
 };
 
 export default useRequest;

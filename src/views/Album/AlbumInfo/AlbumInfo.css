@@ -23,7 +23,7 @@
 }
 
 .album__info-title {
-  @apply md:text-3xl xl:text-[40px] xl:leading-[46px];
+  @apply md:text-3xl xl:text-[35px] xl:leading-[46px];
 }
 
 .album__artist-link {

@@ -1,7 +1,11 @@
-.artist-albums__content {
-  @apply mb-6;
+.artist-albums__block {
+  @apply pb-[84px] md:pb-14;
 }
 
 .artist-albums__btn {
   @apply block m-auto;
+}
+
+.album-list__block {
+  @apply mb-6;
 }
