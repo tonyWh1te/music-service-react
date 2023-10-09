@@ -1,5 +1,5 @@
 import { useRef, useState, memo, useCallback, useMemo } from 'react';
-import { useAuth } from '../../hooks/hooks';
+import { useAuth } from '../../hooks';
 import { Link } from 'react-router-dom';
 import { XMarkIcon, MagnifyingGlassIcon, ChevronDownIcon } from '@heroicons/react/20/solid';
 import DropdownMenu from '../DropdownMenu/DropdownMenu';

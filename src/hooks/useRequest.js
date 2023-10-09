@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react';
 import axios from 'axios';
-import { API_BASE, PROXY } from '../utils/constants';
+import { API_MUSIC_PATH } from '../utils/constants';
 
 const useRequest = () => {
   const [error, setError] = useState(null);
@@ -8,7 +8,7 @@ const useRequest = () => {
 
   const defaultConfig = {
     method: 'get',
-    baseURL: PROXY + API_BASE,
+    baseURL: API_MUSIC_PATH,
     headers: {
       'Content-Type': 'application/json',
       'Accept-Language': 'en',
@@ -21,7 +21,7 @@ const useRequest = () => {
 
     try {
       console.log(url);
-      const response = await axios({ url: encodeURIComponent(url), ...config });
+      const response = await axios({ url, ...config });
 
       if ('error' in response.data) {
         throw new Error(response.data.error.message);

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useMediaQuery } from '../../../hooks/hooks';
+import { useMediaQuery } from '../../../hooks';
 import { Link } from 'react-router-dom';
 import { ShareIcon, PlusSmallIcon, PlayIcon } from '@heroicons/react/20/solid';
 import Popover from '../../../components/Popover/Popover';

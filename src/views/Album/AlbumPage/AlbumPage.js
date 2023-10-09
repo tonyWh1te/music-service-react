@@ -1,6 +1,6 @@
 import { useEffect, memo } from 'react';
 import { useParams } from 'react-router-dom';
-import { usePlayer } from '../../../hooks/hooks';
+import { usePlayer } from '../../../hooks';
 import withContent from '../../../hoc/withContent';
 import { ClockIcon } from '@heroicons/react/20/solid';
 import Layout from '../../../components/Layout/Layout';

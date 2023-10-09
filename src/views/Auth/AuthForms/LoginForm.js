@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { useAuth } from '../../../hooks/hooks';
+import { useAuth } from '../../../hooks';
 import { Formik, Form } from 'formik';
 import { TailSpin } from 'react-loader-spinner';
 import { useNavigate, useLocation } from 'react-router-dom';

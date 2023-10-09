@@ -47,8 +47,7 @@ const BUTTON_IDS = {
 };
 
 // http config
-const API_BASE = `https://api.deezer.com`;
-const PROXY = 'https://api.allorigins.win/raw?url=';
+const API_MUSIC_PATH = `/musicApi`;
 
 export {
   PWD_REGEX,
@@ -62,6 +61,5 @@ export {
   PARAM_NAME,
   PARAM_VALUE_DEFAULT,
   BUTTON_IDS,
-  API_BASE,
-  PROXY,
+  API_MUSIC_PATH,
 };

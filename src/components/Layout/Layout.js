@@ -1,7 +1,7 @@
 import Sidebar from '../Sidebar/Sidebar';
 import Header from '../Header/Header';
 import BottomPlayer from '../BottomPlayer/BottomPlayer';
-import { usePlayer } from '../../hooks/hooks';
+import { usePlayer } from '../../hooks';
 import './Layout.css';
 
 const Layout = ({ children }) => {

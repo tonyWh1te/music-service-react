@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import { useClickOutside } from '../../hooks/hooks';
+import { useClickOutside } from '../../hooks';
 import { Link } from 'react-router-dom';
 import './DropdownMenu.css';
 import { useRef } from 'react';

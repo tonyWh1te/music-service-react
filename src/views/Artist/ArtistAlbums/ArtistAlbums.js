@@ -1,5 +1,5 @@
 import { useEffect, memo, useMemo, useCallback } from 'react';
-import { usePagination } from '../../../hooks/index';
+import { usePagination } from '../../../hooks';
 import { TailSpin } from 'react-loader-spinner';
 import clsx from 'clsx';
 import withContent from '../../../hoc/withContent';

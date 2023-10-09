@@ -1,5 +1,5 @@
 import { useRef, useEffect, useState } from 'react';
-import { usePlayer } from '../../hooks/hooks';
+import { usePlayer } from '../../hooks';
 import { XMarkIcon, ShareIcon, SpeakerWaveIcon } from '@heroicons/react/20/solid';
 import Control from './Control';
 import SocialShareWidget from '../SocialShareWidget/SocialShareWidget';

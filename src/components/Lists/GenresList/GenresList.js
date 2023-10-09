@@ -4,7 +4,7 @@ import './GenresList.css';
 const GenresList = ({ errorMessage, spinner, list }) => {
   const renderItems = (genresList) => {
     return (genresList ?? []).map(({ image, name, id }) => {
-      if (name === 'All') return null;
+      if (id === 0) return null;
 
       return (
         <GenreCard

@@ -1,5 +1,5 @@
 import { Fragment } from 'react';
-import { useMediaQuery } from '../../../hooks/hooks';
+import { useMediaQuery } from '../../../hooks';
 import { ShareIcon, HeartIcon } from '@heroicons/react/20/solid';
 import SocialShareWidget from '../../../components/SocialShareWidget/SocialShareWidget';
 import Popover from '../../../components/Popover/Popover';

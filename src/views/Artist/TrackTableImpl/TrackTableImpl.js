@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { ClockIcon } from '@heroicons/react/20/solid';
 import withContent from '../../../hoc/withContent';
 import TrackTable from '../../../components/TrackTable/TrackTable';
-import { usePlayer } from '../../../hooks/hooks';
+import { usePlayer } from '../../../hooks';
 
 const GET_TOP_SONGS_ARTIST = 'getTopSongsArtist';
 
