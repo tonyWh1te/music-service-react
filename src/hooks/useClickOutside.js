@@ -1,6 +1,11 @@
 import { useEffect } from 'react';
 
-const useClickOutside = ({ elementRef, onClickOutside, triggerRef = null, enabled = true }) => {
+const useClickOutside = ({
+  elementRef,
+  onClickOutside,
+  triggerRef = null,
+  enabled = true,
+}) => {
   useEffect(() => {
     if (!enabled) {
       return;

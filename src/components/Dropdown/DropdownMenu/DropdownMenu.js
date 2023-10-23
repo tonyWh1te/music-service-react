@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import { useClickOutside } from '../../hooks';
+import { useClickOutside } from '../../../hooks';
 import { Link } from 'react-router-dom';
 import './DropdownMenu.css';
 import { useRef } from 'react';
@@ -7,7 +7,12 @@ import { useRef } from 'react';
 const DropdownMenu = ({ menuItems, opened, triggerRef, onClose }) => {
   const menuRef = useRef(null);
 
-  useClickOutside({ elementRef: menuRef, onClickOutside: onClose, triggerRef, enabled: opened });
+  useClickOutside({
+    elementRef: menuRef,
+    onClickOutside: onClose,
+    triggerRef,
+    enabled: opened,
+  });
 
   return (
     opened && (

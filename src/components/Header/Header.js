@@ -1,43 +1,17 @@
-import { useRef, useState, memo, useCallback, useMemo } from 'react';
+import { memo, useState } from 'react';
 import { useAuth } from '../../hooks';
 import { Link } from 'react-router-dom';
-import { XMarkIcon, MagnifyingGlassIcon, ChevronDownIcon } from '@heroicons/react/20/solid';
-import DropdownMenu from '../DropdownMenu/DropdownMenu';
+import { XMarkIcon, MagnifyingGlassIcon } from '@heroicons/react/20/solid';
+import Dropdown from '../Dropdown/Dropdown';
 import './Header.css';
 
 const Header = () => {
-  const [opened, setOpened] = useState(false);
   const [value, setValue] = useState('');
-  const arrowRef = useRef(null);
-  const { auth, logout } = useAuth();
+  const { auth } = useAuth();
 
   const onChange = (e) => {
     setValue(e.target.value);
   };
-
-  const onClose = useCallback(() => {
-    setOpened(false);
-  }, [setOpened]);
-
-  const menuItems = useMemo(
-    () => [
-      {
-        name: 'Account settings',
-        href: '/settings',
-        onClick: () => {},
-        additionalProps: {},
-      },
-      {
-        name: 'Sign out',
-        href: '/',
-        onClick: () => logout(),
-        additionalProps: {
-          replace: true,
-        },
-      },
-    ],
-    [logout]
-  );
 
   return (
     <header className="header header-block">
@@ -73,20 +47,8 @@ const Header = () => {
               />
               <p className="user__text">{auth.user?.name}</p>
             </Link>
-            <button
-              className="w-7 h-7 opacity-70 animation-main"
-              onClick={() => setOpened(!opened)}
-              ref={arrowRef}
-            >
-              <ChevronDownIcon />
-            </button>
+            <Dropdown />
           </div>
-          <DropdownMenu
-            menuItems={menuItems}
-            opened={opened}
-            triggerRef={arrowRef}
-            onClose={onClose}
-          />
         </div>
       </div>
     </header>
