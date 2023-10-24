@@ -1,0 +1,31 @@
+.search-wrapper {
+  @apply relative;
+}
+
+.results {
+  @apply absolute w-full top-11 z-10 py-[19px] pb-10 bg-[#242424] rounded-[20px] shadow-[1px_1px_9px_3px_#111];
+}
+
+.results__category:not(:last-child) {
+  @apply mb-6;
+}
+
+.results__category--artists .results__item-img {
+  @apply rounded-full;
+}
+
+.results__category-title {
+  @apply p-0 mb-2 px-4;
+}
+
+.results__msg {
+  @apply px-4 text-sm;
+}
+
+.results__msg--error {
+  @apply text-red-700;
+}
+
+.results__msg--not-found {
+  @apply text-main-green;
+}

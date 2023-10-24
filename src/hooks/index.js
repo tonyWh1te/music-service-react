@@ -5,5 +5,15 @@ import useClickOutside from './useClickOutside';
 import useMediaQuery from './useMediaQuery';
 import usePlayer from './usePlayer';
 import usePopover from './usePopover';
+import useDebounce from './useDebounce';
 
-export { usePagination, useRequest, useAuth, useClickOutside, useMediaQuery, usePlayer, usePopover };
+export {
+  usePagination,
+  useRequest,
+  useAuth,
+  useClickOutside,
+  useMediaQuery,
+  usePlayer,
+  usePopover,
+  useDebounce,
+};

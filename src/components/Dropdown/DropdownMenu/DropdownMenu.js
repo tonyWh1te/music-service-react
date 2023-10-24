@@ -1,8 +1,7 @@
-import { memo } from 'react';
-import { useClickOutside } from '../../../hooks';
+import { memo, useRef } from 'react';
 import { Link } from 'react-router-dom';
+import { useClickOutside } from '../../../hooks';
 import './DropdownMenu.css';
-import { useRef } from 'react';
 
 const DropdownMenu = ({ menuItems, opened, triggerRef, onClose }) => {
   const menuRef = useRef(null);

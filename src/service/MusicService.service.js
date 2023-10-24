@@ -8,10 +8,13 @@ class MusicService {
       id: entity?.id,
       name: entity?.name,
       image: entity?.picture_big,
+      type: entity?.type,
     };
 
     for (const prop in transformationProps) {
-      const propValue = transformationProps[prop].split('.').reduce((obj, key) => obj[key], entity);
+      const propValue = transformationProps[prop]
+        .split('.')
+        .reduce((obj, key) => obj[key], entity);
 
       transformedEntity[prop] = propValue;
     }
@@ -31,7 +34,9 @@ class MusicService {
       link: 'link',
     };
 
-    const songs = result.data.data.map((song) => this.#transformEntity(song, transformationProps));
+    const songs = result.data.data.map((song) =>
+      this.#transformEntity(song, transformationProps)
+    );
 
     return { data: songs, message: result.message };
   };
@@ -76,7 +81,9 @@ class MusicService {
       releaseDate: 'release_date',
     };
 
-    const releases = result.data.data.map((release) => this.#transformEntity(release, transformationProps));
+    const releases = result.data.data.map((release) =>
+      this.#transformEntity(release, transformationProps)
+    );
 
     return { data: releases, message: result.message };
   };
@@ -153,13 +160,15 @@ class MusicService {
       link: 'link',
     };
 
-    const songs = result.data.data.map((song) => this.#transformEntity(song, transformationProps));
+    const songs = result.data.data.map((song) =>
+      this.#transformEntity(song, transformationProps)
+    );
 
     return { data: songs, message: result.message };
   };
 
   getArtistAlbums = async (id, offset = 0) => {
-    const endpoint = `/artist/${id}/albums?limit=5&index=${offset}`;
+    const endpoint = `/artist/${id}/albums?limit=6&index=${offset}`;
     const result = await this.http.request(endpoint);
 
     const transformationProps = {
@@ -168,9 +177,64 @@ class MusicService {
       releaseDate: 'release_date',
     };
 
-    const albums = result.data.data.map((album) => this.#transformEntity(album, transformationProps));
+    const albums = result.data.data.map((album) =>
+      this.#transformEntity(album, transformationProps)
+    );
 
     return { data: albums, message: result.message };
+  };
+
+  getArtistsBySearch = async (query) => {
+    const endpoint = `/search/artist?q=${query}&order=ARTIST_DESC&limit=3`;
+    const result = await this.http.request(endpoint);
+
+    const transformationProps = {
+      title: 'title',
+      coverImg: 'picture_medium',
+      artistName: 'name',
+    };
+
+    const artists = result.data.data.map((artist) =>
+      this.#transformEntity(artist, transformationProps)
+    );
+
+    return { data: artists, message: result.message };
+  };
+
+  getAlbumsBySearch = async (query) => {
+    const endpoint = `/search/album?q=${query}&order=ALBUM_DESC&limit=3`;
+    const result = await this.http.request(endpoint);
+
+    const transformationProps = {
+      title: 'title',
+      coverImg: 'cover_medium',
+      artistName: 'artist.name',
+    };
+
+    const albums = result.data.data.map((album) =>
+      this.#transformEntity(album, transformationProps)
+    );
+
+    return { data: albums, message: result.message };
+  };
+
+  getSongsBySearch = async (query) => {
+    const endpoint = `/search/track?q=${query}&order=TRACK_DESC&limit=3`;
+    const result = await this.http.request(endpoint);
+
+    const transformationProps = {
+      id: 'album.id',
+      title: 'title',
+      artistName: 'artist.name',
+      coverImg: 'album.cover_medium',
+      type: 'album.type',
+    };
+
+    const songs = result.data.data.map((song) =>
+      this.#transformEntity(song, transformationProps)
+    );
+
+    return { data: songs, message: result.message };
   };
 }
 

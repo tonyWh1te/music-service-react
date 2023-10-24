@@ -2,8 +2,15 @@ import { forwardRef } from 'react';
 import clsx from 'clsx';
 
 const Button = forwardRef((props, ref) => {
-  const { children, onClick, className, active, disabled = false, ...attr } = props;
-  const classes = clsx('btn', 'animation-main', className, { active });
+  const {
+    children,
+    onClick,
+    className,
+    active,
+    disabled = false,
+    ...attr
+  } = props;
+  const classes = clsx('btn', className, { active }, 'btn--enabled');
 
   const handleClick = (e) => {
     if (disabled) {
