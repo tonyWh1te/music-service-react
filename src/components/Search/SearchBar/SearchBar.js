@@ -69,7 +69,7 @@ const SearchBar = ({ setResults, setResIsShow, onAssignInputRef }) => {
     <div className="relative">
       <input
         className="search__input"
-        type="text"
+        type="search"
         placeholder="Search"
         value={search}
         ref={inputRef}

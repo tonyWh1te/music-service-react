@@ -2,7 +2,6 @@ import { memo } from 'react';
 import { useParams } from 'react-router-dom';
 import withContent from '../../../hoc/withContent';
 import { ClockIcon } from '@heroicons/react/20/solid';
-import Layout from '../../../components/Layout/Layout';
 import TrackTable from '../../../components/TrackTable/TrackTable';
 import AlbumInfo from '../AlbumInfo/AlbumInfo';
 import './AlbumPage.css';
@@ -17,11 +16,7 @@ const AlbumPage = () => {
     methodParams: [albumId],
   });
 
-  return (
-    <Layout>
-      <ContentWithAlbum />
-    </Layout>
-  );
+  return <ContentWithAlbum />;
 };
 
 const InnerPage = ({ spinner, errorMessage, list: album }) => {

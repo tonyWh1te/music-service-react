@@ -1,6 +1,5 @@
 import { useParams } from 'react-router-dom';
 import withContent from '../../../hoc/withContent';
-import Layout from '../../../components/Layout/Layout';
 import ArtistInfo from '../ArtistInfo/ArtistInfo';
 import ArtistAlbums from '../ArtistAlbums/ArtistAlbums';
 import TrackTableImpl from '../TrackTableImpl/TrackTableImpl';
@@ -11,17 +10,18 @@ const GET_ARTIST = 'getArtist';
 const ArtistPage = () => {
   const { artistId } = useParams();
 
-  const ContentWithArtist = withContent(InnerPage, { methodName: GET_ARTIST, methodParams: [artistId] });
+  const ContentWithArtist = withContent(InnerPage, {
+    methodName: GET_ARTIST,
+    methodParams: [artistId],
+  });
 
-  return (
-    <Layout>
-      <ContentWithArtist />
-    </Layout>
-  );
+  return <ContentWithArtist />;
 };
 
 const InnerPage = ({ spinner, errorMessage, list: artist }) => {
-  const content = !(errorMessage || spinner || !artist) && <View artist={artist} />;
+  const content = !(errorMessage || spinner || !artist) && (
+    <View artist={artist} />
+  );
 
   return (
     <>

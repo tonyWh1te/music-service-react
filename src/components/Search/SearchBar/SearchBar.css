@@ -9,3 +9,7 @@
 .search__close {
   @apply hidden cursor-pointer w-6 h-full justify-start items-center absolute right-1 top-0 md:flex;
 }
+
+input[type='search']::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+}

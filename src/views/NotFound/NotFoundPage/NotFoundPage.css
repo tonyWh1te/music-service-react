@@ -1,0 +1,27 @@
+.not-found {
+  @apply h-screen w-full flex items-center;
+}
+
+.not-found__inner {
+  @apply flex flex-col items-center relative;
+}
+
+.not-found__title {
+  @apply text-9xl tracking-wider mb-5;
+}
+
+.not-found__text {
+  @apply bg-main-green px-2 rounded rotate-12 absolute bottom-24 text-black;
+}
+
+.not-found__link {
+  @apply relative inline-block text-sm font-medium text-main-green active:text-active-green focus:outline-none;
+}
+
+.not-found__link span:first-child {
+  @apply absolute inset-0 transition-transform translate-x-0.5 translate-y-0.5 bg-main-green;
+}
+
+.not-found__link span:last-child {
+  @apply relative block px-8 py-3 border border-current bg-gradient-main;
+}

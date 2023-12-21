@@ -1,14 +1,15 @@
-import Layout from '../../../components/Layout/Layout';
 import { GenresList } from '../../../components/Lists';
 import withContent from '../../../hoc/withContent';
 
 const GET_ALL_GENRES = 'getAllGenres';
 
 const GenresPage = () => {
-  const ContentWithGenres = withContent(GenresList, { methodName: GET_ALL_GENRES });
+  const ContentWithGenres = withContent(GenresList, {
+    methodName: GET_ALL_GENRES,
+  });
 
   return (
-    <Layout>
+    <>
       <div className="container-wrapper md:mx-0">
         <h1 className="page-title mb-10">Browse</h1>
       </div>
@@ -20,7 +21,7 @@ const GenresPage = () => {
           {<ContentWithGenres />}
         </div>
       </section>
-    </Layout>
+    </>
   );
 };
 

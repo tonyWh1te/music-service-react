@@ -1,15 +1,20 @@
 import { useParams, useSearchParams } from 'react-router-dom';
 import withContent from '../../../hoc/withContent';
 import { PARAM_NAME, PARAM_VALUE_DEFAULT } from '../../../utils/constants';
-import { GenreArtists, GenreNewReleases, GenreOverwiew } from '../GenreTabs/index';
-import Layout from '../../../components/Layout/Layout';
+import {
+  GenreArtists,
+  GenreNewReleases,
+  GenreOverwiew,
+} from '../GenreTabs/index';
 import Tabs from '../../../components/Tabs/Tabs';
 import './GenrePage.css';
 
 const GET_GENRE = 'getGenre';
 
 const InnerPage = ({ errorMessage, spinner, list: genre }) => {
-  const content = !(errorMessage || spinner || !genre) ? <View genre={genre} /> : null;
+  const content = !(errorMessage || spinner || !genre) ? (
+    <View genre={genre} />
+  ) : null;
 
   return (
     <>
@@ -73,13 +78,12 @@ const View = ({ genre }) => {
 const GenrePage = () => {
   const { genreId } = useParams();
 
-  const ContentWithGenre = withContent(InnerPage, { methodName: GET_GENRE, methodParams: [genreId] });
+  const ContentWithGenre = withContent(InnerPage, {
+    methodName: GET_GENRE,
+    methodParams: [genreId],
+  });
 
-  return (
-    <Layout>
-      <ContentWithGenre />
-    </Layout>
-  );
+  return <ContentWithGenre />;
 };
 
 export default GenrePage;

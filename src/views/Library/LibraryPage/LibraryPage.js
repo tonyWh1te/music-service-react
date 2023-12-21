@@ -1,8 +1,7 @@
-import Layout from '../../../components/Layout/Layout';
 import './LibraryPage.css';
 
 const LibraryPage = () => {
-  return <Layout></Layout>;
+  return <h1>Library</h1>;
 };
 
 export default LibraryPage;
