@@ -26,6 +26,10 @@
   @apply w-[70px] h-[70px] object-cover;
 }
 
+.media-player__artist-link {
+  @apply opacity-70 hover:underline;
+}
+
 .media-player__center {
   @apply flex flex-col md:w-2/6;
 }

@@ -1,17 +1,29 @@
 import clsx from 'clsx';
+import { usePlayer } from '../../hooks';
 import { fmtMSS } from '../../utils/helpers/time.helpers';
 import { HeartIcon } from '@heroicons/react/20/solid';
 import './TrackTable.css';
 
 const TrackTable = (props) => {
-  const { tracksData, tableHeaders, currentSong, setCurrentSong } = props;
+  const { tracksData, tableHeaders } = props;
 
-  const onClickSong = (i) => {
-    setCurrentSong(i);
+  const {
+    setCurrentSong,
+    setSongList,
+    state: { activeSong },
+  } = usePlayer();
+
+  const onClickSong = (i, tracksData, songId) => {
+    return () => {
+      if (activeSong !== songId) {
+        setSongList(tracksData);
+        setCurrentSong(i);
+      }
+    };
   };
 
   return (
-    <table className="table-songs">
+    <table className='table-songs'>
       <thead>
         <tr>
           {tableHeaders.map(({ content, classes }, i) => (
@@ -25,10 +37,12 @@ const TrackTable = (props) => {
         </tr>
       </thead>
       <tbody>
-        {tracksData.map(({ id, title, artistName, albumTitle, duration }, i) => {
+        {tracksData.map((track, i) => {
+          const { id, title, artistName, albumTitle, duration } = track;
+
           const rowClasses = clsx({
             'table-songs__row': true,
-            'table-songs__row--active': currentSong === i,
+            'table-songs__row--active': activeSong.id === id,
           });
 
           return (
@@ -36,15 +50,21 @@ const TrackTable = (props) => {
               className={rowClasses}
               key={id}
             >
-              <td className="table-songs__data table-songs__text">
-                <span onClick={() => onClickSong(i)}>{title}</span>
+              <td className='table-songs__data table-songs__text'>
+                <span onClick={onClickSong(i, tracksData, id)}>{title}</span>
               </td>
-              <td className="table-songs__data table-songs__text">{artistName}</td>
-              <td className="table-songs__data table-songs__text hidden md:table-cell">{albumTitle}</td>
-              <td className="table-songs__data table-songs__text">{fmtMSS(duration)}</td>
-              <td className="table-songs__data">
+              <td className='table-songs__data table-songs__text'>
+                {artistName}
+              </td>
+              <td className='table-songs__data table-songs__text hidden md:table-cell'>
+                {albumTitle}
+              </td>
+              <td className='table-songs__data table-songs__text'>
+                {fmtMSS(duration)}
+              </td>
+              <td className='table-songs__data'>
                 <button>
-                  <HeartIcon className="w-5 h-5 hover:fill-main-green animation-main" />
+                  <HeartIcon className='w-5 h-5 hover:fill-main-green animation-main' />
                 </button>
               </td>
             </tr>

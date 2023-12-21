@@ -1,5 +1,5 @@
 import React from 'react';
-import { useMediaQuery } from '../../../hooks';
+import { useMediaQuery, usePlayer } from '../../../hooks';
 import { Link } from 'react-router-dom';
 import { ShareIcon, PlusSmallIcon, PlayIcon } from '@heroicons/react/20/solid';
 import Popover from '../../../components/Popover/Popover';
@@ -10,8 +10,14 @@ import { formatSeconds } from '../../../utils/helpers/time.helpers';
 import { BUTTON_IDS } from '../../../utils/constants';
 import './AlbumInfo.css';
 
-const AlbumInfo = ({ album, setCurrentSong }) => {
-  const { link } = album;
+const AlbumInfo = ({ album }) => {
+  const { link, tracksData } = album;
+
+  const {
+    setCurrentSong,
+    setSongList,
+    state: { currentSongIndex },
+  } = usePlayer();
 
   const media = useMediaQuery('lg');
 
@@ -26,7 +32,14 @@ const AlbumInfo = ({ album, setCurrentSong }) => {
       id: BUTTON_IDS.PLAY,
       label: media ? 'play' : <PlayIcon className="icon fill-black" />,
       classes: 'button__primary album__btn',
-      onClick: () => setCurrentSong(0),
+      onClick: () => {
+        const initIndex = 0;
+
+        if (currentSongIndex !== initIndex) {
+          setSongList(tracksData);
+          setCurrentSong(initIndex);
+        }
+      },
     },
     {
       id: BUTTON_IDS.SHARE,
@@ -77,7 +90,8 @@ const AlbumInfo = ({ album, setCurrentSong }) => {
 };
 
 const View = ({ album, items }) => {
-  const { coverImg, title, artistName, artistId, total, duration, date } = album;
+  const { coverImg, title, artistName, artistId, total, duration, date } =
+    album;
 
   return (
     <div className="album__info album__info-item">
@@ -105,7 +119,9 @@ const View = ({ album, items }) => {
                   <span className="album__additional-text">{total} songs</span>
                 </li>
                 <li className="album__additional-item">
-                  <span className="album__additional-text">{formatSeconds(duration)}</span>
+                  <span className="album__additional-text">
+                    {formatSeconds(duration)}
+                  </span>
                 </li>
                 <li className="album__additional-item">
                   <span className="album__additional-text">{date}</span>

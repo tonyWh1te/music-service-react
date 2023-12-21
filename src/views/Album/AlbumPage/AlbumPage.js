@@ -1,6 +1,5 @@
-import { useEffect, memo } from 'react';
+import { memo } from 'react';
 import { useParams } from 'react-router-dom';
-import { usePlayer } from '../../../hooks';
 import withContent from '../../../hoc/withContent';
 import { ClockIcon } from '@heroicons/react/20/solid';
 import Layout from '../../../components/Layout/Layout';
@@ -13,7 +12,10 @@ const GET_ALBUM = 'getAlbum';
 const AlbumPage = () => {
   const { albumId } = useParams();
 
-  const ContentWithAlbum = withContent(InnerPage, { methodName: GET_ALBUM, methodParams: [albumId] });
+  const ContentWithAlbum = withContent(InnerPage, {
+    methodName: GET_ALBUM,
+    methodParams: [albumId],
+  });
 
   return (
     <Layout>
@@ -23,24 +25,8 @@ const AlbumPage = () => {
 };
 
 const InnerPage = ({ spinner, errorMessage, list: album }) => {
-  const {
-    setSongList,
-    setCurrentSong,
-    state: { currentSong },
-  } = usePlayer();
-
-  useEffect(() => {
-    if (album?.tracksData) {
-      setSongList(album.tracksData);
-    }
-  }, [album]);
-
   const content = !(errorMessage || spinner || !album) ? (
-    <View
-      album={album}
-      setCurrentSong={setCurrentSong}
-      currentSong={currentSong}
-    />
+    <View album={album} />
   ) : null;
 
   return (
@@ -52,7 +38,7 @@ const InnerPage = ({ spinner, errorMessage, list: album }) => {
   );
 };
 
-const View = memo(({ album, setCurrentSong, currentSong }) => {
+const View = memo(({ album }) => {
   const { tracksData } = album;
 
   const tableHeaders = [
@@ -72,17 +58,12 @@ const View = memo(({ album, setCurrentSong, currentSong }) => {
 
   return (
     <>
-      <AlbumInfo
-        album={album}
-        setCurrentSong={setCurrentSong}
-      />
+      <AlbumInfo album={album} />
       <div className="album-songs album-song__block">
         <div className="container-wrapper md:mx-0">
           <TrackTable
             tableHeaders={tableHeaders}
             tracksData={tracksData}
-            currentSong={currentSong}
-            setCurrentSong={setCurrentSong}
           />
         </div>
       </div>

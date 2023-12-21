@@ -12,13 +12,16 @@ import {
 const Control = ({ toggleAudio }) => {
   const {
     state: { repeat, playing },
-    togglePlaying,
     toggleRepeat,
     prevSong,
     nextSong,
   } = usePlayer();
 
   const arrowClasses = clsx({ 'media-player__button--active': repeat });
+
+  const onPlayPauseClick = () => {
+    toggleAudio();
+  };
 
   return (
     <div className="media-player__buttons">
@@ -33,10 +36,7 @@ const Control = ({ toggleAudio }) => {
       </button>
       <button
         className="media-player__button animation-main block w-8 h-8"
-        onClick={() => {
-          togglePlaying();
-          toggleAudio();
-        }}
+        onClick={onPlayPauseClick}
       >
         {playing ? <PauseCircleIcon /> : <PlayCircleIcon />}
       </button>

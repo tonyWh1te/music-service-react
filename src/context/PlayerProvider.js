@@ -19,7 +19,8 @@ const playerReducer = (state, action) => {
     case SET_CURRENT_SONG:
       return {
         ...state,
-        currentSong: action.payload,
+        currentSongIndex: action.payload,
+        activeSong: state.songList[action.payload],
         playing: true,
         show: true,
       };
@@ -46,7 +47,8 @@ const playerReducer = (state, action) => {
 
 const PlayerProvider = ({ children }) => {
   const initialState = {
-    currentSong: null,
+    currentSongIndex: null,
+    activeSong: {},
     songList: [],
     repeat: false,
     playing: false,
@@ -55,37 +57,50 @@ const PlayerProvider = ({ children }) => {
 
   const [state, dispath] = useReducer(playerReducer, initialState);
 
-  const setSongList = (list) => dispath({ type: 'SET_SONGS_ARRAY', payload: list });
+  const setSongList = useCallback((list) => {
+    dispath({ type: 'SET_SONGS_ARRAY', payload: list });
+  }, []);
 
-  const setCurrentSong = useCallback(
-    (id) => {
-      if (state.currentSong !== id) {
-        dispath({ type: 'SET_CURRENT_SONG', payload: id });
-      }
-    },
-    [state.currentSong]
-  );
+  const setCurrentSong = useCallback((i) => {
+    dispath({ type: 'SET_CURRENT_SONG', payload: i });
+  }, []);
 
-  const togglePlaying = () => dispath({ type: 'TOGGLE_PLAYING', payload: !state.playing });
+  const playPause = (isPlaying) =>
+    dispath({ type: 'TOGGLE_PLAYING', payload: isPlaying });
 
-  const toggleRepeat = () => dispath({ type: 'TOGGLE_REPEAT', payload: !state.repeat });
+  const toggleRepeat = () =>
+    dispath({ type: 'TOGGLE_REPEAT', payload: !state.repeat });
 
   const closePlayer = () =>
     dispath({
       type: 'CLOSE_PLAYER',
-      payload: { currentSong: null, repeat: false, playing: false, show: false },
+      payload: {
+        currentSongIndex: null,
+        activeSong: {},
+        repeat: false,
+        playing: false,
+        show: false,
+      },
     });
 
   const prevSong = () =>
-    setCurrentSong(state.currentSong === 0 ? state.songList.length - 1 : state.currentSong - 1);
+    setCurrentSong(
+      state.currentSongIndex === 0
+        ? state.songList.length - 1
+        : state.currentSongIndex - 1
+    );
 
   const nextSong = () =>
-    setCurrentSong(state.currentSong === state.songList.length - 1 ? 0 : state.currentSong + 1);
+    setCurrentSong(
+      state.currentSongIndex === state.songList.length - 1
+        ? 0
+        : state.currentSongIndex + 1
+    );
 
   const onEndSong = () => {
     if (state.repeat) {
-      setCurrentSong(state.currentSong);
-    } else if (state.currentSong === state.songList.length - 1) {
+      setCurrentSong(state.currentSongIndex);
+    } else if (state.currentSongIndex === state.songList.length - 1) {
       return;
     } else {
       nextSong();
@@ -98,7 +113,7 @@ const PlayerProvider = ({ children }) => {
         state,
         setSongList,
         setCurrentSong,
-        togglePlaying,
+        playPause,
         toggleRepeat,
         prevSong,
         nextSong,

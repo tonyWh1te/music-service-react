@@ -28,6 +28,7 @@ class MusicService {
 
     const transformationProps = {
       title: 'title',
+      artistId: 'artist.id',
       artistName: 'artist.name',
       coverImg: 'album.cover_big',
       songFile: 'preview',
@@ -116,6 +117,7 @@ class MusicService {
     const transformationPropsTrack = {
       title: 'title',
       artistName: 'artist.name',
+      artistId: 'artist.id',
       albumTitle: 'album.title',
       coverImg: 'album.cover_big',
       songFile: 'preview',
@@ -152,6 +154,7 @@ class MusicService {
 
     const transformationProps = {
       title: 'title',
+      artistId: 'artist.id',
       albumTitle: 'album.title',
       artistName: 'artist.name',
       coverImg: 'album.cover_big',

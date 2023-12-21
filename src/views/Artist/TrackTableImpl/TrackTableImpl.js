@@ -1,8 +1,6 @@
-import { useEffect } from 'react';
 import { ClockIcon } from '@heroicons/react/20/solid';
 import withContent from '../../../hoc/withContent';
 import TrackTable from '../../../components/TrackTable/TrackTable';
-import { usePlayer } from '../../../hooks';
 
 const GET_TOP_SONGS_ARTIST = 'getTopSongsArtist';
 
@@ -32,25 +30,16 @@ const TrackTableImpl = ({ artist }) => {
   return <ContentWithTable tableHeaders={tableHeaders} />;
 };
 
-const TrackTableWrapper = ({ spinner, errorMessage, list: tracks, tableHeaders }) => {
-  useEffect(() => {
-    if (tracks !== null) {
-      setSongList(tracks);
-    }
-  }, [tracks]);
-
-  const {
-    setSongList,
-    setCurrentSong,
-    state: { currentSong },
-  } = usePlayer();
-
+const TrackTableWrapper = ({
+  spinner,
+  errorMessage,
+  list: tracks,
+  tableHeaders,
+}) => {
   const content = !(errorMessage || spinner || !tracks) ? (
     <TrackTable
       tracksData={tracks}
       tableHeaders={tableHeaders}
-      setCurrentSong={setCurrentSong}
-      currentSong={currentSong}
     />
   ) : null;
 

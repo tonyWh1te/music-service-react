@@ -1,24 +1,28 @@
-import { useEffect } from 'react';
 import { usePlayer } from '../../../hooks';
 import './SongList.css';
 
 const SongList = ({ errorMessage, spinner, list }) => {
-  const { setSongList, setCurrentSong } = usePlayer();
+  const {
+    setCurrentSong,
+    setSongList,
+    state: { activeSong },
+  } = usePlayer();
 
-  useEffect(() => {
-    if (list !== null) {
-      setSongList(list);
-    }
-  }, [list]);
-
-  const renderItems = (songList) => {
-    return (songList ?? []).map(({ id, coverImg, title, artistName }, i) => (
-      <SongCard
-        key={id}
-        songInfo={{ coverImg, title, artistName }}
-        onClick={() => {
+  const renderItems = (songsData) => {
+    const onSongClick = (songsData, i, songId) => {
+      return () => {
+        if (activeSong.id !== songId) {
+          setSongList(songsData);
           setCurrentSong(i);
-        }}
+        }
+      };
+    };
+
+    return (songsData ?? []).map((song, i) => (
+      <SongCard
+        key={song.id}
+        songInfo={song}
+        onClick={onSongClick(songsData, i, song.id)}
       />
     ));
   };
