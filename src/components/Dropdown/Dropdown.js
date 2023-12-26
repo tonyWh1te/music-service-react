@@ -10,12 +10,6 @@ const Dropdown = () => {
 
   const menuItems = [
     {
-      name: 'Account settings',
-      href: '/settings',
-      onClick: () => {},
-      additionalProps: {},
-    },
-    {
       name: 'Sign out',
       href: '/',
       onClick: () => logout(),

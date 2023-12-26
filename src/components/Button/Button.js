@@ -1,5 +1,6 @@
 import { forwardRef } from 'react';
 import clsx from 'clsx';
+import './Button.css';
 
 const Button = forwardRef((props, ref) => {
   const {
@@ -10,7 +11,14 @@ const Button = forwardRef((props, ref) => {
     disabled = false,
     ...attr
   } = props;
-  const classes = clsx('btn', className, { active }, 'btn--enabled');
+
+  const classes = clsx(
+    'btn',
+    'button-title',
+    className,
+    { active },
+    'btn--enabled'
+  );
 
   const handleClick = (e) => {
     if (disabled) {

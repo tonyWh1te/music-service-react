@@ -1,5 +1,5 @@
 .form__input {
-  @apply w-full bg-transparent border-0 border-b-2 border-form-green text-center font-light text-[22px] placeholder:text-center focus:ring-0 focus:border-main-green;
+  @apply w-full text-center font-light placeholder:text-center;
 }
 
 .form__input-error {

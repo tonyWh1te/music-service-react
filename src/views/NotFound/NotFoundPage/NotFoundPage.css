@@ -6,10 +6,6 @@
   @apply flex flex-col items-center relative;
 }
 
-.not-found__title {
-  @apply text-9xl tracking-wider mb-5;
-}
-
 .not-found__text {
   @apply bg-main-green px-2 rounded rotate-12 absolute bottom-24 text-black;
 }

@@ -1,4 +1,4 @@
-import { useRef, useContext } from 'react';
+import { useRef, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useMediaQuery } from '../../../hooks';
 import AuthBoxContext from '../../../context/AuthBoxProvider';
@@ -13,14 +13,19 @@ const LandingNav = ({ items }) => {
 
   const navigate = useNavigate();
 
-  const responsiveNav = navRef.current;
+  useEffect(() => {
+    const responsiveNav = navRef.current;
 
-  if (media && responsiveNav.classList.contains('header-landing__nav--responsive')) {
-    responsiveNav.classList.remove('header-landing__nav--responsive');
-  }
+    if (
+      media &&
+      responsiveNav.classList.contains('header-landing__nav--responsive')
+    ) {
+      responsiveNav.classList.remove('header-landing__nav--responsive');
+    }
+  }, [media]);
 
   const toggleNavbar = () => {
-    responsiveNav.classList.toggle('header-landing__nav--responsive');
+    navRef.current.classList.toggle('header-landing__nav--responsive');
   };
 
   const goToAuth = (form) => {

@@ -68,7 +68,7 @@ const SearchBar = ({ setResults, setResIsShow, onAssignInputRef }) => {
   return (
     <div className="relative">
       <input
-        className="search__input"
+        className="w-56 pl-[2.375rem] pr-7 py-[0.375rem] hidden md:block"
         type="search"
         placeholder="Search"
         value={search}

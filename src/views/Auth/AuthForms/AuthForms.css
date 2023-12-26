@@ -22,10 +22,6 @@
   @apply w-full bg-transparent border-form-green rounded border-2 focus:border-main-green focus:ring-0;
 }
 
-.form__btn {
-  @apply w-full md:w-1/2 mx-auto mb-4 font-semibold text-3xl py-4 px-0 normal-case tracking-normal;
-}
-
 .form_text {
   @apply font-light text-lg;
 }

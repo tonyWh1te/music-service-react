@@ -6,7 +6,7 @@ const NotFoundPage = () => {
     <section className="not-found">
       <div className="container-wrapper">
         <div className="not-found__inner">
-          <h1 className="title-main not-found__title">404</h1>
+          <h1 className="title-main text-9xl tracking-wider mb-5">404</h1>
           <p className="not-found__text">Page Not Found</p>
           <Link
             to="/home"
