@@ -3,6 +3,7 @@ import { useAuth } from '../../hooks';
 import { Link } from 'react-router-dom';
 import SearchWrapper from '../Search/SearchWrapper';
 import Dropdown from '../Dropdown/Dropdown';
+import { boyProfilePic } from '../../assets';
 import './Header.css';
 
 const Header = () => {
@@ -20,10 +21,10 @@ const Header = () => {
             >
               <img
                 className="user__img"
-                src={auth.user.pic}
+                src={boyProfilePic}
                 alt="profile-pic"
               />
-              <p className="user__text">{auth.user?.name}</p>
+              <p className="user__text">{auth.user.email}</p>
             </Link>
             <Dropdown />
           </div>

@@ -6,11 +6,13 @@ import './LandingPage.css';
 const LandingPage = () => {
   const items = [
     {
-      value: 'Log in',
+      id: 'login',
+      title: 'Log in',
       classes: 'header-landing__link animation-main hover:opacity-80',
     },
     {
-      value: 'Sign up',
+      id: 'signup',
+      title: 'Sign up',
       classes: 'header-landing__link header-landing__button animation-main',
     },
   ];

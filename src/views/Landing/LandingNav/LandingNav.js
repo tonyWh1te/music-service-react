@@ -1,17 +1,12 @@
-import { useRef, useContext, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useRef, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { useMediaQuery } from '../../../hooks';
-import AuthBoxContext from '../../../context/AuthBoxProvider';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/20/solid';
 import './LandingNav.css';
 
 const LandingNav = ({ items }) => {
   const navRef = useRef(null);
   const media = useMediaQuery('lg');
-
-  const { switchToLogin, switchToSignUp } = useContext(AuthBoxContext);
-
-  const navigate = useNavigate();
 
   useEffect(() => {
     const responsiveNav = navRef.current;
@@ -28,16 +23,6 @@ const LandingNav = ({ items }) => {
     navRef.current.classList.toggle('header-landing__nav--responsive');
   };
 
-  const goToAuth = (form) => {
-    if (form === 'Log in') {
-      switchToLogin();
-    } else {
-      switchToSignUp();
-    }
-
-    navigate('/auth');
-  };
-
   return (
     <header className="h-[104px]">
       <div className="container-wrapper">
@@ -47,17 +32,18 @@ const LandingNav = ({ items }) => {
             className="header-landing__nav"
           >
             <ul className="header-landing__list">
-              {items.map(({ value, classes }, i) => (
+              {items.map(({ id, title, classes }) => (
                 <li
-                  key={i}
+                  key={id}
                   className="header-landing__list-item"
                 >
-                  <a
+                  <Link
+                    to="/auth"
                     className={classes}
-                    onClick={() => goToAuth(value)}
+                    state={{ activeForm: id }}
                   >
-                    {value}
-                  </a>
+                    {title}
+                  </Link>
                 </li>
               ))}
             </ul>

@@ -1,28 +1,24 @@
 import { createContext, useState } from 'react';
 
 const AuthBoxContext = createContext({
-  active: 'login',
-  newInitValues: null,
-  switchToLogin: () => {},
-  switchToSignUp: () => {},
+  activeForm: 'login',
+  onSwitchForm: () => {},
 });
 
 const AuthBoxProvider = ({ children }) => {
-  const [active, setActive] = useState('login');
-  const [newInitValues, setNewInitValues] = useState(null);
+  const [activeForm, setActiveForm] = useState('login');
 
-  const switchToLogin = (enteredSignUpValues = null) => {
-    setNewInitValues(enteredSignUpValues);
-    setActive('login');
+  const onSwitchForm = (active) => {
+    setActiveForm(active);
   };
 
-  const switchToSignUp = () => {
-    setActive('signup');
-  };
+  const contextValue = { onSwitchForm, activeForm };
 
-  const contextValue = { switchToLogin, switchToSignUp, newInitValues, active };
-
-  return <AuthBoxContext.Provider value={contextValue}>{children}</AuthBoxContext.Provider>;
+  return (
+    <AuthBoxContext.Provider value={contextValue}>
+      {children}
+    </AuthBoxContext.Provider>
+  );
 };
 
 export { AuthBoxProvider };

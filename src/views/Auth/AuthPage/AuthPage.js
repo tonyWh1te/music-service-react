@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { AuthForms } from '../AuthForms';
+import { AuthForm } from '../AuthForms';
 import { logo } from '../../../assets';
 import './AuthPage.css';
 
@@ -16,7 +16,7 @@ const AuthPage = () => {
                 alt="logo"
               />
             </Link>
-            <AuthForms />
+            <AuthForm />
           </div>
         </div>
       </main>

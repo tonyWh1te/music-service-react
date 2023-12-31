@@ -1,17 +1,20 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import AuthBoxContext from '../../../context/AuthBoxProvider';
 import LoginForm from './LoginForm';
 import SignUpForm from './SignUpForm';
 
-const AuthForms = () => {
-  const { active } = useContext(AuthBoxContext);
+const AuthForm = () => {
+  const { onSwitchForm, activeForm } = useContext(AuthBoxContext);
+  const location = useLocation();
 
-  return (
-    <>
-      {active === 'login' && <LoginForm />}
-      {active === 'signup' && <SignUpForm />}
-    </>
-  );
+  useEffect(() => {
+    const active = location.state?.activeForm || 'login';
+
+    onSwitchForm(active);
+  }, []);
+
+  return <>{activeForm === 'login' ? <LoginForm /> : <SignUpForm />}</>;
 };
 
-export { AuthForms };
+export { AuthForm };

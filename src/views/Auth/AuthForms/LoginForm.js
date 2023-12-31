@@ -1,97 +1,17 @@
-import { useContext } from 'react';
 import { useAuth } from '../../../hooks';
-import { Formik, Form } from 'formik';
-import { TailSpin } from 'react-loader-spinner';
+import { Formik } from 'formik';
 import { useNavigate, useLocation } from 'react-router-dom';
-import UserService from '../../../service/UserService.service';
-import AuthBoxContext from '../../../context/AuthBoxProvider';
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import FormView from './FormView';
 import { loginSchema } from '../../../utils/helpers/validation.helpers';
-import InputText from '../../../components/InputText/InputText';
-import Button from '../../../components/Button/Button';
-import './AuthForms.css';
-
-const InnerForm = ({ formikProps, switchToSignUp }) => {
-  const { isSubmitting, handleSubmit, status, setStatus } = formikProps;
-
-  const showErrorMessage = (message) => {
-    setTimeout(() => setStatus(undefined), 3000);
-
-    return <div className="bg-red-800 rounded-sm mt-3 p-3 font-semibold">{message}</div>;
-  };
-
-  return (
-    <>
-      <div className="form__block xl:w-1/2">
-        <Form
-          className="form__content"
-          method="post"
-        >
-          <div className="form__inputs-item mb-14">
-            <InputText
-              className="form__input"
-              type="email"
-              name="email"
-              id="email"
-              placeholder="Enter Your Mail"
-            />
-          </div>
-          <div className="form__inputs-item mb-14">
-            <InputText
-              className="form__input"
-              type="password"
-              name="password"
-              id="password"
-              placeholder="Enter your password"
-            />
-          </div>
-          <Button
-            className="form__btn button__primary"
-            onClick={handleSubmit}
-            type="submit"
-            disabled={isSubmitting}
-          >
-            {isSubmitting ? (
-              <TailSpin
-                height="32"
-                width="32"
-                ariaLabel="tail-spin-loading"
-                radius="1"
-                color="#ffff"
-                wrapperStyle={{ justifyContent: 'center' }}
-                wrapperClass=""
-                visible={true}
-              />
-            ) : (
-              'Login'
-            )}
-          </Button>
-          <p className="form_text">
-            Don't have an account?{' '}
-            <button
-              className="font-bold"
-              type="button"
-              onClick={switchToSignUp}
-            >
-              Sign up
-            </button>
-          </p>
-        </Form>
-      </div>
-      {status && status.error ? showErrorMessage(status.error) : null}
-    </>
-  );
-};
 
 const LoginForm = () => {
-  const { switchToSignUp } = useContext(AuthBoxContext);
-
   const { login } = useAuth();
 
   const navigate = useNavigate();
   const location = useLocation();
-  const from = location.state?.from.pathname || '/home';
 
-  const userService = new UserService();
+  const from = location.state.from?.pathname || '/home';
 
   const initialValues = {
     email: '',
@@ -99,19 +19,29 @@ const LoginForm = () => {
   };
 
   const onSubmit = async (values, { resetForm }) => {
-    let statusMessage = {};
+    const auth = getAuth();
 
-    try {
-      const res = await userService.loginUser(values);
+    let statusMessage = '';
 
-      login({ user: res.data }, () => {
-        navigate(from, { replace: true });
-      });
-    } catch (error) {
-      statusMessage = { error: error.message };
-    } finally {
-      resetForm({ values: initialValues, status: statusMessage });
-    }
+    signInWithEmailAndPassword(auth, values.email, values.password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+
+        login(
+          {
+            user: { email: user.email, id: user.uid, token: user.accessToken },
+          },
+          () => {
+            navigate(from, { replace: true });
+          }
+        );
+      })
+      .catch((error) => {
+        statusMessage = 'Invalid user name or password.';
+      })
+      .finally(() =>
+        resetForm({ values: initialValues, status: statusMessage })
+      );
   };
 
   return (
@@ -120,12 +50,7 @@ const LoginForm = () => {
       validationSchema={loginSchema}
       onSubmit={onSubmit}
     >
-      {(formikProps) => (
-        <InnerForm
-          formikProps={formikProps}
-          switchToSignUp={switchToSignUp}
-        />
-      )}
+      {(formikProps) => <FormView formikProps={formikProps} />}
     </Formik>
   );
 };
