@@ -37,7 +37,7 @@ const BUTTON_IDS = {
 };
 
 // http config
-const API_MUSIC_PATH = `/musicApi`;
+const API_MUSIC_PATH = `https://api.deezer.com`;
 
 export {
   validationMessages,
