@@ -171,7 +171,7 @@ class MusicService {
   };
 
   getArtistAlbums = async (id, offset = 0) => {
-    const endpoint = `/artist/${id}/albums?limit=6&index=${offset}`;
+    const endpoint = `/artist/${id}/albums?limit=5&index=${offset}`;
     const result = await this.http.request(endpoint);
 
     const transformationProps = {

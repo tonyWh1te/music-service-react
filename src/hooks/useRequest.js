@@ -1,14 +1,23 @@
 import { useCallback, useState } from 'react';
 import axios from 'axios';
-import { API_MUSIC_PATH } from '../utils/constants';
+import {
+  DEV_API_MUSIC_PATH,
+  PROD_API_MUSIC_PATH,
+  PROXY,
+} from '../utils/constants';
 
 const useRequest = () => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
+  const baseURL =
+    process.env.NODE_ENV === 'production'
+      ? `${PROXY}${encodeURIComponent(PROD_API_MUSIC_PATH)}`
+      : DEV_API_MUSIC_PATH;
+
   const defaultConfig = {
     method: 'get',
-    baseURL: API_MUSIC_PATH,
+    baseURL,
     headers: {
       'Content-Type': 'application/json',
       'Accept-Language': 'en',
@@ -23,7 +32,7 @@ const useRequest = () => {
       console.log(url);
       const response = await axios({ url, ...config });
 
-      if ('error' in response.data) {
+      if (Object.is(response.data) && 'error' in response.data) {
         throw new Error(response.data.error.message);
       }
 
@@ -36,7 +45,11 @@ const useRequest = () => {
       if (error.response) {
         setError(error.response.data);
 
-        throw new Error(error.response.data, error.response.status, error.response.headers);
+        throw new Error(
+          error.response.data,
+          error.response.status,
+          error.response.headers
+        );
       } else if (error.request) {
         setError(error.request);
 

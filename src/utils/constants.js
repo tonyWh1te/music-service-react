@@ -37,7 +37,9 @@ const BUTTON_IDS = {
 };
 
 // http config
-const API_MUSIC_PATH = `https://api.deezer.com`;
+const PROD_API_MUSIC_PATH = `https://api.deezer.com`;
+const DEV_API_MUSIC_PATH = `/musicApi`;
+const PROXY = 'https://thingproxy.freeboard.io/fetch/';
 
 export {
   validationMessages,
@@ -50,5 +52,7 @@ export {
   PARAM_NAME,
   PARAM_VALUE_DEFAULT,
   BUTTON_IDS,
-  API_MUSIC_PATH,
+  DEV_API_MUSIC_PATH,
+  PROD_API_MUSIC_PATH,
+  PROXY,
 };
