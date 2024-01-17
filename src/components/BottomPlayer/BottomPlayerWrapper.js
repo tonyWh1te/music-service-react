@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { usePlayer } from '../../hooks';
 import BottomPlayer from './BottomPlayer';
 
@@ -9,4 +10,4 @@ const BottomPlayerWrapper = () => {
   return show && <BottomPlayer />;
 };
 
-export default BottomPlayerWrapper;
+export default memo(BottomPlayerWrapper);

@@ -34,6 +34,18 @@
   @apply p-1 lg:px-10 lg:py-2;
 }
 
+.artist__feedback {
+  @apply absolute bottom-0 left-0 right-0 opacity-0;
+}
+
+.artist__feedback.artist__feedback--press {
+  @apply transition-all duration-700 bottom-11 animate-popping-heart;
+}
+
+.artist__feedback-icon {
+  @apply m-auto h-5 w-5;
+}
+
 .artist__info-followers {
   @apply mb-3 xl:mb-0 xl:self-end;
 }

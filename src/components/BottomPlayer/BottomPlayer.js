@@ -78,7 +78,10 @@ const BottomPlayer = () => {
           <Track track={activeSong} />
         </div>
         <div className="media-player__center">
-          <Control toggleAudio={toggleAudio} />
+          <Control
+            toggleAudio={toggleAudio}
+            track={activeSong}
+          />
           <Seekbar
             currentTime={currentTime}
             dur={dur}

@@ -14,7 +14,7 @@ const AlbumCard = ({ albumInfo }) => {
         />
         <h4 className="card-title">{title}</h4>
         {artistName && <p className="card-info">{artistName}</p>}
-        <p className="card-info">Released: {releaseDate}</p>
+        {releaseDate && <p className="card-info">Released: {releaseDate}</p>}
       </Link>
     </li>
   );

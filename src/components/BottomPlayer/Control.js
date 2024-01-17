@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { usePlayer } from '../../hooks';
+import { usePlayer, useFavorites } from '../../hooks';
 import {
   PlayCircleIcon,
   PauseCircleIcon,
@@ -9,7 +9,7 @@ import {
   HeartIcon,
 } from '@heroicons/react/20/solid';
 
-const Control = ({ toggleAudio }) => {
+const Control = ({ toggleAudio, track }) => {
   const {
     state: { repeat, playing },
     toggleRepeat,
@@ -17,16 +17,34 @@ const Control = ({ toggleAudio }) => {
     nextSong,
   } = usePlayer();
 
+  const { addToFavorites, deleteFromFavorites, isFavorited } = useFavorites();
+
+  const { id, type } = track;
+
+  const isFav = isFavorited(id, type);
+
+  const heartIconClasses = clsx({ 'fill-main-green': isFav });
   const arrowClasses = clsx({ 'media-player__button--active': repeat });
 
   const onPlayPauseClick = () => {
     toggleAudio();
   };
 
+  const onAddToFavClick = (item) => () => {
+    if (isFav) {
+      deleteFromFavorites(item);
+    } else {
+      addToFavorites(item);
+    }
+  };
+
   return (
     <div className="media-player__buttons">
       <button className="media-player__button animation-main block">
-        <HeartIcon className="" />
+        <HeartIcon
+          className={heartIconClasses}
+          onClick={onAddToFavClick(track)}
+        />
       </button>
       <button
         className="media-player__button animation-main"

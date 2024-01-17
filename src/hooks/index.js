@@ -6,6 +6,7 @@ import useMediaQuery from './useMediaQuery';
 import usePlayer from './usePlayer';
 import usePopover from './usePopover';
 import useDebounce from './useDebounce';
+import useFavorites from './useFavorites';
 
 export {
   usePagination,
@@ -16,4 +17,5 @@ export {
   usePlayer,
   usePopover,
   useDebounce,
+  useFavorites,
 };

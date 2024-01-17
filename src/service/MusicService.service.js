@@ -33,6 +33,8 @@ class MusicService {
       coverImg: 'album.cover_big',
       songFile: 'preview',
       link: 'link',
+      duration: 'duration',
+      albumTitle: 'album.title',
     };
 
     const songs = result.data.data.map((song) =>

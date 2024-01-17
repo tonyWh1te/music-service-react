@@ -1,6 +1,7 @@
 //search param
 const PARAM_NAME = 'tab';
-const PARAM_VALUE_DEFAULT = 'overview';
+const GENRE_PARAM_VALUE_DEFAULT = 'overview';
+const LIBRARY_PARAM_VALUE_DEFAULT = 'artists';
 
 const validationMessages = {
   password: {
@@ -50,7 +51,8 @@ export {
   CLOSE_PLAYER,
   sizes,
   PARAM_NAME,
-  PARAM_VALUE_DEFAULT,
+  LIBRARY_PARAM_VALUE_DEFAULT,
+  GENRE_PARAM_VALUE_DEFAULT,
   BUTTON_IDS,
   DEV_API_MUSIC_PATH,
   PROD_API_MUSIC_PATH,

@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { usePlayer } from '../../hooks';
+import { usePlayer, useFavorites } from '../../hooks';
 import { fmtMSS } from '../../utils/helpers/time.helpers';
 import { HeartIcon } from '@heroicons/react/20/solid';
 import './TrackTable.css';
@@ -13,6 +13,8 @@ const TrackTable = (props) => {
     state: { activeSong },
   } = usePlayer();
 
+  const { addToFavorites, deleteFromFavorites, isFavorited } = useFavorites();
+
   const onClickSong = (i, tracksData, songId) => {
     return () => {
       if (activeSong !== songId) {
@@ -22,8 +24,16 @@ const TrackTable = (props) => {
     };
   };
 
+  const onAddToFavClick = (item, isFav) => () => {
+    if (isFav) {
+      deleteFromFavorites(item);
+    } else {
+      addToFavorites(item);
+    }
+  };
+
   return (
-    <table className='table-songs'>
+    <table className="table-songs">
       <thead>
         <tr>
           {tableHeaders.map(({ content, classes }, i) => (
@@ -38,7 +48,14 @@ const TrackTable = (props) => {
       </thead>
       <tbody>
         {tracksData.map((track, i) => {
-          const { id, title, artistName, albumTitle, duration } = track;
+          const { id, title, artistName, albumTitle, duration, type } = track;
+
+          const isFav = isFavorited(id, type);
+
+          const heartClasses = clsx('w-5', 'h-5', 'animation-main', {
+            'fill-main-green': isFav,
+            'hover:fill-main-green': !isFav,
+          });
 
           const rowClasses = clsx({
             'table-songs__row': true,
@@ -50,21 +67,24 @@ const TrackTable = (props) => {
               className={rowClasses}
               key={id}
             >
-              <td className='table-songs__data table-songs__text'>
+              <td className="table-songs__data table-songs__text">
                 <span onClick={onClickSong(i, tracksData, id)}>{title}</span>
               </td>
-              <td className='table-songs__data table-songs__text'>
+              <td className="table-songs__data table-songs__text">
                 {artistName}
               </td>
-              <td className='table-songs__data table-songs__text hidden md:table-cell'>
+              <td className="table-songs__data table-songs__text hidden md:table-cell">
                 {albumTitle}
               </td>
-              <td className='table-songs__data table-songs__text'>
+              <td className="table-songs__data table-songs__text">
                 {fmtMSS(duration)}
               </td>
-              <td className='table-songs__data'>
+              <td className="table-songs__data">
                 <button>
-                  <HeartIcon className='w-5 h-5 hover:fill-main-green animation-main' />
+                  <HeartIcon
+                    className={heartClasses}
+                    onClick={onAddToFavClick(track, isFav)}
+                  />
                 </button>
               </td>
             </tr>

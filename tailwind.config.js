@@ -47,11 +47,22 @@ module.exports = {
         'gray-gradient-dark': '#121212',
       },
       backgroundImage: (theme) => ({
-        'gradient-main': `linear-gradient(176.13deg, ${theme('colors.gray-gradient-light')} 2.6%, ${theme(
-          'colors.gray-gradient-dark'
-        )} 104.99%)`,
-        'gradient-dropdown': 'linear-gradient(180deg, rgba(23, 23, 23, 0) 0%, #000000 100%);',
+        'gradient-main': `linear-gradient(176.13deg, ${theme(
+          'colors.gray-gradient-light'
+        )} 2.6%, ${theme('colors.gray-gradient-dark')} 104.99%)`,
+        'gradient-dropdown':
+          'linear-gradient(180deg, rgba(23, 23, 23, 0) 0%, #000000 100%);',
       }),
+      keyframes: {
+        heartAnimation: {
+          '0%': { transform: 'scale(0)', opacity: 1 },
+          '50%': { transform: 'scale(1.5)', opacity: 0.5 },
+          '100%': { transform: 'scale(0)', opacity: 0 },
+        },
+      },
+      animation: {
+        'popping-heart': 'heartAnimation 1s',
+      },
     },
   },
   plugins: [

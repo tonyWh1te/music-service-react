@@ -53,3 +53,7 @@
 .album__btn {
   @apply p-1 lg:px-10 lg:py-2;
 }
+
+.album__btn-icon {
+  @apply fill-black absolute transition-all duration-300;
+}

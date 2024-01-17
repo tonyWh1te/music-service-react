@@ -1,0 +1,7 @@
+.card-artist {
+  @apply w-full text-center cursor-pointer;
+}
+
+.card-artist__img {
+  @apply w-full rounded-full object-cover h-4/5;
+}

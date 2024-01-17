@@ -1,6 +1,9 @@
 import { useParams, useSearchParams } from 'react-router-dom';
 import withContent from '../../../hoc/withContent';
-import { PARAM_NAME, PARAM_VALUE_DEFAULT } from '../../../utils/constants';
+import {
+  PARAM_NAME,
+  GENRE_PARAM_VALUE_DEFAULT,
+} from '../../../utils/constants';
 import {
   GenreArtists,
   GenreNewReleases,
@@ -30,7 +33,7 @@ const View = ({ genre }) => {
 
   const [searchParam, setSearchParam] = useSearchParams();
 
-  const tabQuery = searchParam.get(PARAM_NAME) || PARAM_VALUE_DEFAULT;
+  const tabQuery = searchParam.get(PARAM_NAME) || GENRE_PARAM_VALUE_DEFAULT;
 
   const tabs = [
     {
@@ -52,7 +55,7 @@ const View = ({ genre }) => {
 
   const onChangeTab = (id) => {
     if (tabQuery !== id) {
-      setSearchParam({ tab: id });
+      setSearchParam({ [PARAM_NAME]: id });
     }
   };
 

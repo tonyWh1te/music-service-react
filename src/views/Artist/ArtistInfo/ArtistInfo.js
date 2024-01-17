@@ -1,5 +1,6 @@
-import { Fragment } from 'react';
-import { useMediaQuery } from '../../../hooks';
+import { Fragment, useState } from 'react';
+import { useMediaQuery, useFavorites } from '../../../hooks';
+import clsx from 'clsx';
 import { ShareIcon, HeartIcon } from '@heroicons/react/20/solid';
 import SocialShareWidget from '../../../components/SocialShareWidget/SocialShareWidget';
 import Popover from '../../../components/Popover/Popover';
@@ -10,9 +11,31 @@ import { formatNumberWithCommas } from '../../../utils/helpers/nums.helper';
 import './ArtistInfo.css';
 
 const ArtistInfo = ({ artist }) => {
-  const { image, name, shareLink, fanBase } = artist;
+  const { shareLink, type, id } = artist;
 
+  const [isFollowClicked, setIsFollowClicked] = useState(false);
   const media = useMediaQuery('lg');
+  const { addToFavorites, deleteFromFavorites, isFavorited } = useFavorites();
+
+  const isFav = isFavorited(id, type);
+
+  const onCLickFollow = (item) => {
+    if (isFav) {
+      deleteFromFavorites(item);
+    } else {
+      setIsFollowClicked(true);
+      addToFavorites(item);
+    }
+  };
+
+  const followText = `${isFav ? 'un' : ''}follow`;
+  const heartIconClassName = clsx('icon', {
+    'fill-white': isFav,
+    'fill-black': !isFav,
+  });
+  const feedbackClassName = clsx('artist__feedback', {
+    'artist__feedback--press': isFav && isFollowClicked,
+  });
 
   const buttons = [
     {
@@ -23,9 +46,16 @@ const ArtistInfo = ({ artist }) => {
     },
     {
       id: BUTTON_IDS.FOLLOW,
-      label: media ? 'follow' : <HeartIcon className="icon fill-black" />,
+      label: (
+        <>
+          {media ? followText : <HeartIcon className={heartIconClassName} />}
+          <span className={feedbackClassName}>
+            <HeartIcon className="artist__feedback-icon" />
+          </span>
+        </>
+      ),
       classes: 'artist__btn button__primary',
-      onClick: () => {},
+      onClick: () => onCLickFollow(artist),
     },
   ];
 
@@ -62,6 +92,17 @@ const ArtistInfo = ({ artist }) => {
   const items = renderItems(buttons);
 
   return (
+    <View
+      buttons={items}
+      artist={artist}
+    />
+  );
+};
+
+const View = ({ buttons, artist }) => {
+  const { image, name, fanBase } = artist;
+
+  return (
     <div className="artist__info artist__block">
       <div className="container-wrapper md:mx-0">
         <div className="artist__info-inner">
@@ -77,9 +118,14 @@ const ArtistInfo = ({ artist }) => {
               <p className="artist__info-text">Artist</p>
               <h2 className="artist__info-title info-title">{name}</h2>
               <p className="artist__info-followers">
-                Folowers <span id="followers-num">{formatNumberWithCommas(fanBase)}</span>
+                Folowers{' '}
+                <span id="followers-num">
+                  {formatNumberWithCommas(fanBase)}
+                </span>
               </p>
-              <ButtonGroup className="artist__btn-group">{items}</ButtonGroup>
+              <ButtonGroup className="artist__btn-group overflow-visible">
+                {buttons}
+              </ButtonGroup>
             </div>
           </div>
         </div>

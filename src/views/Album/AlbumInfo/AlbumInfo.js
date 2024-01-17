@@ -1,7 +1,13 @@
-import React from 'react';
-import { useMediaQuery, usePlayer } from '../../../hooks';
+import { Fragment } from 'react';
+import { useMediaQuery, usePlayer, useFavorites } from '../../../hooks';
 import { Link } from 'react-router-dom';
-import { ShareIcon, PlusSmallIcon, PlayIcon } from '@heroicons/react/20/solid';
+import clsx from 'clsx';
+import {
+  ShareIcon,
+  PlusSmallIcon,
+  PlayIcon,
+  CheckIcon,
+} from '@heroicons/react/20/solid';
 import Popover from '../../../components/Popover/Popover';
 import SocialShareWidget from '../../../components/SocialShareWidget/SocialShareWidget';
 import Button from '../../../components/Button/Button';
@@ -11,22 +17,53 @@ import { BUTTON_IDS } from '../../../utils/constants';
 import './AlbumInfo.css';
 
 const AlbumInfo = ({ album }) => {
-  const { link, tracksData } = album;
+  const { link, tracksData, id, type } = album;
 
   const {
     setCurrentSong,
     setSongList,
-    state: { currentSongIndex },
+    state: { activeSong },
   } = usePlayer();
 
+  const { addToFavorites, deleteFromFavorites, isFavorited } = useFavorites();
+
   const media = useMediaQuery('lg');
+
+  const isFav = isFavorited(id, type);
+
+  const onAddClick = (item) => {
+    if (isFav) {
+      deleteFromFavorites(item);
+    } else {
+      addToFavorites(item);
+    }
+  };
+
+  const plusIconClasses = clsx(
+    'icon',
+    'album__btn-icon',
+    isFav ? 'top-[-20px]' : 'top-1'
+  );
+
+  const checkIconClasses = clsx(
+    'icon',
+    'album__btn-icon',
+    isFav ? 'bottom-1' : 'bottom-[-22px]'
+  );
 
   const buttons = [
     {
       id: BUTTON_IDS.ADD,
-      label: <PlusSmallIcon className="icon fill-black" />,
-      classes: 'button__primary p-1',
-      onClick: () => {},
+      label: (
+        <>
+          <CheckIcon className={checkIconClasses} />
+          <PlusSmallIcon className={plusIconClasses} />
+        </>
+      ),
+      classes: 'button__primary p-1 w-9 h-9',
+      onClick: () => {
+        onAddClick(album);
+      },
     },
     {
       id: BUTTON_IDS.PLAY,
@@ -34,8 +71,9 @@ const AlbumInfo = ({ album }) => {
       classes: 'button__primary album__btn',
       onClick: () => {
         const initIndex = 0;
+        const firtsTrackId = tracksData[0].id;
 
-        if (currentSongIndex !== initIndex) {
+        if (activeSong.id !== firtsTrackId) {
           setSongList(tracksData);
           setCurrentSong(initIndex);
         }
@@ -52,7 +90,7 @@ const AlbumInfo = ({ album }) => {
   const renderItems = (array) => {
     const items = array.map(({ id, label, classes, onClick }) => {
       return id === 'share' ? (
-        <React.Fragment key={id}>
+        <Fragment key={id}>
           <Popover preferredPosition="top-center">
             <Popover.Trigger>
               <Button className={classes}>{label}</Button>
@@ -64,7 +102,7 @@ const AlbumInfo = ({ album }) => {
               />
             </Popover.Content>
           </Popover>
-        </React.Fragment>
+        </Fragment>
       ) : (
         <Button
           key={id}
