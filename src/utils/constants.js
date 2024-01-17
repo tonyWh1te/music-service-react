@@ -40,7 +40,7 @@ const BUTTON_IDS = {
 // http config
 const PROD_API_MUSIC_PATH = `https://api.deezer.com`;
 const DEV_API_MUSIC_PATH = `/musicApi`;
-const PROXY = 'https://thingproxy.freeboard.io/fetch/';
+const PROXY = 'https://corsproxy.io/?';
 
 export {
   validationMessages,

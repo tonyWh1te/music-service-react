@@ -15,17 +15,17 @@ const ArtistInfo = ({ artist }) => {
 
   const [isFollowClicked, setIsFollowClicked] = useState(false);
   const media = useMediaQuery('lg');
-  const { addToFavorites, deleteFromFavorites, isFavorited } = useFavorites();
+  const {
+    onAddToFavClick,
+    context: { isFavorited },
+  } = useFavorites();
 
   const isFav = isFavorited(id, type);
 
   const onCLickFollow = (item) => {
-    if (isFav) {
-      deleteFromFavorites(item);
-    } else {
-      setIsFollowClicked(true);
-      addToFavorites(item);
-    }
+    onAddToFavClick(item, isFav, {
+      addCallback: () => setIsFollowClicked(true),
+    });
   };
 
   const followText = `${isFav ? 'un' : ''}follow`;

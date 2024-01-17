@@ -25,18 +25,17 @@ const AlbumInfo = ({ album }) => {
     state: { activeSong },
   } = usePlayer();
 
-  const { addToFavorites, deleteFromFavorites, isFavorited } = useFavorites();
+  const {
+    onAddToFavClick,
+    context: { isFavorited },
+  } = useFavorites();
 
   const media = useMediaQuery('lg');
 
   const isFav = isFavorited(id, type);
 
   const onAddClick = (item) => {
-    if (isFav) {
-      deleteFromFavorites(item);
-    } else {
-      addToFavorites(item);
-    }
+    onAddToFavClick(item, isFav);
   };
 
   const plusIconClasses = clsx(

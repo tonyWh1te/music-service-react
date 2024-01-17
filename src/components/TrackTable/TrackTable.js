@@ -13,7 +13,10 @@ const TrackTable = (props) => {
     state: { activeSong },
   } = usePlayer();
 
-  const { addToFavorites, deleteFromFavorites, isFavorited } = useFavorites();
+  const {
+    onAddToFavClick,
+    context: { isFavorited },
+  } = useFavorites();
 
   const onClickSong = (i, tracksData, songId) => {
     return () => {
@@ -24,12 +27,8 @@ const TrackTable = (props) => {
     };
   };
 
-  const onAddToFavClick = (item, isFav) => () => {
-    if (isFav) {
-      deleteFromFavorites(item);
-    } else {
-      addToFavorites(item);
-    }
+  const onAddClick = (item, isFav) => () => {
+    onAddToFavClick(item, isFav);
   };
 
   return (
@@ -83,7 +82,7 @@ const TrackTable = (props) => {
                 <button>
                   <HeartIcon
                     className={heartClasses}
-                    onClick={onAddToFavClick(track, isFav)}
+                    onClick={onAddClick(track, isFav)}
                   />
                 </button>
               </td>

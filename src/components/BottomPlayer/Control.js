@@ -17,7 +17,10 @@ const Control = ({ toggleAudio, track }) => {
     nextSong,
   } = usePlayer();
 
-  const { addToFavorites, deleteFromFavorites, isFavorited } = useFavorites();
+  const {
+    onAddToFavClick,
+    context: { isFavorited },
+  } = useFavorites();
 
   const { id, type } = track;
 
@@ -30,12 +33,8 @@ const Control = ({ toggleAudio, track }) => {
     toggleAudio();
   };
 
-  const onAddToFavClick = (item) => () => {
-    if (isFav) {
-      deleteFromFavorites(item);
-    } else {
-      addToFavorites(item);
-    }
+  const onAddClick = (item) => () => {
+    onAddToFavClick(item, isFav);
   };
 
   return (
@@ -43,7 +42,7 @@ const Control = ({ toggleAudio, track }) => {
       <button className="media-player__button animation-main block">
         <HeartIcon
           className={heartIconClasses}
-          onClick={onAddToFavClick(track)}
+          onClick={onAddClick(track)}
         />
       </button>
       <button

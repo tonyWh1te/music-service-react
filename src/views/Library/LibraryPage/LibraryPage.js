@@ -9,7 +9,9 @@ import {
 import './LibraryPage.css';
 
 const LibraryPage = () => {
-  const { favItems } = useFavorites();
+  const {
+    context: { favItems },
+  } = useFavorites();
 
   const [searchParam, setSearchParam] = useSearchParams();
   const tabQuery = searchParam.get(PARAM_NAME) || LIBRARY_PARAM_VALUE_DEFAULT;
