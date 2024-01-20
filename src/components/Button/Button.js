@@ -1,6 +1,5 @@
 import { forwardRef } from 'react';
 import clsx from 'clsx';
-import './Button.css';
 
 const Button = forwardRef((props, ref) => {
   const {

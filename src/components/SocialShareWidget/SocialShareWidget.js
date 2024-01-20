@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import {
   VKShareButton,
   FacebookShareButton,
@@ -32,7 +33,9 @@ const SocialShareWidget = ({ url, title }) => {
     );
   };
 
-  const socialLinks = socials.map(({ outlet, icon }) => renderSocialLink(outlet, icon));
+  const socialLinks = socials.map(({ outlet, icon }) =>
+    renderSocialLink(outlet, icon)
+  );
 
   return (
     <article className="socials">
@@ -47,4 +50,4 @@ const SocialShareWidget = ({ url, title }) => {
   );
 };
 
-export default SocialShareWidget;
+export default memo(SocialShareWidget);

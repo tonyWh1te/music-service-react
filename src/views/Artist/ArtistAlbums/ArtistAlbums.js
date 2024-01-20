@@ -34,12 +34,20 @@ const ArtistAlbums = ({ artist }) => {
   );
 };
 
-const AlbumListContainer = ({ errorMessage, spinner, list, gridComposition, artist }) => {
+const AlbumListContainer = ({
+  errorMessage,
+  spinner,
+  list,
+  gridComposition,
+  artist,
+}) => {
   const musicService = new MusicService();
 
-  const getArtistAlbums = (offset) => musicService.getArtistAlbums(artist.id, offset);
+  const getArtistAlbums = (offset) =>
+    musicService.getArtistAlbums(artist.id, offset);
 
-  const { newData, onDataLoaded, onUploadData, offset, dataEnded } = usePagination(getArtistAlbums);
+  const { newData, onDataLoaded, onUploadData, offset, dataEnded } =
+    usePagination(getArtistAlbums);
 
   const { loading, error, clearError } = musicService.http;
 
@@ -81,40 +89,52 @@ const AlbumListContainer = ({ errorMessage, spinner, list, gridComposition, arti
   );
 };
 
-const AlbumListView = memo(({ albums, onAlbumsUpload, loading, error, gridComposition, albumsEnded }) => {
-  const classes = clsx('album-list__block', gridComposition === 'table' ? 'album-list' : 'songs-list');
+const AlbumListView = memo(
+  ({
+    albums,
+    onAlbumsUpload,
+    loading,
+    error,
+    gridComposition,
+    albumsEnded,
+  }) => {
+    const classes = clsx(
+      'album-list__block',
+      gridComposition === 'table' ? 'album-list' : 'songs-list'
+    );
 
-  const errorMessage = error ? <ErrorMessage /> : null;
-  const spinner = loading ? (
-    <TailSpin
-      height="18"
-      width="18"
-      ariaLabel="tail-spin-loading"
-      radius="1"
-      color="#1AB26B"
-      wrapperClass="justify-center items-center h-full"
-      visible={true}
-    />
-  ) : null;
-  const content = !error ? <ul className={classes}>{albums}</ul> : null;
+    const errorMessage = error ? <ErrorMessage /> : null;
+    const spinner = loading ? (
+      <TailSpin
+        height="18"
+        width="18"
+        ariaLabel="tail-spin-loading"
+        radius="1"
+        color="#1AB26B"
+        wrapperClass="spinner"
+        visible={true}
+      />
+    ) : null;
+    const content = !error ? <ul className={classes}>{albums}</ul> : null;
 
-  const buttonVisible = albumsEnded ? 'none' : 'block';
-  const buttonLabel = loading ? spinner : 'show more';
+    const buttonVisible = albumsEnded ? 'none' : 'block';
+    const buttonLabel = loading ? spinner : 'show more';
 
-  return (
-    <>
-      {errorMessage}
-      {content}
-      <Button
-        className="button__secondary artist-albums__btn"
-        disabled={loading}
-        onClick={onAlbumsUpload}
-        style={{ display: buttonVisible }}
-      >
-        {buttonLabel}
-      </Button>
-    </>
-  );
-});
+    return (
+      <>
+        {errorMessage}
+        {content}
+        <Button
+          className="button__secondary artist-albums__btn"
+          disabled={loading}
+          onClick={onAlbumsUpload}
+          style={{ display: buttonVisible }}
+        >
+          {buttonLabel}
+        </Button>
+      </>
+    );
+  }
+);
 
 export default ArtistAlbums;

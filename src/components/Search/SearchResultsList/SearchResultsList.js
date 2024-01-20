@@ -3,7 +3,7 @@ import SearchResult from '../SearchResult/SearchResult';
 
 // Сделать предзагрузку в виде скелетона
 
-const SearchResultsList = ({ errorMessage, list }) => {
+const SearchResultsList = ({ errorMessage, list, onCloseRes }) => {
   const renderItems = (list) => {
     if (!list) return;
 
@@ -17,6 +17,7 @@ const SearchResultsList = ({ errorMessage, list }) => {
       <Link
         key={id}
         to={`/${type}/${id}`}
+        onClick={onCloseRes}
       >
         <SearchResult info={{ title, coverImg, artistName, type }} />
       </Link>

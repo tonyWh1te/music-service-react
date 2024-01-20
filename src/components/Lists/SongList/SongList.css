@@ -2,10 +2,6 @@
   @apply grid gap-[1.3rem] grid-cols-[repeat(11,_162px)] md:grid-cols-[repeat(11,_233px)];
 }
 
-.album-list {
-  @apply grid gap-[1.3rem] grid-cols-1  md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5  2xl:grid-cols-6;
-}
-
 .card-song {
   @apply w-full cursor-pointer;
 }

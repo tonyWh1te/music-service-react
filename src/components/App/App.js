@@ -1,5 +1,22 @@
+import { lazy, Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import {
+import { Bars } from 'react-loader-spinner';
+import Layout from '../Layout/Layout';
+import RequireAuth from '../RequireAuth/RequireAuth';
+import { AuthBoxProvider, AuthProvider } from '../../context';
+import { pageNames } from '../../utils/constants';
+import './App.css';
+
+const lazyImport = (pageName) =>
+  lazy(() => import(`../../views/${pageName}/${pageName}Page/${pageName}Page`));
+
+const lazyLoadedPages = pageNames.reduce((acc, curName) => {
+  acc[`${curName}Page`] = lazyImport(curName);
+
+  return acc;
+}, {});
+
+const {
   HomePage,
   AlbumPage,
   ArtistPage,
@@ -9,11 +26,7 @@ import {
   GenresPage,
   LibraryPage,
   NotFoundPage,
-} from '../../views';
-import Layout from '../Layout/Layout';
-import RequireAuth from '../RequireAuth/RequireAuth';
-import { AuthBoxProvider, AuthProvider } from '../../context';
-import './App.css';
+} = lazyLoadedPages;
 
 function App() {
   return (
@@ -22,11 +35,41 @@ function App() {
         <Routes>
           <Route
             path="/"
-            element={<LandingPage />}
+            element={
+              <Suspense
+                fallback={
+                  <Bars
+                    height="80"
+                    width="80"
+                    color="#1AB26B"
+                    ariaLabel="bars-loading"
+                    wrapperClass="spinner"
+                    visible={true}
+                  />
+                }
+              >
+                <LandingPage />
+              </Suspense>
+            }
           />
           <Route
             path="/auth"
-            element={<AuthPage />}
+            element={
+              <Suspense
+                fallback={
+                  <Bars
+                    height="80"
+                    width="80"
+                    color="#1AB26B"
+                    ariaLabel="bars-loading"
+                    wrapperClass="spinner"
+                    visible={true}
+                  />
+                }
+              >
+                <AuthPage />
+              </Suspense>
+            }
           />
           <Route element={<RequireAuth />}>
             <Route element={<Layout />}>

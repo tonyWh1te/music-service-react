@@ -1,5 +1,4 @@
 import ArtistCard from '../../ArtistCard/ArtistCard';
-import './ArtistList.css';
 
 const ArtistList = ({ errorMessage, spinner, list, gridComposition }) => {
   const classes =

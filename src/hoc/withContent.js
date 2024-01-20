@@ -12,16 +12,21 @@ const withContent = (Component, requestMethodInfo) => {
     const { error, loading } = musicService.http;
 
     useEffect(() => {
+      let isCancelled = false;
       const { methodName, methodParams = [] } = requestMethodInfo;
 
       if (typeof musicService[methodName] === 'function') {
-        musicService[methodName](...methodParams).then(onListLoaded);
+        musicService[methodName](...methodParams).then(({ data }) => {
+          if (!isCancelled) {
+            setList(data);
+          }
+        });
       }
-    }, [requestMethodInfo]);
 
-    const onListLoaded = ({ data }) => {
-      setList(data);
-    };
+      return () => {
+        isCancelled = true;
+      };
+    }, [requestMethodInfo]);
 
     const errorMessage = error ? <ErrorMessage /> : null;
     const spinner = loading ? (
@@ -31,7 +36,7 @@ const withContent = (Component, requestMethodInfo) => {
         ariaLabel="tail-spin-loading"
         radius="1"
         color="#1AB26B"
-        wrapperClass="justify-center items-center h-full"
+        wrapperClass="spinner"
         visible={true}
       />
     ) : null;

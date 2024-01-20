@@ -47,7 +47,7 @@ const LibraryPage = () => {
       <div className="container-wrapper md:mx-0">
         <h1 className="page-title">Library</h1>
       </div>
-      <div className="genre-tabs">
+      <div className="library-tabs">
         <Tabs
           tabs={tabs}
           value={tabQuery}

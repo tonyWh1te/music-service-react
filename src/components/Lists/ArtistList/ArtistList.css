@@ -1,8 +1,0 @@
-.artists-list,
-.artists-table {
-  @apply grid gap-7 grid-cols-[repeat(11,_128px)] md:grid-cols-[repeat(11,_160px)];
-}
-
-.artists-table {
-  @apply grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 2xl:grid-cols-8;
-}

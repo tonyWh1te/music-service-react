@@ -1,3 +1,0 @@
-.btn {
-  @apply relative px-10 py-2 border-none rounded-full text-white no-underline inline-block disabled:opacity-50 disabled:cursor-not-allowed;
-}

@@ -28,19 +28,28 @@ const SearchResultsContainer = ({
         <div className="results__category results__category--artists">
           <h6 className="card-title results__category-title">Artists</h6>
           {artists.map((ArtistsSearchResult, i) => (
-            <ArtistsSearchResult key={i} />
+            <ArtistsSearchResult
+              key={i}
+              onCloseRes={onCloseRes}
+            />
           ))}
         </div>
         <div className="results__category results__category--albums">
           <h6 className="card-title results__category-title">Albums</h6>
           {albums.map((AlbumsSearchResult, i) => (
-            <AlbumsSearchResult key={i} />
+            <AlbumsSearchResult
+              key={i}
+              onCloseRes={onCloseRes}
+            />
           ))}
         </div>
         <div className="results__category results__category--songs">
           <h6 className="card-title results__category-title">Songs</h6>
           {songs.map((SongsSearchResult, i) => (
-            <SongsSearchResult key={i} />
+            <SongsSearchResult
+              key={i}
+              onCloseRes={onCloseRes}
+            />
           ))}
         </div>
       </div>

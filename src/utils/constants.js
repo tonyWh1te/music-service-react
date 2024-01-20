@@ -13,6 +13,18 @@ const validationMessages = {
   required: 'Required field!',
 };
 
+const pageNames = [
+  'Home',
+  'Album',
+  'Artist',
+  'Auth',
+  'Landing',
+  'Genre',
+  'Genres',
+  'Library',
+  'NotFound',
+];
+
 // Types of player functions
 const SET_SONGS_ARRAY = 'SET_SONGS_ARRAY';
 const SET_CURRENT_SONG = 'SET_CURRENT_SONG';
@@ -57,4 +69,5 @@ export {
   DEV_API_MUSIC_PATH,
   PROD_API_MUSIC_PATH,
   PROXY,
+  pageNames,
 };
